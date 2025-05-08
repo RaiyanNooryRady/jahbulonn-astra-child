@@ -1,6 +1,7 @@
 <?php 
-/* Template Name: User Portal*/
+/* Template Name: Registration Portal*/
 ob_start();
+get_header();
 // include 'registration.php';
 
 
