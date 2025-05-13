@@ -1,8 +1,7 @@
 <?php 
-/* Template Name: User Portal*/
+
 ob_start();
 // include 'registration.php';
-
 
 ?>
 
@@ -132,7 +131,7 @@ ob_start();
                     </form>
                 </div>
                 
-                <!-- <div class="tab-content" id="login-tab">
+                <div class="tab-content" id="login-tab">
                     <form id="login-form" method="POST" action="login.php">
                         <div class="form-group">
                             <label for="login-username">Username / E-mail Adresse *:</label>
@@ -150,7 +149,7 @@ ob_start();
                             
                         </div>
                     </form>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
@@ -199,19 +198,14 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 0;
     font-family: Arial, sans-serif;
 }
-
-body {
-    background-color: #f5f5f5;
-    padding: 10px;
-}
-
+ 
 #kon {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 10px auto;
     width: 100%;
 }
-
-.container {
+ 
+#kon .container {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -219,33 +213,33 @@ body {
     margin-top: 10px;
     width: 100%;
 }
-
-.header {
+ 
+#kon .header {
     text-align: center;
     margin-bottom: 20px;
 }
-
-.header h1 {
+ 
+#kon .header h1 {
     margin-bottom: 20px;
     color: #333;
     font-size: 24px;
 }
-
-.progress-steps {
+ 
+#kon .progress-steps {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
-
-.step {
+ 
+#kon .step {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-.step-number {
+ 
+#kon .step-number {
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -256,29 +250,29 @@ body {
     font-weight: bold;
     color: #333;
 }
-
-.step-number.active {
+ 
+#kon .step-number.active {
     background-color: #0a6e83;
     color: white;
 }
-
-.step-line {
+ 
+#kon .step-line {
     width: 40px;
     height: 2px;
     background-color: #ccc;
 }
-
-.tab-container {
+ 
+#kon .tab-container {
     width: 100%;
 }
-
-.tab-buttons {
+ 
+#kon .tab-buttons {
     display: flex;
     margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
 }
-
-.tab-button {
+ 
+#kon .tab-button {
     padding: 10px;
     cursor: pointer;
     background-color: #f1f1f1;
@@ -289,69 +283,69 @@ body {
     width: 50%;
     text-align: center;
 }
-
-.tab-button.active {
+ 
+#kon .tab-button.active {
     background-color: #0a6e83;
     color: white;
 }
-
-.tab-content {
+ 
+#kon .tab-content {
     display: none;
     padding: 10px 0;
 }
-
-.tab-content.active {
+ 
+#kon .tab-content.active {
     display: block;
 }
-
-.form-group {
+ 
+#kon .form-group {
     margin-bottom: 15px;
 }
-
-.form-group label {
+ 
+#kon .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 14px;
 }
-
-.form-group input, .form-group select {
+ 
+#kon .form-group input, .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
 }
-
-.two-columns {
+ 
+#kon .two-columns {
     display: flex;
     gap: 10px;
     flex-direction: row;
 }
-
-.two-columns .form-group {
+ 
+#kon .two-columns .form-group {
     flex: 1;
 }
-
-.checkbox-container {
+ 
+#kon .checkbox-container {
     display: flex;
     align-items: flex-start;
     margin-bottom: 0px;
     gap: 10px;
 }
-
-.checkbox-container input {
+ 
+#kon .checkbox-container input {
     margin-top: 3px;
     min-width: 16px;
     height: 16px;
 }
-
-.checkbox-container label {
+ 
+#kon .checkbox-container label {
     font-size: 14px;
     line-height: 1.4;
 }
-
-.submit-button {
+ 
+#kon .submit-button {
     background-color: #0a6e83;
     color: white;
     border: none;
@@ -363,7 +357,7 @@ body {
     float: right;
     margin-top: -20px !important;
 }
-.submit-button-login {
+#kon .submit-button-login {
     background-color: #0a6e83;
     color: white;
     border: none;
@@ -375,8 +369,8 @@ body {
     float: right;
     margin-top: 10px ;
 }
-
-.forgot-link {
+ 
+#kon .forgot-link {
     color: #0a6e83;
     text-decoration: none;
     font-size: 14px;
@@ -384,83 +378,81 @@ body {
     margin-top: 20px;
     margin-right: 10px;
 }
-
-.forgot-link:hover {
+ 
+#kon .forgot-link:hover {
     text-decoration: underline;
 }
-
-
+ 
+ 
 @media screen and (max-width: 768px) {
-    body {
-        padding: 5px;
-    }
-    
-    .container {
+   
+    #kon .container {
         padding: 15px;
     }
-    
-    .header h1 {
+   
+    #kon  .header h1 {
         font-size: 22px;
     }
-    
-    .step-number {
+   
+    #kon .step-number {
         width: 30px;
         height: 30px;
         font-size: 14px;
     }
-    
-    .step-line {
+   
+    #kon  .step-line {
         width: 30px;
     }
 }
-
+ 
 @media screen and (max-width: 576px) {
-    .two-columns {
+    #kon  .two-columns {
         flex-direction: column;
         gap: 0;
     }
-    
-    .checkbox-container {
+   
+    #kon   .checkbox-container {
         align-items: flex-start;
         margin-bottom: 20px;
     }
-    
-    .checkbox-container input {
+   
+    #kon   .checkbox-container input {
         margin-top: 3px;
     }
-    
-    .tab-button {
+   
+    #kon  .tab-button {
         padding: 8px 5px;
         font-size: 14px;
     }
-    
-    .form-group label {
+   
+    #kon  .form-group label {
         font-size: 13px;
     }
-    
-    .submit-button {
+   
+    #kon  .submit-button {
         padding: 8px 16px;
         font-size: 14px;
         width: 100%;
         margin-top: 10px;
     }
-
-    .submit-button-login{
+ 
+    #kon   .submit-button-login{
         padding: 8px 16px;
         font-size: 14px;
         width: 100%;
         margin-top: -10px;
     }
-    
-    .forgot-link {
+   
+    #kon   .forgot-link {
         float: none;
         display: block;
         text-align: center;
         margin-bottom: 15px;
     }
-    
-    .form-group[style="text-align: right;"] {
+   
+    #kon  .form-group[style="text-align: right;"] {
         text-align: center !important;
     }
 }
+ 
 </style>
