@@ -10,407 +10,442 @@
     <title>Registration Portal</title>
     <style>
         /*Global & Step 1*/
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-#kon {
-    max-width: 1000px;
-    margin: 10px auto;
-    width: 100%;
-}
-#kon p{
-    font-size: 14px;
-}
+        #kon {
+            max-width: 1000px;
+            margin: 10px auto;
+            width: 100%;
+        }
 
-#kon .container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 10px;
-    width: 100%;
-}
+        #kon p {
+            font-size: 14px;
+        }
 
-#kon .header {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        #kon .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 10px;
+            width: 100%;
+        }
 
-#kon .header h1 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-}
+        #kon .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-#kon .progress-steps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
+        #kon .header h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
 
-#kon .step {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        #kon .progress-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
 
-#kon .step-number {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #f1f1f1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    color: #333;
-}
+        #kon .step {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-#kon .step-number.active {
-    background-color: #0a6e83;
-    color: white;
-}
+        #kon .step-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #333;
+        }
 
-#kon .step-line {
-    width: 40px;
-    height: 2px;
-    background-color: #ccc;
-}
+        #kon .step-number.active {
+            background-color: #0a6e83;
+            color: white;
+        }
 
-#kon .tab-container {
-    width: 100%;
-}
+        #kon .step-line {
+            width: 40px;
+            height: 2px;
+            background-color: #ccc;
+        }
 
-#kon .tab-buttons {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
+        #kon .tab-container {
+            width: 100%;
+        }
 
-#kon .tab-button {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #f1f1f1;
-    border: none;
-    outline: none;
-    font-weight: bold;
-    transition: 0.3s;
-    width: 50%;
-    text-align: center;
-}
+        #kon .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
 
-#kon .tab-button.active {
-    background-color: #0a6e83;
-    color: white;
-}
+        #kon .tab-button {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 50%;
+            text-align: center;
+        }
 
-#kon .tab-content {
-    display: none;
-    padding: 10px 0;
-}
+        #kon .tab-button.active {
+            background-color: #0a6e83;
+            color: white;
+        }
 
-#kon .tab-content.active {
-    display: block;
-}
+        #kon .tab-content {
+            display: none;
+            padding: 10px 0;
+        }
 
-#kon .form-group {
-    margin-bottom: 15px;
-}
+        #kon .tab-content.active {
+            display: block;
+        }
 
-#kon .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 14px;
-}
+        #kon .form-group {
+            margin-bottom: 15px;
+        }
 
-#kon .form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
+        #kon .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
 
-#kon .two-columns {
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-}
+        #kon .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
 
-#kon .two-columns .form-group {
-    flex: 1;
-}
+        #kon .two-columns {
+            display: flex;
+            gap: 10px;
+            flex-direction: row;
+        }
 
-#kon .checkbox-container {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 0px;
-    gap: 10px;
-}
-#kon .checkbox-container input, #kon .checkbox-container label{
-    cursor: pointer;
-}
-#kon .checkbox-container input {
-    margin-top: 3px;
-    min-width: 16px;
-    height: 16px;
-}
+        #kon .two-columns .form-group {
+            flex: 1;
+        }
 
-#kon .checkbox-container label {
-    font-size: 14px;
-    line-height: 1.8;
-}
+        #kon .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0px;
+            gap: 10px;
+        }
 
-#kon .submit-button, #kon .next-button {
-    background-color: #0a6e83;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    float: right;
-    margin-top: -20px !important;
-}
-#kon .prev-button{
-    background-color: #0a6e83;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    float: left;
-    margin-top: -20px !important;
-}
-#kon .submit-button-login {
-    background-color: #0a6e83;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    float: right;
-    margin-top: 10px ;
-}
+        #kon .checkbox-container input,
+        #kon .checkbox-container label {
+            cursor: pointer;
+        }
 
-#kon .forgot-link {
-    color: #0a6e83;
-    text-decoration: none;
-    font-size: 14px;
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 10px;
-}
+        #kon .checkbox-container input {
+            margin-top: 3px;
+            min-width: 16px;
+            height: 16px;
+        }
 
-#kon .forgot-link:hover {
-    text-decoration: underline;
-}
+        #kon .checkbox-container label {
+            font-size: 14px;
+            line-height: 1.8;
+        }
 
-/*Step 2*/
+        #kon .submit-button,
+        #kon .next-button {
+            background-color: #0a6e83;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            float: right;
+            margin-top: -20px !important;
+        }
 
-#kon .text{
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
-}
+        #kon .prev-button {
+            background-color: #0a6e83;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            float: left;
+            margin-top: -20px !important;
+        }
 
-#kon .upload-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-    border: 1px solid #f2f2f2;
-    max-width: 700px;
-    margin: 30px auto;
-    background-color: white;
-    flex-wrap: wrap;
-}
+        #kon .submit-button-login {
+            background-color: #0a6e83;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            float: right;
+            margin-top: 10px;
+        }
 
-#kon .upload-icon-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        #kon .forgot-link {
+            color: #0a6e83;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 20px;
+            margin-right: 10px;
+        }
 
-#kon .upload-icon-section img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
+        #kon .forgot-link:hover {
+            text-decoration: underline;
+        }
 
-#kon .upload-label {
-    margin-top: 10px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 14px;
-}
+        /*Step 2*/
 
-#kon .upload-text-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        #kon .text {
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: center;
+        }
 
-#kon .upload-text-section p {
-    margin: 0;
-    font-size: 14px;
-    text-align: center;
-}
+        #kon .upload-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            border: 1px solid #f2f2f2;
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: white;
+            flex-wrap: wrap;
+        }
 
-#kon .upload-input {
-    border: 1px solid #ddd;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 14px;
-}
+        #kon .upload-icon-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-#kon .image-box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-    border: 1px solid #f2f2f2;
-    max-width: 300px;
-    margin: 20px auto;
-    background-color: white;
-    flex-wrap: wrap;
-}
-#kon .image-box img{
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-}
-#kon .tab-content .logout-div{
-    text-align: center;
-}
-#kon .tab-content .logout-div .logout{
-    font-size: 14px;
-    color: #0A6E83;
-}
-/*Step 3*/
-#kon .container-heading{
-    text-align: center;
-}
-#kon #upload-documents-form{
-    padding-bottom: 10px;
-}
+        #kon .upload-icon-section img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
 
-/*Step 4*/
-#kon #choose-school-form{
-    padding-bottom: 10px;
-}
-#kon .radio-container{
-    margin: 10px 0;
-}
-#kon .radio-container input, #kon .radio-container label{
-    cursor: pointer;
-}
-#kon #choose-school-form h4{
-    margin: 15px 0;
-}
- #kon #humanmedizin_selected,#kon #zahnmedizin_selected, #kon #beides_selected{
-    display: none;
-}
-#kon #humanmedizin_selected.active,#kon #zahnmedizin_selected.active, #kon #beides_selected.active{
-    display: block;
-}
+        #kon .upload-label {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
 
-#kon .thank-you{
-    text-align: center;
-}
-#kon #rp-step1, #kon #rp-step2, #kon #rp-step3, #kon #rp-step4, #kon #rp-step5, #kon #rp-step6{
-    display: none;
-}
-#kon #rp-step1.active, #kon #rp-step2.active, #kon #rp-step3.active, #kon #rp-step4.active, #kon #rp-step5.active, #kon #rp-step6.active{
-    display: block;
-}
+        #kon .upload-text-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-/*Mobile Devices*/
+        #kon .upload-text-section p {
+            margin: 0;
+            font-size: 14px;
+            text-align: center;
+        }
 
-@media screen and (max-width: 768px) {
-    
-    #kon .container {
-        padding: 15px;
-    }
-    
-    #kon  .header h1 {
-        font-size: 22px;
-    }
-    
-    #kon .step-number {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-    }
-    
-    #kon  .step-line {
-        width: 30px;
-    }
-}
+        #kon .upload-input {
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
 
-@media screen and (max-width: 576px) {
-    #kon  .two-columns {
-        flex-direction: column;
-        gap: 0;
-    }
-    
-    #kon   .checkbox-container {
-        align-items: flex-start;
-        /* margin-bottom: 20px; */
-    }
-    
-    #kon   .checkbox-container input {
-        margin-top: 3px;
-    }
-    
-    #kon  .tab-button {
-        padding: 8px 5px;
-        font-size: 14px;
-    }
-    
-    #kon  .form-group label {
-        font-size: 13px;
-    }
-    
-    #kon  .submit-button {
-        padding: 8px 16px;
-        font-size: 14px;
-        width: 100%;
-        margin-top: 10px;
-    }
+        #kon .image-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            border: 1px solid #f2f2f2;
+            max-width: 300px;
+            margin: 20px auto;
+            background-color: white;
+            flex-wrap: wrap;
+        }
 
-    #kon   .submit-button-login{
-        padding: 8px 16px;
-        font-size: 14px;
-        width: 100%;
-        margin-top: -10px;
-    }
-    
-    #kon   .forgot-link {
-        float: none;
-        display: block;
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    
-    #kon  .form-group[style="text-align: right;"] {
-        text-align: center !important;
-    }
-}
+        #kon .image-box img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        #kon .tab-content .logout-div {
+            text-align: center;
+        }
+
+        #kon .tab-content .logout-div .logout {
+            font-size: 14px;
+            color: #0A6E83;
+        }
+
+        /*Step 3*/
+        #kon .container-heading {
+            text-align: center;
+        }
+
+        #kon #upload-documents-form {
+            padding-bottom: 10px;
+        }
+
+        /*Step 4*/
+        #kon #choose-school-form {
+            padding-bottom: 10px;
+        }
+
+        #kon .radio-container {
+            margin: 10px 0;
+        }
+
+        #kon .radio-container input,
+        #kon .radio-container label {
+            cursor: pointer;
+        }
+
+        #kon #choose-school-form h4 {
+            margin: 15px 0;
+        }
+
+        #kon #humanmedizin_selected,
+        #kon #zahnmedizin_selected,
+        #kon #beides_selected {
+            display: none;
+        }
+
+        #kon #humanmedizin_selected.active,
+        #kon #zahnmedizin_selected.active,
+        #kon #beides_selected.active {
+            display: block;
+        }
+
+        #kon .thank-you {
+            text-align: center;
+        }
+
+        #kon #rp-step1,
+        #kon #rp-step2,
+        #kon #rp-step3,
+        #kon #rp-step4,
+        #kon #rp-step5,
+        #kon #rp-step6 {
+            display: none;
+        }
+
+        #kon #rp-step1.active,
+        #kon #rp-step2.active,
+        #kon #rp-step3.active,
+        #kon #rp-step4.active,
+        #kon #rp-step5.active,
+        #kon #rp-step6.active {
+            display: block;
+        }
+
+        /*Mobile Devices*/
+
+        @media screen and (max-width: 768px) {
+
+            #kon .container {
+                padding: 15px;
+            }
+
+            #kon .header h1 {
+                font-size: 22px;
+            }
+
+            #kon .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            #kon .step-line {
+                width: 30px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            #kon .two-columns {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            #kon .checkbox-container {
+                align-items: flex-start;
+                /* margin-bottom: 20px; */
+            }
+
+            #kon .checkbox-container input {
+                margin-top: 3px;
+            }
+
+            #kon .tab-button {
+                padding: 8px 5px;
+                font-size: 14px;
+            }
+
+            #kon .form-group label {
+                font-size: 13px;
+            }
+
+            #kon .submit-button {
+                padding: 8px 16px;
+                font-size: 14px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            #kon .submit-button-login {
+                padding: 8px 16px;
+                font-size: 14px;
+                width: 100%;
+                margin-top: -10px;
+            }
+
+            #kon .forgot-link {
+                float: none;
+                display: block;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            #kon .form-group[style="text-align: right;"] {
+                text-align: center !important;
+            }
+        }
     </style>
 </head>
 
@@ -546,7 +581,8 @@
 
                         <div class="form-group" style="text-align: right;">
                             <a href="#" class="forgot-link">Forgot Password?</a>
-                            <button type="submit" name="submit" class="submit-button-login" id="login_submit">Submit</button>
+                            <button type="submit" name="submit" class="submit-button-login"
+                                id="login_submit">Submit</button>
 
                         </div>
                     </form>
@@ -587,7 +623,8 @@
                             der Bewerbung fortzufahren.</p>
                         <div class="upload-container">
                             <div class="upload-icon-section">
-                                <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/file-upload.png' ?>" alt="Upload Icon">
+                                <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/file-upload.png' ?>"
+                                    alt="Upload Icon">
                                 <p class="upload-label">Vollmacht</p>
                             </div>
                             <div class="upload-text-section">
@@ -604,7 +641,7 @@
                 <div class="tab-content" id="profile-tab">
                     <form id="profile-form" method="POST" action="">
                         <div class="image-box">
-                            <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/user.png'?>" alt="User">
+                            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/user.png' ?>" alt="User">
                         </div>
                         <div class="logout-div">
                             <a href="logout" class="logout">Logout</a>
@@ -772,22 +809,26 @@
 
                         <div class="checkbox-container">
                             <input type="checkbox" id="frycz_university" name="frycz_university">
-                            <label for="frycz_university">Andrzej Frycz Modrzewski Universität – Krakau, Polen(H,Z)</label>
+                            <label for="frycz_university">Andrzej Frycz Modrzewski Universität – Krakau,
+                                Polen(H,Z)</label>
                         </div>
 
                         <div class="checkbox-container">
                             <input type="checkbox" id="victor_babes_university" name="victor_babes_university">
-                            <label for="victor_babes_university">Victor Babes Universität – Timișoara, Rumänien(H)</label>
+                            <label for="victor_babes_university">Victor Babes Universität – Timișoara,
+                                Rumänien(H)</label>
                         </div>
 
                         <div class="checkbox-container">
                             <input type="checkbox" id="cluj_napoca_university" name="cluj_napoca_university">
-                            <label for="cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca, Rumänien(H,Z)</label>
+                            <label for="cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
+                                Rumänien(H,Z)</label>
                         </div>
 
                         <div class="checkbox-container">
                             <input type="checkbox" id="carol_davila_university" name="carol_davila_university">
-                            <label for="carol_davila_university">Carol Davila Universität – Bukarest, Rumänien(H,Z)</label>
+                            <label for="carol_davila_university">Carol Davila Universität – Bukarest,
+                                Rumänien(H,Z)</label>
                         </div>
 
                         <div class="checkbox-container">
@@ -898,12 +939,14 @@
                     <h4 class="mocktest-question"> Du möchtest dich an mehr als 3 Unis bewerben?</h4>
                     <div class="checkbox-container">
                         <input type="checkbox" id="ja_mehr" name="ja_mehr" required>
-                        <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den AGB*.Falls Sie sich an mehr als drei Universitäten bewerben möchten,
+                        <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den AGB*. Falls Sie eine
+                            Universität gewählt haben, die beide Studiengänge anbietet, geben Sie bitte im Kommentarfeld
+                            an, welchen Studiengang Sie an welcher Universität genau studieren möchten.
                         </label>
-                        
+
                     </div>
                     <div>
-                    <textarea style="border-color: #0a6e82;" rows="5" col="5">
+                        <textarea style="border-color: #0a6e82;" rows="5" col="5">
 
                     </textarea>
                     </div>
@@ -956,7 +999,7 @@
             <div class="thank-you">
                 <h2>Vielen Dank!</h2>
                 <div class="image-box">
-                    <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/complete.png'?>" alt="User">
+                    <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/complete.png' ?>" alt="User">
                 </div>
                 <p> Wir haben deine Unterlagen erfolgreich erhalten
                     und melden uns in Kürze bei dir!
@@ -969,147 +1012,148 @@
         </div>
     </div>
 </body>
+
 </html>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // Get all steps
-    const steps = document.querySelectorAll('.container');
-    
-    // Hide all steps except the first one initially
-    steps.forEach((step, index) => {
-        if (index !== 0) {
-            step.classList.remove('active');
-        }
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all steps
+        const steps = document.querySelectorAll('.container');
 
-    //step 1:
-    const registrationBtn = document.getElementById('registration-btn');
-    const loginBtn = document.getElementById('login-btn');
-    const registrationTab = document.getElementById('registration-tab');
-    const loginTab = document.getElementById('login-tab');
-    
-    registrationBtn.addEventListener('click', function() {
-        // Switch to registration tab
-        registrationBtn.classList.add('active');
-        loginBtn.classList.remove('active');
-        registrationTab.classList.add('active');
-        loginTab.classList.remove('active');
-    });
-    
-    loginBtn.addEventListener('click', function() {
-        // Switch to login tab
-        loginBtn.classList.add('active');
-        registrationBtn.classList.remove('active');
-        loginTab.classList.add('active');
-        registrationTab.classList.remove('active');
-    });
-
-    //Step 2
-    const profileBtn = document.getElementById('profile-btn');
-    const dokumenteBtn = document.getElementById('dokumente-btn');
-    const profileTab = document.getElementById('profile-tab');
-    const dokumenteTab = document.getElementById('dokumente-tab');
-
-    dokumenteBtn.addEventListener('click', function() {
-        //switch to dokumente tab
-        dokumenteBtn.classList.add('active');
-        profileBtn.classList.remove('active');
-        dokumenteTab.classList.add('active');
-        profileTab.classList.remove('active');
-    });
-
-    profileBtn.addEventListener('click', function() {
-        //switch to profile tab
-        profileBtn.classList.add('active');
-        dokumenteBtn.classList.remove('active');
-        profileTab.classList.add('active');
-        dokumenteTab.classList.remove('active');
-    });
-
-    //step 4
-    const optionHuman = document.getElementById('humanmedizin');
-    const optionZahn = document.getElementById('zahnmedizin');
-    const optionBeides = document.getElementById('beides');
-    const schoolHuman = document.getElementById('humanmedizin_selected');
-    const schoolZahn = document.getElementById('zahnmedizin_selected');
-    const schoolBeides = document.getElementById('beides_selected');
-
-    // Hide all school sections initially except humanmedizin
-    schoolZahn.classList.remove('active');
-    schoolBeides.classList.remove('active');
-    schoolHuman.classList.add('active');
-
-    // Add event listeners for all radio buttons
-    document.querySelectorAll('input[name="chosen_school"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            // Hide all school sections
-            schoolHuman.classList.remove('active');
-            schoolZahn.classList.remove('active');
-            schoolBeides.classList.remove('active');
-
-            // Show the selected section
-            if (this.value === 'Humanmedizin') {
-                schoolHuman.classList.add('active');
-            } else if (this.value === 'Zahnmedizin') {
-                schoolZahn.classList.add('active');
-            } else if (this.value === 'Beides') {
-                schoolBeides.classList.add('active');
+        // Hide all steps except the first one initially
+        steps.forEach((step, index) => {
+            if (index !== 0) {
+                step.classList.remove('active');
             }
         });
+
+        //step 1:
+        const registrationBtn = document.getElementById('registration-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const registrationTab = document.getElementById('registration-tab');
+        const loginTab = document.getElementById('login-tab');
+
+        registrationBtn.addEventListener('click', function () {
+            // Switch to registration tab
+            registrationBtn.classList.add('active');
+            loginBtn.classList.remove('active');
+            registrationTab.classList.add('active');
+            loginTab.classList.remove('active');
+        });
+
+        loginBtn.addEventListener('click', function () {
+            // Switch to login tab
+            loginBtn.classList.add('active');
+            registrationBtn.classList.remove('active');
+            loginTab.classList.add('active');
+            registrationTab.classList.remove('active');
+        });
+
+        //Step 2
+        const profileBtn = document.getElementById('profile-btn');
+        const dokumenteBtn = document.getElementById('dokumente-btn');
+        const profileTab = document.getElementById('profile-tab');
+        const dokumenteTab = document.getElementById('dokumente-tab');
+
+        dokumenteBtn.addEventListener('click', function () {
+            //switch to dokumente tab
+            dokumenteBtn.classList.add('active');
+            profileBtn.classList.remove('active');
+            dokumenteTab.classList.add('active');
+            profileTab.classList.remove('active');
+        });
+
+        profileBtn.addEventListener('click', function () {
+            //switch to profile tab
+            profileBtn.classList.add('active');
+            dokumenteBtn.classList.remove('active');
+            profileTab.classList.add('active');
+            dokumenteTab.classList.remove('active');
+        });
+
+        //step 4
+        const optionHuman = document.getElementById('humanmedizin');
+        const optionZahn = document.getElementById('zahnmedizin');
+        const optionBeides = document.getElementById('beides');
+        const schoolHuman = document.getElementById('humanmedizin_selected');
+        const schoolZahn = document.getElementById('zahnmedizin_selected');
+        const schoolBeides = document.getElementById('beides_selected');
+
+        // Hide all school sections initially except humanmedizin
+        schoolZahn.classList.remove('active');
+        schoolBeides.classList.remove('active');
+        schoolHuman.classList.add('active');
+
+        // Add event listeners for all radio buttons
+        document.querySelectorAll('input[name="chosen_school"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                // Hide all school sections
+                schoolHuman.classList.remove('active');
+                schoolZahn.classList.remove('active');
+                schoolBeides.classList.remove('active');
+
+                // Show the selected section
+                if (this.value === 'Humanmedizin') {
+                    schoolHuman.classList.add('active');
+                } else if (this.value === 'Zahnmedizin') {
+                    schoolZahn.classList.add('active');
+                } else if (this.value === 'Beides') {
+                    schoolBeides.classList.add('active');
+                }
+            });
+        });
+
+        // Handle form submissions
+        const registrationForm = document.getElementById('registration-form');
+        const loginForm = document.getElementById('login-form');
+
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Hide step 1 and show step 2
+                document.getElementById('rp-step1').classList.remove('active');
+                document.getElementById('rp-step2').classList.add('active');
+            });
+        }
+
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Hide step 1 and show step 2
+                document.getElementById('rp-step1').classList.remove('active');
+                document.getElementById('rp-step2').classList.add('active');
+            });
+        }
+
+        // Handle next buttons
+        const nextButtons = document.querySelectorAll('.next-button');
+        nextButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const currentStep = this.closest('.container');
+                const currentStepNumber = parseInt(currentStep.id.replace('rp-step', ''));
+                const nextStepNumber = currentStepNumber + 1;
+
+                // Hide current step
+                currentStep.classList.remove('active');
+                // Show next step
+                document.getElementById(`rp-step${nextStepNumber}`).classList.add('active');
+            });
+        });
+
+        // Handle previous buttons
+        const prevButtons = document.querySelectorAll('.prev-button');
+        prevButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const currentStep = this.closest('.container');
+                const currentStepNumber = parseInt(currentStep.id.replace('rp-step', ''));
+                const prevStepNumber = currentStepNumber - 1;
+
+                // Hide current step
+                currentStep.classList.remove('active');
+                // Show previous step
+                document.getElementById(`rp-step${prevStepNumber}`).classList.add('active');
+            });
+        });
     });
-
-    // Handle form submissions
-    const registrationForm = document.getElementById('registration-form');
-    const loginForm = document.getElementById('login-form');
-
-    if (registrationForm) {
-        registrationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Hide step 1 and show step 2
-            document.getElementById('rp-step1').classList.remove('active');
-            document.getElementById('rp-step2').classList.add('active');
-        });
-    }
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Hide step 1 and show step 2
-            document.getElementById('rp-step1').classList.remove('active');
-            document.getElementById('rp-step2').classList.add('active');
-        });
-    }
-
-    // Handle next buttons
-    const nextButtons = document.querySelectorAll('.next-button');
-    nextButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const currentStep = this.closest('.container');
-            const currentStepNumber = parseInt(currentStep.id.replace('rp-step', ''));
-            const nextStepNumber = currentStepNumber + 1;
-            
-            // Hide current step
-            currentStep.classList.remove('active');
-            // Show next step
-            document.getElementById(`rp-step${nextStepNumber}`).classList.add('active');
-        });
-    });
-
-    // Handle previous buttons
-    const prevButtons = document.querySelectorAll('.prev-button');
-    prevButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const currentStep = this.closest('.container');
-            const currentStepNumber = parseInt(currentStep.id.replace('rp-step', ''));
-            const prevStepNumber = currentStepNumber - 1;
-            
-            // Hide current step
-            currentStep.classList.remove('active');
-            // Show previous step
-            document.getElementById(`rp-step${prevStepNumber}`).classList.add('active');
-        });
-    });
-});
 
 </script>

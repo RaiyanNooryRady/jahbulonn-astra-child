@@ -86,8 +86,8 @@ ob_start();
                         </div>
 
                         <div class="form-group">
-                            <label>Select PDF file:</label>
-                            <input type="file" name="pdf_file" accept=".pdf" required>
+                            <label>Select your birth date:</label>
+                            <input type="date" name="birth_date" accept=".pdf" required>
                         </div>
                         
                         <div class="form-row">
