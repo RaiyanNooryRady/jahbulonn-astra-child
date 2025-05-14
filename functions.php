@@ -143,13 +143,15 @@ add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
 // Enqueue CSS & JS for the form
 function custom_register_form_assets()
 {
-    //
+    // Enqueue the register.js file
     wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), null, true);
 
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('register_nonce')
     ));
+    // Enqueue the registration-portal.js file
+    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
  
 }
 add_action('wp_enqueue_scripts', 'custom_register_form_assets');
