@@ -166,6 +166,7 @@ function create_registration_tables()
 
     $sql1 = "CREATE TABLE $first_table (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
+        user_id mediumint(9) NOT NULL,
         vorname varchar(255) NOT NULL,
         nachname varchar(255) NOT NULL,
         username varchar(100) NOT NULL unique,
@@ -198,12 +199,35 @@ function handle_register_form()
     // $second_table = $wpdb->prefix . 'registered_second';
 
     // Sanitize and collect data
+    // collect wordpress user data
+
+    //1. create the wordpress user
+    $username = sanitize_text_field($_POST['username']);
+    $email = sanitize_email($_POST['email']);
+    $password = sanitize_text_field($_POST['password']);
+    $vorname = sanitize_text_field($_POST['vorname']);
+    $nachname = sanitize_text_field($_POST['nachname']);
+    $user_data = [
+       'user_login' => $username,
+       'user_email' => $email,
+       'user_pass' => $password,
+       'first_name' => $vorname,
+       'last_name' => $nachname,
+       'role' => 'subscriber',
+    ];
+    $user_id = wp_insert_user($user_data);
+    if (is_wp_error($user_id)) {
+        wp_send_json_error('User creation failed: ' . $user_id->get_error_message());
+        return;
+    }
+    
     $first_data = [
-        'vorname' => sanitize_text_field($_POST['vorname']),
-        'nachname' => sanitize_text_field($_POST['nachname']),
-        'username' => sanitize_text_field($_POST['username']),
-        'email' => sanitize_email($_POST['email']),
-        'password' => sanitize_text_field($_POST['password']),
+        'user_id' => $user_id,
+        'vorname' => $vorname,
+        'nachname' => $nachname,
+        'username' => $username,
+        'email' => $email,
+        'password' => $password,
         'telefon' => sanitize_text_field($_POST['telefon']),
         'address' => sanitize_text_field($_POST['address']),
         'birth_date' => sanitize_text_field($_POST['birth_date']),
