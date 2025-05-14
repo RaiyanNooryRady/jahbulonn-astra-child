@@ -145,10 +145,12 @@ function custom_register_form_assets()
 {
     //
     wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), null, true);
+
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('register_nonce')
     ));
+ 
 }
 add_action('wp_enqueue_scripts', 'custom_register_form_assets');
 
@@ -183,14 +185,15 @@ function create_registration_tables()
 add_action('after_setup_theme', 'create_registration_tables');
 
 // Shortcode for the form
-function custom_register_form_shortcode()
-{
-    ob_start(); ?>
-    <?php include_once get_stylesheet_directory() . '/registration/main_register.php'; ?>
-    <?php
-    return ob_get_clean();
-}
-add_shortcode('custom_register_form', 'custom_register_form_shortcode');
+// function custom_register_form_shortcode()
+// {
+//     ob_start(); ?>
+// <?php //include_once get_stylesheet_directory() . 'register_2.php'; ?>
+//
+<?php
+//     return ob_get_clean();
+// }
+// add_shortcode('custom_register_form', 'custom_register_form_shortcode');
 
 // Handle AJAX
 function handle_register_form()
@@ -203,10 +206,26 @@ function handle_register_form()
     // $second_table = $wpdb->prefix . 'registered_second';
 
     // Sanitize and collect data
+    $first_data = [
+        'vorname' => sanitize_text_field($_POST['vorname']),
+        'nachname' => sanitize_text_field($_POST['nachname']),
+        'username' => sanitize_text_field($_POST['username']),
+        'email' => sanitize_email($_POST['email']),
+        'password' => sanitize_text_field($_POST['password']),
+        'telefon' => sanitize_text_field($_POST['telefon']),
+        'address' => sanitize_text_field($_POST['address']),
+        'pdf_file' => '', // default empty, will be set below if uploaded
+        'plz' => sanitize_text_field($_POST['plz']),
+        'stadt' => sanitize_text_field($_POST['stadt']),
+        'land' => sanitize_key($_POST['land']),
+        'newsletter1' => isset($_POST['newsletter1']) ? 1 : 0,
+        'newsletter2' => isset($_POST['newsletter2']) ? 1 : 0,
+    ];
+
     // Handle PDF file upload
     if (isset($_FILES['pdf_file']) && !empty($_FILES['pdf_file']['name'])) {
         $upload_dir = wp_upload_dir();
-        $target_file = $upload_dir['path'] . '/' . basename($_FILES['pdf_file']['name']); // Full path
+        $target_file = $upload_dir['path'] . '/' . basename($_FILES['pdf_file']['name']);
 
         if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $target_file)) {
             $first_data['pdf_file'] = $upload_dir['url'] . '/' . basename($_FILES['pdf_file']['name']);
@@ -216,22 +235,20 @@ function handle_register_form()
         }
     }
     $first_data = [
-        'vorname' => sanitize_text_field($_POST['vorname']),
-        'nachname' => sanitize_text_field($_POST['nachname']),
-        'username' => sanitize_text_field($_POST['username']),
-        'email' => sanitize_email($_POST['email']),
-        'password' => sanitize_text_field($_POST['password']),
-        'telefon' => sanitize_text_field($_POST['telefon']),
-        'address' => sanitize_text_field($_POST['address']),
-        'pdf_file' => sanitize_email($_POST['pdf_file']),
-        'plz' => sanitize_text_field($_POST['plz']),
-        'stadt' => sanitize_text_field($_POST['stadt']),
-        'land' => sanitize_key($_POST['land']),
-        'newsletter1' => isset($_POST['newsletter1']) ? 1 : 0,  // 1 if checked, 0 if unchecked
-        'newsletter2' => isset($_POST['newsletter2']) ? 1 : 0,  // 1 if checked, 0 if unchecked 
-
+        'vorname' => 'Test',
+        'nachname' => 'User',
+        'username' => 'testuser',
+        'email' => 'test@example.com',
+        'password' => 'testpass',
+        'telefon' => '',
+        'address' => 'Test Address',
+        'pdf_file' => '',
+        'plz' => '12345',
+        'stadt' => 'Test City',
+        'land' => 'germany',
+        'newsletter1' => 1,
+        'newsletter2' => 1,
     ];
-
 
     // Insert data into the database
     $inserted = $wpdb->insert($first_table, $first_data);
@@ -239,7 +256,7 @@ function handle_register_form()
     if ($inserted) {
         wp_send_json_success('Registration successful!');
     } else {
-        wp_send_json_error('Failed to register. Please try again.');
+        wp_send_json_error('DB error: ' . $wpdb->last_error);
     }
 }
 add_action('wp_ajax_handle_register_form', 'handle_register_form');
