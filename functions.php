@@ -234,21 +234,6 @@ function handle_register_form()
             return;
         }
     }
-    $first_data = [
-        'vorname' => 'Test',
-        'nachname' => 'User',
-        'username' => 'testuser',
-        'email' => 'test@example.com',
-        'password' => 'testpass',
-        'telefon' => '',
-        'address' => 'Test Address',
-        'pdf_file' => '',
-        'plz' => '12345',
-        'stadt' => 'Test City',
-        'land' => 'germany',
-        'newsletter1' => 1,
-        'newsletter2' => 1,
-    ];
 
     // Insert data into the database
     $inserted = $wpdb->insert($first_table, $first_data);
