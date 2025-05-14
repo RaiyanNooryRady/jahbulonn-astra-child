@@ -141,7 +141,7 @@ add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
 // -----------------------------------------------------------------------------------------------------------------------------
 
 // Enqueue CSS & JS for the form
-function custom_register_form_assets()
+function jahbulonn_custom_register_form_assets()
 {
     // Enqueue the register.js file
     wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), null, true);
@@ -154,10 +154,10 @@ function custom_register_form_assets()
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
  
 }
-add_action('wp_enqueue_scripts', 'custom_register_form_assets');
+add_action('wp_enqueue_scripts', 'jahbulonn_custom_register_form_assets');
 
 // Create both database tables
-function create_registration_tables()
+function jahbulonn_create_registration_tables()
 {
     global $wpdb;
     $first_table = $wpdb->prefix . 'register1';
@@ -185,11 +185,11 @@ function create_registration_tables()
       ) $charset_collate;";
     dbDelta($sql1);
 }
-add_action('after_setup_theme', 'create_registration_tables');
+add_action('after_setup_theme', 'jahbulonn_create_registration_tables');
 
 
 // Handle AJAX
-function handle_register_form()
+function jahbulonn_handle_register_form()
 {
     check_ajax_referer('register_nonce', 'nonce');
 
@@ -248,8 +248,8 @@ function handle_register_form()
         wp_send_json_error('DB error: ' . $wpdb->last_error);
     }
 }
-add_action('wp_ajax_handle_register_form', 'handle_register_form');
-add_action('wp_ajax_nopriv_handle_register_form', 'handle_register_form');
+add_action('wp_ajax_handle_register_form', 'jahbulonn_handle_register_form');
+add_action('wp_ajax_nopriv_handle_register_form', 'jahbulonn_handle_register_form');
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
