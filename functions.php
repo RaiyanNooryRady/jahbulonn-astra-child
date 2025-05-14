@@ -173,7 +173,7 @@ function create_registration_tables()
         password varchar(255) NOT NULL,
         telefon varchar(20),
         address varchar(250) NOT NULL,
-        pdf_file varchar(250) NOT NULL,
+        birth_date date NOT NULL,
         plz varchar(20) NOT NULL,
         stadt varchar(100) NOT NULL,
         land varchar(100) NOT NULL,
@@ -186,16 +186,6 @@ function create_registration_tables()
 }
 add_action('after_setup_theme', 'create_registration_tables');
 
-// Shortcode for the form
-// function custom_register_form_shortcode()
-// {
-//     ob_start(); ?>
-// <?php //include_once get_stylesheet_directory() . 'register_2.php'; ?>
-//
-<?php
-//     return ob_get_clean();
-// }
-// add_shortcode('custom_register_form', 'custom_register_form_shortcode');
 
 // Handle AJAX
 function handle_register_form()
@@ -216,7 +206,7 @@ function handle_register_form()
         'password' => sanitize_text_field($_POST['password']),
         'telefon' => sanitize_text_field($_POST['telefon']),
         'address' => sanitize_text_field($_POST['address']),
-        'pdf_file' => '', // default empty, will be set below if uploaded
+        'birth_date' => sanitize_text_field($_POST['birth_date']),
         'plz' => sanitize_text_field($_POST['plz']),
         'stadt' => sanitize_text_field($_POST['stadt']),
         'land' => sanitize_key($_POST['land']),
@@ -224,18 +214,6 @@ function handle_register_form()
         'newsletter2' => isset($_POST['newsletter2']) ? 1 : 0,
     ];
 
-    // Handle PDF file upload
-    if (isset($_FILES['pdf_file']) && !empty($_FILES['pdf_file']['name'])) {
-        $upload_dir = wp_upload_dir();
-        $target_file = $upload_dir['path'] . '/' . basename($_FILES['pdf_file']['name']);
-
-        if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $target_file)) {
-            $first_data['pdf_file'] = $upload_dir['url'] . '/' . basename($_FILES['pdf_file']['name']);
-        } else {
-            wp_send_json_error('Failed to upload PDF file');
-            return;
-        }
-    }
 
     // Insert data into the database
     $inserted = $wpdb->insert($first_table, $first_data);
