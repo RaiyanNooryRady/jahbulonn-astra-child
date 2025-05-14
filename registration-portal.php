@@ -119,7 +119,6 @@ get_header('registration');
                         <button type="submit" name="reg_submit" class="submit-button" id="reg_submit">Submit</button>
                         <div id="register-message"></div>
                     </form>
-                    <div id="register-message"></div>
                 </div>
 
                 <div class="tab-content" id="login-tab">
@@ -138,8 +137,8 @@ get_header('registration');
                             <a href="#" class="forgot-link">Forgot Password?</a>
                             <button type="submit" name="login_submit" class="submit-button-login"
                                 id="login_submit">Submit</button>
-
                         </div>
+                        <div id="login-message"></div>
                     </form>
                 </div>
             </div>

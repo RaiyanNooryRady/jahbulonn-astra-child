@@ -148,7 +148,8 @@ function jahbulonn_custom_register_form_assets()
 
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('register_nonce')
+        'register_nonce' => wp_create_nonce('register_nonce'),
+        'login_nonce' => wp_create_nonce('login_nonce')
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
@@ -251,5 +252,36 @@ function jahbulonn_handle_register_form()
 add_action('wp_ajax_handle_register_form', 'jahbulonn_handle_register_form');
 add_action('wp_ajax_nopriv_handle_register_form', 'jahbulonn_handle_register_form');
 
+
+function jahbulonn_handle_login_form(){
+    check_ajax_referer('login_nonce', 'nonce');
+    $info=array();
+    if(isset($_POST['username'])){
+        $info['user_login'] = sanitize_text_field($_POST['username']);
+    }
+    if(isset($_POST['password'])){
+        $info['user_password'] = sanitize_text_field($_POST['password']);
+    }
+    if(is_email($info['user_login'])){
+        $user_data=get_user_by('email', $info['user_login']);
+        if($user_data){
+            $info['user_login']=$user_data->user_login; //use username to login
+        }
+        else{
+            wp_send_json_error('No user found with that email address.');
+        }
+    }
+    $user_verify = wp_signon($info, false);
+    if(is_wp_error($user_verify)){
+        wp_send_json_error('Invalid username or password');
+    }else{
+        wp_send_json_success('Login successful');
+       // wp_redirect(home_url('/user-dashboard/'));
+        exit;
+    }
+
+}
+add_action('wp_ajax_handle_login_form', 'jahbulonn_handle_login_form');
+add_action('wp_ajax_nopriv_handle_login_form', 'jahbulonn_handle_login_form');
 //---------------------------------------------------------------------------------------------------------------------------------
 
