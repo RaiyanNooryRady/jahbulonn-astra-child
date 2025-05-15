@@ -205,15 +205,18 @@ get_header('registration');
                         <div class="logout-div">
                             <a href="<?php echo wp_logout_url(); ?>" class="logout">Logout</a>
                         </div>
-
+                        <?php 
+                        $current_user = wp_get_current_user();
+                        $user_email = $current_user->user_email;
+                        $user_name = $current_user->display_name;
+                         ?>
                         <div class="form-group">
                             <label for="profile_name">Name</label>
-                            <input name="profile_name" type="text" placeholder="Jahbulonn" id="profile_name" required>
+                            <input name="profile_name" type="text" placeholder="<?php echo $user_name; ?>" id="profile_name" readonly>
                         </div>
                         <div class="form-group">
                             <label for="user_email">E-mail:</label>
-                            <input name="user_email" placeholder="example@gmail.com" type="email" id="user-email"
-                                required>
+                            <input name="user_email" placeholder="<?php echo $user_email; ?>" type="email" id="user-email" readonly>
                         </div>
                         <br><br>
                         <?php if(!is_user_logged_in()) { ?>
