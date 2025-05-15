@@ -6,6 +6,7 @@ get_header('registration');
 
     <div id="kon">
         <!-- Step 1 -->
+         
         <div class="container active" id="rp-step1">
             <div class="header">
                 <h1>Registration Portal</h1>
