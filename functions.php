@@ -150,7 +150,8 @@ function jahbulonn_custom_register_form_assets()
         'ajax_url' => admin_url('admin-ajax.php'),
         'register_nonce' => wp_create_nonce('register_nonce'),
         'login_nonce' => wp_create_nonce('login_nonce'),
-        'pdf_document_nonce' => wp_create_nonce('pdf_document_nonce')
+        'pdf_document_nonce' => wp_create_nonce('pdf_document_nonce'),
+        'user_documents_nonce' => wp_create_nonce('user_documents_nonce')
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
@@ -377,3 +378,127 @@ function jahbulonn_handle_pdf_document_form() {
 }
 add_action('wp_ajax_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');
 add_action('wp_ajax_nopriv_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');
+
+function jahbulonn_create_user_documents_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'user_documents';
+    $charset_collate = $wpdb->get_charset_collate();
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+    $sql = "CREATE TABLE $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    user_id mediumint(9) NOT NULL unique,
+    reisepass_doc varchar(255) NOT NULL,
+    geburtsurkunde_doc varchar(255) NOT NULL,
+    hochschulzeugnis_doc varchar(255) NOT NULL,
+    lebenslauf_doc varchar(255) NOT NULL,
+    sonstiges_doc varchar(255) NOT NULL,
+    created_at datetime DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+    ) $charset_collate;";
+    dbDelta($sql); 
+}
+add_action('after_setup_theme', 'jahbulonn_create_user_documents_table');
+
+function jahbulonn_handle_user_documents_form() {
+    check_ajax_referer('user_documents_nonce', 'nonce');
+    global $wpdb;
+    $user_documents_table = $wpdb->prefix . 'user_documents';
+
+    // Check if user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json_error('User must be logged in to upload documents');
+        return;
+    }
+    $user_id = get_current_user_id();
+
+    // Debug log
+    error_log('FILES: ' . print_r($_FILES, true));
+    error_log('POST: ' . print_r($_POST, true));
+
+    // Initialize document data array with only user_id
+    $document_data = array(
+        'user_id' => $user_id
+    );
+
+    // Handle each document type
+    $document_types = array(
+        'reisepass_doc',
+        'geburtsurkunde_doc',
+        'hochschulzeugnis_doc',
+        'lebenslauf_doc',
+        'sonstiges_doc'
+    );
+
+    $has_uploads = false;
+    foreach ($document_types as $doc_type) {
+        if (isset($_FILES[$doc_type]) && !empty($_FILES[$doc_type]['name'])) {
+            $file = $_FILES[$doc_type];
+            
+            // Upload file
+            $upload_dir = wp_upload_dir();
+            $file_name = basename($file['name']);
+            $target_file = $upload_dir['path'] . '/' . $file_name;
+
+            if (move_uploaded_file($file['tmp_name'], $target_file)) {
+                $document_data[$doc_type] = $upload_dir['url'] . '/' . $file_name;
+                $has_uploads = true;
+            } else {
+                wp_send_json_error("Failed to upload $doc_type");
+                continue;
+            }
+        }
+    }
+
+    // If no files were uploaded, return error
+    if (!$has_uploads) {
+        wp_send_json_error('No files were uploaded');
+        return;
+    }
+
+    // Check if user already has documents
+    $existing_docs = $wpdb->get_var($wpdb->prepare(
+        "SELECT id FROM $user_documents_table WHERE user_id = %d",
+        $user_id
+    ));
+
+    error_log('Existing docs check result: ' . print_r($existing_docs, true));
+
+    if ($existing_docs) {
+        // Update only the fields that have new uploads
+        $result = $wpdb->update(
+            $user_documents_table,
+            $document_data,
+            array('user_id' => $user_id)
+        );
+        error_log('Update operation result: ' . print_r($result, true));
+        error_log('Update error: ' . $wpdb->last_error);
+    } else {
+        // For new insert, we need to provide default values for NOT NULL fields
+        $document_data['reisepass_doc'] = isset($document_data['reisepass_doc']) ? $document_data['reisepass_doc'] : 'pending';
+        $document_data['geburtsurkunde_doc'] = isset($document_data['geburtsurkunde_doc']) ? $document_data['geburtsurkunde_doc'] : 'pending';
+        $document_data['hochschulzeugnis_doc'] = isset($document_data['hochschulzeugnis_doc']) ? $document_data['hochschulzeugnis_doc'] : 'pending';
+        $document_data['lebenslauf_doc'] = isset($document_data['lebenslauf_doc']) ? $document_data['lebenslauf_doc'] : 'pending';
+        $document_data['sonstiges_doc'] = isset($document_data['sonstiges_doc']) ? $document_data['sonstiges_doc'] : 'pending';
+
+        // Insert new record
+        $result = $wpdb->insert(
+            $user_documents_table,
+            $document_data
+        );
+        error_log('Insert operation result: ' . print_r($result, true));
+        error_log('Insert error: ' . $wpdb->last_error);
+    }
+
+    if ($result) {
+        wp_send_json_success('Documents uploaded successfully');
+    } else {
+        $error_message = 'Failed to save document information. ';
+        $error_message .= 'Database error: ' . $wpdb->last_error;
+        $error_message .= ' Last query: ' . $wpdb->last_query;
+        wp_send_json_error($error_message);
+    }
+}
+add_action('wp_ajax_handle_user_documents_form', 'jahbulonn_handle_user_documents_form');
+add_action('wp_ajax_nopriv_handle_user_documents_form', 'jahbulonn_handle_user_documents_form');
+

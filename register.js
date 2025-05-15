@@ -98,6 +98,41 @@ jQuery(document).ready(function ($) {
         });
     });
 
+    $('#upload-documents-form .next-button').on('click', function (e) {
+        e.preventDefault();
+        var form = $('#upload-documents-form');
+        var formData = new FormData(form[0]);
+        formData.append('action', 'handle_user_documents_form');
+        formData.append('nonce', reg_ajax.user_documents_nonce);
+
+        // Log form data for debugging
+        console.log('Form data being sent:', {
+            action: formData.get('action'),
+            nonce: formData.get('nonce'),
+        });
+
+        $.ajax({
+            url: reg_ajax.ajax_url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log('Server response:', response);
+                if (response.success) {
+                    $('#upload-documents-message').html('<span style="color:green;">' + response.data + '</span>');
+                } else {
+                    $('#upload-documents-message').html('<span style="color:red;">' + response.data + '</span>');
+                }
+                alert(response.data);
+            },
+            error: function (xhr, status, error) {
+                $('#upload-documents-message').html('<span style="color:red;">An error occurred, please try again.</span>');
+            }
+        });
+        
+    });
+
     
 });
 

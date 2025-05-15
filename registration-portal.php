@@ -256,30 +256,31 @@ get_header('registration');
 
                     <div class="form-group">
                         <label>Reisepass hochladen•: IPDF, JPEG Oder PNG</label>
-                        <input type="file" name="pdf_file1" accept=".pdf" required>
+                        <input type="file" name="reisepass_doc" accept=".pdf" required>
                     </div>
                     <div class="form-group">
                         <label>Geburtsurkunde hochladen*: PDF-Format</label>
-                        <input type="file" name="pdf_file2" accept=".pdf" required>
+                        <input type="file" name="geburtsurkunde_doc" accept=".pdf" required>
                     </div>
                     <div class="form-group">
                         <label> Hochschulzeugnis hochladen (Matura, Abitur/Fachabitur, Schweizer Matura)*: PDF-Format
                         </label>
-                        <input type="file" name="pdf_file3" accept=".pdf" required>
+                        <input type="file" name="hochschulzeugnis_doc" accept=".pdf" required>
                     </div>
                     <div class="form-group">
                         <label>Lebenslauf (optional): PDF-Format</label>
-                        <input type="file" name="pdf_file4" accept=".pdf" required>
+                        <input type="file" name="lebenslauf_doc" accept=".pdf">
                     </div>
                     <div class="form-group">
                         <label>Sonstiges (optional): Every kind of document</label>
-                        <input type="file" name="pdf_file5" accept=".pdf" required>
+                        <input type="file" name="sonstiges_doc" accept=".pdf">
                     </div>
-
+                    <div id="upload-documents-message"></div>
 
                     <br><br>
+                    
                     <button type="button" name="next" class="prev-button">Zuruck</button>
-                    <button type="button" name="next" class="next-button">Weiter</button>
+                    <button type="submit" name="next" class="next-button">Weiter</button>
 
                 </form>
 
