@@ -189,7 +189,9 @@ get_header('registration');
                             </div>
                         </div>
                         <br><br>
+                        <?php if(!is_user_logged_in()) { ?>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
+                        <?php } ?>
                         <button type="button" name="next" class="next-button">Weiter</button>
                         
                     </form>
@@ -201,7 +203,7 @@ get_header('registration');
                             <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/user.png' ?>" alt="User">
                         </div>
                         <div class="logout-div">
-                            <a href="logout" class="logout">Logout</a>
+                            <a href="<?php echo wp_logout_url(); ?>" class="logout">Logout</a>
                         </div>
 
                         <div class="form-group">
@@ -214,7 +216,9 @@ get_header('registration');
                                 required>
                         </div>
                         <br><br>
+                        <?php if(!is_user_logged_in()) { ?>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
+                        <?php } ?>
                         <button type="submit" name="next" class="next-button">Weiter</button>
                     </form>
                 </div>

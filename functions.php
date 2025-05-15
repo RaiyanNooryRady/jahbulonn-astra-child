@@ -76,7 +76,7 @@ add_filter('login_redirect', 'custom_login_redirect', 10, 3);
 // Ensure logout redirects users correctly
 function custom_logout_redirect()
 {
-    wp_redirect(home_url('/user-login/')); // Redirect to login page after logout
+    wp_redirect(home_url('/complete-register/')); // Redirect to login page after logout
     exit();
 }
 add_action('wp_logout', 'custom_logout_redirect');

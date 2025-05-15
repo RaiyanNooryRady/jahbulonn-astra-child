@@ -21,6 +21,7 @@ jQuery(document).ready(function ($) {
                 } else {
                     $('#register-message').html('<p style="color:red;">' + response.data + '</p>');
                 }
+                alert(response.data);
             },
             error: function () {
                 $('#register-message').html('<p style="color:red;">An error occurred, please try again.</p>');
@@ -52,6 +53,7 @@ jQuery(document).ready(function ($) {
                 } else {
                     $('#login-message').html('<span style="color:red;">' + response.data + '</span>');
                 }
+                alert(response.data);
             },
             error: function () {
                 $('#login-message').html('<span style="color:red;">An error occurred, please try again.</span>');
@@ -88,6 +90,7 @@ jQuery(document).ready(function ($) {
                 } else {
                     $('#pdf-document-message').html('<span style="color:red;">' + response.data + '</span>');
                 }
+                alert(response.data);
             },
             error: function (xhr, status, error) {
                 $('#pdf-document-message').html('<span style="color:red;">An error occurred, please try again.</span>');
