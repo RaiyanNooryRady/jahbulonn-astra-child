@@ -149,7 +149,8 @@ function jahbulonn_custom_register_form_assets()
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'register_nonce' => wp_create_nonce('register_nonce'),
-        'login_nonce' => wp_create_nonce('login_nonce')
+        'login_nonce' => wp_create_nonce('login_nonce'),
+        'pdf_document_nonce' => wp_create_nonce('pdf_document_nonce')
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
@@ -185,6 +186,7 @@ function jahbulonn_create_registration_tables()
         PRIMARY KEY (id)
       ) $charset_collate;";
     dbDelta($sql1);
+
 }
 add_action('after_setup_theme', 'jahbulonn_create_registration_tables');
 
@@ -285,3 +287,93 @@ add_action('wp_ajax_handle_login_form', 'jahbulonn_handle_login_form');
 add_action('wp_ajax_nopriv_handle_login_form', 'jahbulonn_handle_login_form');
 //---------------------------------------------------------------------------------------------------------------------------------
 
+function jahbulonn_create_pdf_document_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'pdf_document';
+    $charset_collate = $wpdb->get_charset_collate();
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        user_id mediumint(9) NOT NULL unique,
+        pdf_document varchar(255) NOT NULL,
+        created_at datetime DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+    dbDelta($sql);
+}
+add_action('after_setup_theme', 'jahbulonn_create_pdf_document_table');
+
+function jahbulonn_handle_pdf_document_form() {
+    check_ajax_referer('pdf_document_nonce', 'nonce');
+    global $wpdb;
+    $pdf_document_table = $wpdb->prefix . 'pdf_document';
+
+    // Check if user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json_error('User must be logged in to upload documents');
+        return;
+    }
+
+    $user_id = get_current_user_id();
+
+    // Debug log
+    error_log('FILES: ' . print_r($_FILES, true));
+    error_log('POST: ' . print_r($_POST, true));
+
+    if (isset($_FILES['pdf_document']) && !empty($_FILES['pdf_document']['name'])) {
+        $upload_dir = wp_upload_dir(); 
+        $file_name = basename($_FILES['pdf_document']['name']);
+        $target_file = $upload_dir['path'] . '/' . $file_name;
+
+        // Check if file is a PDF
+        $file_type = wp_check_filetype($file_name);
+        if ($file_type['type'] !== 'application/pdf') {
+            wp_send_json_error('Only PDF files are allowed');
+            return;
+        }
+
+        if (move_uploaded_file($_FILES['pdf_document']['tmp_name'], $target_file)) {
+            // Get the URL of the uploaded file
+            $file_url = $upload_dir['url'] . '/' . $file_name;
+            
+            // Check if user already has a document
+            $existing_doc = $wpdb->get_var($wpdb->prepare(
+                "SELECT id FROM $pdf_document_table WHERE user_id = %d",
+                $user_id
+            ));
+
+            if ($existing_doc) {
+                // Update existing record
+                $result = $wpdb->update(
+                    $pdf_document_table,
+                    array('pdf_document' => $file_url),
+                    array('user_id' => $user_id)
+                );
+            } else {
+                // Insert new record
+                $result = $wpdb->insert(
+                    $pdf_document_table,
+                    array(
+                        'user_id' => $user_id,
+                        'pdf_document' => $file_url
+                    )
+                );
+            }
+
+            if ($result) {
+                wp_send_json_success('PDF document uploaded successfully');
+            } else {
+                wp_send_json_error('Failed to save document information: ' . $wpdb->last_error);
+            }
+        } else {
+            wp_send_json_error('Failed to upload PDF file');
+            return;
+        }
+    } else {
+        wp_send_json_error('No PDF file uploaded');
+        return;
+    }
+}
+add_action('wp_ajax_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');
+add_action('wp_ajax_nopriv_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');

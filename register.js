@@ -58,6 +58,43 @@ jQuery(document).ready(function ($) {
             }
         });
     });
+
+    $('#dokumente-form .next-button').on('click', function (e) {
+        e.preventDefault();
+        var form = $('#dokumente-form');
+        var formData = new FormData(form[0]);
+        
+        // Add required action and nonce
+        formData.append('action', 'handle_pdf_document_form');
+        formData.append('nonce', reg_ajax.pdf_document_nonce);
+
+        // Log form data for debugging
+        console.log('Form data being sent:', {
+            action: formData.get('action'),
+            nonce: formData.get('nonce'),
+            file: formData.get('pdf_document')
+        });
+
+        $.ajax({
+            url: reg_ajax.ajax_url,
+            type: 'POST',
+            data: formData,
+            processData: false,  // Important for file uploads
+            contentType: false,  // Important for file uploads
+            success: function (response) {
+                console.log('Server response:', response);
+                if (response.success) {
+                    $('#pdf-document-message').html('<span style="color:green;">' + response.data + '</span>');
+                } else {
+                    $('#pdf-document-message').html('<span style="color:red;">' + response.data + '</span>');
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#pdf-document-message').html('<span style="color:red;">An error occurred, please try again.</span>');
+            }
+        });
+    });
+
     
 });
 

@@ -184,12 +184,14 @@ get_header('registration');
                             </div>
                             <div class="upload-text-section">
                                 <p><strong>Lade jetzt dein Dokument hoch (PDF-Format)</strong></p>
-                                <input type="file" accept=".pdf" class="upload-input">
+                                <input type="file" accept=".pdf" name="pdf_document" class="upload-input">
+                                <div id="pdf-document-message"></div>
                             </div>
                         </div>
                         <br><br>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
                         <button type="button" name="next" class="next-button">Weiter</button>
+                        
                     </form>
                 </div>
 
@@ -213,7 +215,7 @@ get_header('registration');
                         </div>
                         <br><br>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
-                        <button type="button" name="next" class="next-button">Weiter</button>
+                        <button type="submit" name="next" class="next-button">Weiter</button>
                     </form>
                 </div>
             </div>
