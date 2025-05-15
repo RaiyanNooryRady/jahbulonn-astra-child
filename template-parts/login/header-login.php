@@ -8,4 +8,4 @@
     
     <?php wp_head(); ?>
 </head>
-<body class="user-login-page">
+<body <?php body_class('user-login-page'); ?>>
