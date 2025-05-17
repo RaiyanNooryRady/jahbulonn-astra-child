@@ -392,8 +392,8 @@ function jahbulonn_create_user_documents_table() {
     reisepass_doc varchar(255) NOT NULL,
     geburtsurkunde_doc varchar(255) NOT NULL,
     hochschulzeugnis_doc varchar(255) NOT NULL,
-    lebenslauf_doc varchar(255) NOT NULL,
-    sonstiges_doc varchar(255) NOT NULL,
+    lebenslauf_doc varchar(255),
+    sonstiges_doc varchar(255),
     created_at datetime DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
     ) $charset_collate;";
@@ -476,11 +476,11 @@ function jahbulonn_handle_user_documents_form() {
         error_log('Update error: ' . $wpdb->last_error);
     } else {
         // For new insert, we need to provide default values for NOT NULL fields
-        $document_data['reisepass_doc'] = isset($document_data['reisepass_doc']) ? $document_data['reisepass_doc'] : 'pending';
-        $document_data['geburtsurkunde_doc'] = isset($document_data['geburtsurkunde_doc']) ? $document_data['geburtsurkunde_doc'] : 'pending';
-        $document_data['hochschulzeugnis_doc'] = isset($document_data['hochschulzeugnis_doc']) ? $document_data['hochschulzeugnis_doc'] : 'pending';
-        $document_data['lebenslauf_doc'] = isset($document_data['lebenslauf_doc']) ? $document_data['lebenslauf_doc'] : 'pending';
-        $document_data['sonstiges_doc'] = isset($document_data['sonstiges_doc']) ? $document_data['sonstiges_doc'] : 'pending';
+        $document_data['reisepass_doc'] = isset($document_data['reisepass_doc']) ? $document_data['reisepass_doc'] : '';
+        $document_data['geburtsurkunde_doc'] = isset($document_data['geburtsurkunde_doc']) ? $document_data['geburtsurkunde_doc'] : '';
+        $document_data['hochschulzeugnis_doc'] = isset($document_data['hochschulzeugnis_doc']) ? $document_data['hochschulzeugnis_doc'] : '';
+        $document_data['lebenslauf_doc'] = isset($document_data['lebenslauf_doc']) ? $document_data['lebenslauf_doc'] : '';
+        $document_data['sonstiges_doc'] = isset($document_data['sonstiges_doc']) ? $document_data['sonstiges_doc'] : '';
 
         // Insert new record
         $result = $wpdb->insert(
