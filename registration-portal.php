@@ -375,200 +375,200 @@ get_header('registration');
                 <h4 class="mocktest-question"> Wo möchtest du studieren?</h4>
                 <div class="choose-school active" id="humanmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="comenius_university" name="comenius_university" required>
-                        <label for="comenius_university">Comenius Universität – Bratislava, Slowakei(H)</label>
+                        <input type="checkbox" id="humanmedizin_comenius_university" name="humanmedizin_comenius_university" required>
+                        <label for="humanmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="jessenius_university" name="jessenius_university">
-                        <label for="jessenius_university">Jessenius Universität – Martin, Slowakei(H)</label>
+                        <input type="checkbox" id="humanmedizin_jessenius_university" name="humanmedizin_jessenius_university">
+                        <label for="humanmedizin_jessenius_university">Jessenius Universität – Martin, Slowakei(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="karlsuniversitat_prag" name="karlsuniversitat_prag">
-                        <label for="karlsuniversitat_prag">Karlsuniversität Prag – Prag, Tschechien(H)</label>
+                        <input type="checkbox" id="humanmedizin_karlsuniversitat_prag" name="humanmedizin_karlsuniversitat_prag">
+                        <label for="humanmedizin_karlsuniversitat_prag">Karlsuniversität Prag – Prag, Tschechien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="semmelweis_university" name="semmelweis_university">
-                        <label for="semmelweis_university">Semmelweis Universität – Budapest, Ungarn(H)</label>
+                        <input type="checkbox" id="humanmedizin_semmelweis_university" name="humanmedizin_semmelweis_university">
+                        <label for="humanmedizin_semmelweis_university">Semmelweis Universität – Budapest, Ungarn(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pecs_university" name="pecs_university">
-                        <label for="pecs_university">University of Pécs – Pécs, Ungarn(H)</label>
+                        <input type="checkbox" id="humanmedizin_pecs_university" name="humanmedizin_pecs_university">
+                        <label for="humanmedizin_pecs_university">University of Pécs – Pécs, Ungarn(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanitas_university" name="humanitas_university">
-                        <label for="humanitas_university">Humanitas Universität – Mailand, Italien(H)</label>
+                        <input type="checkbox" id="humanmedizin_humanitas_university" name="humanmedizin_humanitas_university">
+                        <label for="humanmedizin_humanitas_university">Humanitas Universität – Mailand, Italien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="split_university" name="split_university">
-                        <label for="split_university">University of Split – Split, Kroatien(H)</label>
+                        <input type="checkbox" id="humanmedizin_split_university" name="humanmedizin_split_university">
+                        <label for="humanmedizin_split_university">University of Split – Split, Kroatien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pomeranian_university" name="pomeranian_university">
-                        <label for="pomeranian_university">Pomeranian University – Szczecin, Polen(H)</label>
+                        <input type="checkbox" id="humanmedizin_pomeranian_university" name="humanmedizin_pomeranian_university">
+                        <label for="humanmedizin_pomeranian_university">Pomeranian University – Szczecin, Polen(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="frycz_university" name="frycz_university">
-                        <label for="frycz_university">Andrzej Frycz Modrzewski Universität – Krakau,
+                        <input type="checkbox" id="humanmedizin_frycz_university" name="humanmedizin_frycz_university">
+                        <label for="humanmedizin_frycz_university">Andrzej Frycz Modrzewski Universität – Krakau,
                             Polen(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="victor_babes_university" name="victor_babes_university">
-                        <label for="victor_babes_university">Victor Babes Universität – Timișoara,
+                        <input type="checkbox" id="humanmedizin_victor_babes_university" name="humanmedizin_victor_babes_university">
+                        <label for="humanmedizin_victor_babes_university">Victor Babes Universität – Timișoara,
                             Rumänien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="cluj_napoca_university" name="cluj_napoca_university">
-                        <label for="cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
+                        <input type="checkbox" id="humanmedizin_cluj_napoca_university" name="humanmedizin_cluj_napoca_university">
+                        <label for="humanmedizin_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
                             Rumänien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="carol_davila_university" name="carol_davila_university">
-                        <label for="carol_davila_university">Carol Davila Universität – Bukarest,
+                        <input type="checkbox" id="humanmedizin_carol_davila_university" name="humanmedizin_carol_davila_university">
+                        <label for="humanmedizin_carol_davila_university">Carol Davila Universität – Bukarest,
                             Rumänien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="varna_university" name="varna_university">
-                        <label for="varna_university">University of Varna – Varna, Bulgarien(H)</label>
+                        <input type="checkbox" id="humanmedizin_varna_university" name="humanmedizin_varna_university">
+                        <label for="humanmedizin_varna_university">University of Varna – Varna, Bulgarien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="stradins_university" name="stradins_university">
-                        <label for="stradins_university">Stradins Universität – Riga, Lettland(H)</label>
+                        <input type="checkbox" id="humanmedizin_stradins_university" name="humanmedizin_stradins_university">
+                        <label for="humanmedizin_stradins_university">Stradins Universität – Riga, Lettland(H)</label>
                     </div>
 
                 </div>
                 <div class="choose-school" id="zahnmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="comenius_university" name="comenius_university" required>
-                        <label for="comenius_university">Comenius Universität – Bratislava, Slowakei (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_comenius_university" name="zahnmedizin_comenius_university" required>
+                        <label for="zahnmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="semmelweis_university" name="semmelweis_university">
-                        <label for="semmelweis_university">Semmelweis Universität – Budapest, Ungarn (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_semmelweis_university" name="zahnmedizin_semmelweis_university">
+                        <label for="zahnmedizin_semmelweis_university">Semmelweis Universität – Budapest, Ungarn (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pecs_university" name="pecs_university">
-                        <label for="pecs_university">University of Pécs – Pécs, Ungarn (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_pecs_university" name="zahnmedizin_pecs_university">
+                        <label for="zahnmedizin_pecs_university">University of Pécs – Pécs, Ungarn (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pomeranian_university" name="pomeranian_university">
-                        <label for="pomeranian_university">Pomeranian University – Szczecin, Polen (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_pomeranian_university" name="zahnmedizin_pomeranian_university">
+                        <label for="zahnmedizin_pomeranian_university">Pomeranian University – Szczecin, Polen (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="frycz_university" name="frycz_university">
-                        <label for="frycz_university">Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_frycz_university" name="zahnmedizin_frycz_university">
+                        <label for="zahnmedizin_frycz_university">Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="cluj_napoca_university" name="cluj_napoca_university">
-                        <label for="cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_cluj_napoca_university" name="zahnmedizin_cluj_napoca_university">
+                        <label for="zahnmedizin_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="carol_davila_university" name="carol_davila_university">
-                        <label for="carol_davila_university">Carol Davila Universität – Bukarest, Rumänien (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_carol_davila_university" name="zahnmedizin_carol_davila_university">
+                        <label for="zahnmedizin_carol_davila_university">Carol Davila Universität – Bukarest, Rumänien (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="varna_university" name="varna_university">
-                        <label for="varna_university">University of Varna – Varna, Bulgarien (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_varna_university" name="zahnmedizin_varna_university">
+                        <label for="zahnmedizin_varna_university">University of Varna – Varna, Bulgarien (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="stradins_university" name="stradins_university">
-                        <label for="stradins_university">Stradins Universität – Riga, Lettland (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_stradins_university" name="zahnmedizin_stradins_university">
+                        <label for="zahnmedizin_stradins_university">Stradins Universität – Riga, Lettland (Z)</label>
                     </div>
 
                 </div>
                 <div class="choose-school" id="beides_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="comenius_university" name="comenius_university" required>
-                        <label for="comenius_university">Comenius Universität – Bratislava, Slowakei(H,Z)</label>
+                        <input type="checkbox" id="beides_comenius_university" name="beides_comenius_university" required>
+                        <label for="beides_comenius_university">Comenius Universität – Bratislava, Slowakei(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="jessenius_university" name="jessenius_university">
-                        <label for="jessenius_university">Jessenius Universität – Martin, Slowakei(H)</label>
+                        <input type="checkbox" id="beides_jessenius_university" name="beides_jessenius_university">
+                        <label for="beides_jessenius_university">Jessenius Universität – Martin, Slowakei(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="karlsuniversitat_prag" name="karlsuniversitat_prag">
-                        <label for="karlsuniversitat_prag">Karlsuniversität Prag – Prag, Tschechien(H)</label>
+                        <input type="checkbox" id="beides_karlsuniversitat_prag" name="beides_karlsuniversitat_prag">
+                        <label for="beides_karlsuniversitat_prag">Karlsuniversität Prag – Prag, Tschechien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="semmelweis_university" name="semmelweis_university">
-                        <label for="semmelweis_university">Semmelweis Universität – Budapest, Ungarn(H,Z)</label>
+                        <input type="checkbox" id="beides_semmelweis_university" name="beides_semmelweis_university">
+                        <label for="beides_semmelweis_university">Semmelweis Universität – Budapest, Ungarn(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pecs_university" name="pecs_university">
-                        <label for="pecs_university">University of Pécs – Pécs, Ungarn(H,Z)</label>
+                        <input type="checkbox" id="beides_pecs_university" name="beides_pecs_university">
+                        <label for="beides_pecs_university">University of Pécs – Pécs, Ungarn(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanitas_university" name="humanitas_university">
-                        <label for="humanitas_university">Humanitas Universität – Mailand, Italien(H)</label>
+                        <input type="checkbox" id="beides_humanitas_university" name="beides_humanitas_university">
+                        <label for="beides_humanitas_university">Humanitas Universität – Mailand, Italien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="split_university" name="split_university">
-                        <label for="split_university">University of Split – Split, Kroatien(H)</label>
+                        <input type="checkbox" id="beides_split_university" name="beides_split_university">
+                        <label for="beides_split_university">University of Split – Split, Kroatien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="pomeranian_university" name="pomeranian_university">
-                        <label for="pomeranian_university">Pomeranian University – Szczecin, Polen(H,Z)</label>
+                        <input type="checkbox" id="beides_pomeranian_university" name="beides_pomeranian_university">
+                        <label for="beides_pomeranian_university">Pomeranian University – Szczecin, Polen(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="frycz_university" name="frycz_university">
-                        <label for="frycz_university">Andrzej Frycz Modrzewski Universität – Krakau,
+                        <input type="checkbox" id="beides_frycz_university" name="beides_frycz_university">
+                        <label for="beides_frycz_university">Andrzej Frycz Modrzewski Universität – Krakau,
                             Polen(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="victor_babes_university" name="victor_babes_university">
-                        <label for="victor_babes_university">Victor Babes Universität – Timișoara,
-                            Rumänien(H)</label>
-                    </div>
-
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="cluj_napoca_university" name="cluj_napoca_university">
-                        <label for="cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
+                        <input type="checkbox" id="beides_victor_babes_university" name="beides_victor_babes_university">
+                        <label for="beides_victor_babes_university">Victor Babes Universität – Timișoara,
                             Rumänien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="carol_davila_university" name="carol_davila_university">
-                        <label for="carol_davila_university">Carol Davila Universität – Bukarest,
+                        <input type="checkbox" id="beides_cluj_napoca_university" name="beides_cluj_napoca_university">
+                        <label for="beides_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
                             Rumänien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="varna_university" name="varna_university">
-                        <label for="varna_university">University of Varna – Varna, Bulgarien(H,Z)</label>
+                        <input type="checkbox" id="beides_carol_davila_university" name="beides_carol_davila_university">
+                        <label for="beides_carol_davila_university">Carol Davila Universität – Bukarest,
+                            Rumänien(H,Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="stradins_university" name="stradins_university">
-                        <label for="stradins_university">Stradins Universität – Riga, Lettland(H,Z)</label>
+                        <input type="checkbox" id="beides_varna_university" name="beides_varna_university">
+                        <label for="beides_varna_university">University of Varna – Varna, Bulgarien(H,Z)</label>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="beides_stradins_university" name="beides_stradins_university">
+                        <label for="beides_stradins_university">Stradins Universität – Riga, Lettland(H,Z)</label>
                     </div>
 
 
