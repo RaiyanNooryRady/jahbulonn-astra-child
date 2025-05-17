@@ -363,7 +363,8 @@ function jahbulonn_handle_pdf_document_form() {
             }
 
             if ($result) {
-                wp_send_json_success('PDF document uploaded successfully');
+                wp_send_json_success('PDF document uploaded successfully!');
+
             } else {
                 wp_send_json_error('Failed to save document information: ' . $wpdb->last_error);
             }

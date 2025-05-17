@@ -185,6 +185,20 @@ get_header('registration');
                             <div class="upload-text-section">
                                 <p><strong>Lade jetzt dein Dokument hoch (PDF-Format)</strong></p>
                                 <input type="file" accept=".pdf" name="pdf_document" class="upload-input">
+                                <?php 
+                                global $wpdb;
+                                $pdf_document_table = $wpdb->prefix . 'pdf_document';
+                                $current_user = wp_get_current_user();
+                                $user_id = $current_user->ID;
+
+                                $pdf_document_name= $wpdb->get_var($wpdb->prepare(
+                                    "SELECT pdf_document FROM $pdf_document_table WHERE user_id = %d",
+                                    $user_id
+                                ));
+                                ?>
+                                <?php if($pdf_document_name): ?>
+                                <a href="<?php echo $pdf_document_name; ?>" target="_blank">View Uploaded PDF</a> <br>
+                                <?php endif; ?>
                                 <div id="pdf-document-message"></div>
                             </div>
                         </div>
