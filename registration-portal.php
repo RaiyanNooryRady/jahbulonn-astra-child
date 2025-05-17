@@ -197,7 +197,7 @@ get_header('registration');
                             ));
                             ?>
                             <?php if ($pdf_document_name): ?>
-                                <a href="<?php echo $pdf_document_name; ?>" target="_blank">View Uploaded PDF</a> <br>
+                                <a href="<?php echo $pdf_document_name; ?>" class="jahbulonn-text" target="_blank">View Uploaded PDF</a> <br>
                             <?php endif; ?>
                             <div id="pdf-document-message"></div>
                         </div>
@@ -309,7 +309,7 @@ get_header('registration');
                     <?php foreach ($table_columns as $column => $label): ?>
 
                         <?php if ($table_data[0]->$column): ?>
-                            <a href="<?php echo $table_data[0]->$column; ?>" target="_blank">View <?php echo $label; ?></a> <br>
+                            <a href="<?php echo $table_data[0]->$column; ?>" class="jahbulonn-text" target="_blank">View <?php echo $label; ?></a> <br>
                         <?php endif; ?>
                     <?php  endforeach; ?>
 

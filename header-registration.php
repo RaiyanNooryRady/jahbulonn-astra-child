@@ -371,6 +371,15 @@
             display: block;
         }
 
+        #kon a.jahbulonn-text {
+            color: #0A6E83;
+            text-decoration: underline;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
         /*Mobile Devices*/
 
         @media screen and (max-width: 768px) {
