@@ -373,7 +373,7 @@ function jahbulonn_handle_pdf_document_form() {
             return;
         }
     } else {
-        wp_send_json_error('No PDF file uploaded');
+        wp_send_json_error('No New PDF file uploaded');
         return;
     }
 }
@@ -453,7 +453,7 @@ function jahbulonn_handle_user_documents_form() {
 
     // If no files were uploaded, return error
     if (!$has_uploads) {
-        wp_send_json_error('No files were uploaded');
+        wp_send_json_error('No new files were uploaded');
         return;
     }
 
