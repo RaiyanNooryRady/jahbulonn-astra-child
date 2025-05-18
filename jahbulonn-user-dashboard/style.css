@@ -142,7 +142,7 @@ img.jahbulonn-logo {
     border-radius: 10px;
   }
 
-  h2 {
+  .jahbulonn-study-materials-container h2 {
     text-align: center;
     margin-bottom: 30px;
     color: #333;
@@ -201,4 +201,125 @@ img.jahbulonn-logo {
 
   .jahbulonn-pdf-list a:hover {
     text-decoration: underline;
+  }
+
+  /* Profile */
+  .jahbulonn-profile-container {
+    max-width: 80%;
+    margin: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(147, 76, 176, 0.15);
+    overflow: hidden;
+    padding-bottom: 30px;
+  }
+
+  .jahbulonn-profile-header {
+    padding: 25px 30px;
+    background: #019EBE;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1.1px;
+  }
+  .jahbulonn-profile-header h1 {
+    color: white;
+  }
+
+  .jahbulonn-profile-content {
+    padding: 30px 40px 20px 40px;
+  }
+
+  .jahbulonn-profile-picture-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+
+  .jahbulonn-profile-picture {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #019EBE;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(147, 76, 176, 0.3);
+  }
+
+  .jahbulonn-profile-info {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #4a4a4a;
+    text-align: center;
+  }
+
+  .jahbulonn-profile-form {
+    margin-top: 25px;
+  }
+
+  .jahbulonn-profile-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #019EBE;
+  }
+
+  .jahbulonn-profile-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.8px solid #c9bde0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #4a4a4a;
+    transition: border-color 0.3s ease;
+  }
+
+  .jahbulonn-profile-input:focus {
+    border-color: #019EBE;
+    outline: none;
+    box-shadow: 0 0 6px rgba(147, 76, 176, 0.5);
+  }
+
+  .jahbulonn-profile-form-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .jahbulonn-profile-form-input {
+    flex-grow: 1;
+  }
+
+  .jahbulonn-profile-button {
+    background-color: #019EBE;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 3px 8px rgba(147, 76, 176, 0.4);
+  }
+
+  .jahbulonn-profile-button:hover {
+    background-color: #019EBE;
+    box-shadow: 0 5px 15px rgba(122, 59, 163, 0.6);
+  }
+
+  .jahbulonn-profile-message {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .jahbulonn-error-message {
+    color: #d9534f;
+  }
+
+  .jahbulonn-success-message {
+    color: #28a745;
   }
