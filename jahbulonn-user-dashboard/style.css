@@ -133,4 +133,72 @@ img.jahbulonn-logo {
 
 
 
+/* Study Materials */
+.jahbulonn-study-materials-container {
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+  }
 
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  .jahbulonn-upload-section {
+    border: 2px dashed #aaa;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    background: #f0f0f0;
+  }
+
+  .jahbulonn-upload-section input[type="file"] {
+    margin-bottom: 10px;
+  }
+
+  .jahbulonn-upload-section button {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .jahbulonn-upload-section button:hover {
+    background: #218838;
+  }
+
+  .jahbulonn-pdf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .jahbulonn-pdf-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+
+  .jahbulonn-pdf-list li span {
+    font-weight: 500;
+  }
+
+  .jahbulonn-pdf-list a {
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  .jahbulonn-pdf-list a:hover {
+    text-decoration: underline;
+  }
