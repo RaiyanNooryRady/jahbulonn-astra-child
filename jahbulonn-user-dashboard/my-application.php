@@ -1,5 +1,5 @@
 <?php
-/** Template Name: My Dashboard */
+/** Template Name: My Application */
 include "header-user-dashboard.php";
 
 ?>  
@@ -14,8 +14,8 @@ include "header-user-dashboard.php";
         </div>
 
         <div class="col-md-9 col-lg-10 col-12 p-4">
-            <h1>Welcome, <?php  echo $current_user->display_name; ?>!</h1>
-            <p>This is your dashboard content area.</p>
+            <h1>My Application</h1>
+            <p>This is your application content area.</p>
         </div>
     </div>
 </div>
