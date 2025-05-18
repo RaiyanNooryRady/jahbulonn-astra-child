@@ -3,17 +3,24 @@ body {
 }
 #dev-crud-dashboard .sidebar {
     height: 100vh;
-    background-color: #343a40;
-    color: white;
+    background-color: white;
+    color: black;
+    border-right: 1px solid #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 #dev-crud-dashboard .sidebar a {
-    color: white;
+    color: black;
     text-decoration: none;
     display: block;
     padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 #dev-crud-dashboard .sidebar a:hover {
-    background-color: #495057;
+    background-color: #019EBE;
+    color: white;
 }
 #dev-crud-dashboard .offcanvas-end {
     width: 250px;
@@ -28,4 +35,9 @@ table .dev-crud-user-photo {
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
+}
+img.jahbulonn-logo {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
 }
