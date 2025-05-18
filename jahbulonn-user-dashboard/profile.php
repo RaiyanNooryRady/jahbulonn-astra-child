@@ -21,10 +21,10 @@ include "header-user-dashboard.php";
                     </div>
                     <div class="jahbulonn-profile-content">
                         <div class="jahbulonn-profile-picture-container">
-                            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="jahbulonn-profile-picture" />
+                            <img src="<?php echo get_stylesheet_directory_uri(); ?>/jahbulonn-user-dashboard/profile.jpg" alt="Profile Picture"
+                                class="jahbulonn-profile-picture" />
                         </div>
                         <div class="jahbulonn-profile-info"><strong>Username: Raiyan</div>
-                        <div class="jahbulonn-profile-info"><strong>Password:</strong> ••••••••</div>
 
                         <!-- Change Profile Picture Form -->
                         <form class="jahbulonn-profile-form" method="post" enctype="multipart/form-data"
@@ -66,6 +66,23 @@ include "header-user-dashboard.php";
                                     Password</button>
                             </div>
                         </form>
+                        <!-- PDF List Section (for users) -->
+                        <h3 class="my-4">All Uploaded Documents</h3>
+
+                        <ul class="jahbulonn-pdf-list">
+                            <li>
+                                <span>Maths Chapter 1 - Algebra</span>
+                                <a href="#" download>Download</a>
+                            </li>
+                            <li>
+                                <span>Physics - Laws of Motion</span>
+                                <a href="#" download>Download</a>
+                            </li>
+                            <li>
+                                <span>Chemistry - Organic Compounds</span>
+                                <a href="#" download>Download</a>
+                            </li>
+                        </ul>
 
 
 

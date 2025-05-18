@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;
 }
 #jahbulonn-dashboard .sidebar {
-    height: 100vh;
+    height: 1200px;
     background-color: white;
     color: black;
     border-right: 1px solid #fff;
