@@ -5,7 +5,7 @@
 include "header-user-dashboard.php";
 
 ?>  
-<main class="dev-crud-main" id="dev-crud-dashboard">
+<main class="jahbulonn-main" id="jahbulonn-dashboard">
 
 <?php require "dashboard-mobile-navbar.php"; ?>
 <!-- Sidebar for desktop -->

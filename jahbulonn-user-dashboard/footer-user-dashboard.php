@@ -1,4 +1,4 @@
-<footer class="dev-crud-footer">
+<footer class="jahbulonn-footer">
     <div class="copyright text-center bg-secondary bg-gradient text-light">
         <small>Copyright &copy; <?php echo date('Y'); ?>. All rights reserved!</small>
     </div>

@@ -1,7 +1,7 @@
 body {
     overflow-x: hidden;
 }
-#dev-crud-dashboard .sidebar {
+#jahbulonn-dashboard .sidebar {
     height: 100vh;
     background-color: white;
     color: black;
@@ -9,7 +9,7 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
-#dev-crud-dashboard .sidebar a {
+#jahbulonn-dashboard .sidebar a {
     color: black;
     text-decoration: none;
     display: block;
@@ -18,19 +18,22 @@ body {
     margin-bottom: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
-#dev-crud-dashboard .sidebar a:hover {
+#jahbulonn-dashboard .sidebar a:hover {
     background-color: #019EBE;
     color: white;
 }
-#dev-crud-dashboard .offcanvas-end {
+#jahbulonn-dashboard .offcanvas-end {
     width: 250px;
 }
-#dev-crud-dashboard .dev-crud-profile-picture {
+#jahbulonn-dashboard .jahbulonn-profile-picture {
     width: 200px;
     height: 200px;
     object-fit: cover;
 }
-table .dev-crud-user-photo {
+#jahbulonn-dashboard .offcanvas-header {
+    background-color: #fff;
+}
+table .jahbulonn-user-photo {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -40,4 +43,9 @@ img.jahbulonn-logo {
     width: 150px;
     height: 100px;
     object-fit: contain;
+}
+@media (max-width: 767px) {
+    #jahbulonn-dashboard .menu-items .jahbulonn-logo {
+        display: none;
+    }
 }
