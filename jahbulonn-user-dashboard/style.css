@@ -323,3 +323,9 @@ img.jahbulonn-logo {
   .jahbulonn-success-message {
     color: #28a745;
   }
+
+ @media (max-width: 767px) {
+    .jahbulonn-profile-container{
+        max-width: 100%;
+    }
+ }
