@@ -1,3 +1,4 @@
+/* General & Dashboard */
 body {
     overflow-x: hidden;
 }
@@ -49,3 +50,87 @@ img.jahbulonn-logo {
         display: none;
     }
 }
+
+/* My Application */
+
+.jahbulonn-application-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.jahbulonn-application-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+}
+
+.jahbulonn-application-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.jahbulonn-application-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.jahbulonn-action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+}
+
+.jahbulonn-application-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jahbulonn-application-table th {
+    text-align: left;
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 600;
+    color: #333;
+}
+
+.jahbulonn-application-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.jahbulonn-application-table tr:last-child td {
+    border-bottom: none;
+}
+
+.jahbulonn-application-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.jahbulonn-row-number {
+    color: #666;
+    font-weight: normal;
+}
+
+.jahbulonn-download-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.jahbulonn-download-link:hover {
+    text-decoration: underline;
+}
+
+
+
+
