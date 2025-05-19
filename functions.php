@@ -533,7 +533,7 @@ function jahbulonn_change_password() {
 
         if (!empty($new_password)) {
             wp_update_user(array('ID' => $user_id, 'user_pass' => $new_password));
-            echo "Password updated successfully";
+            echo "<script>alert('Password updated successfully');</script>";
         }
     }
 }
