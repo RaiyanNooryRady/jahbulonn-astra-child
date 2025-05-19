@@ -329,3 +329,8 @@ img.jahbulonn-logo {
         max-width: 100%;
     }
  }
+
+ #jahbulonn-dashboard .sidebar .jahbulonn-menu-item.active {
+    background-color: #019EBE !important;
+    color: white !important;
+ }

@@ -507,9 +507,9 @@ add_action('wp_ajax_nopriv_handle_user_documents_form', 'jahbulonn_handle_user_d
 // Enqueue CSS & JS for the user dashboard
 function jahbulonn_enqueue_user_dashboard_assets() {
     // Enqueue CSS
-    wp_enqueue_style('user-dashboard-style', get_stylesheet_directory_uri() . '/jahbulonn-user-dashboard/style.css');
+    wp_enqueue_style('user-dashboard-style', get_stylesheet_directory_uri() . '/jahbulonn-user-dashboard/style.css', array(), fileatime(get_stylesheet_directory() . '/jahbulonn-user-dashboard/style.css'));
     // Enqueue JS
-    wp_enqueue_script('user-dashboard-script', get_stylesheet_directory_uri() . '/jahbulonn-user-dashboard/script.js', array('jquery'), null, true);
+    wp_enqueue_script('user-dashboard-script', get_stylesheet_directory_uri() . '/jahbulonn-user-dashboard/script.js', array('jquery'), fileatime(get_stylesheet_directory() . '/jahbulonn-user-dashboard/script.js'), true);
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_enqueue_user_dashboard_assets');
 
