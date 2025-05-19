@@ -516,12 +516,47 @@ add_action('wp_enqueue_scripts', 'jahbulonn_enqueue_user_dashboard_assets');
 // Change username on dashboard
 function jahbulonn_change_username() {
 
-    if (isset($_POST['change_username'])) {
-        $new_username = sanitize_text_field($_POST['username']);
+    if (isset($_POST['change_display_name'])) {
+        $new_display_name = sanitize_text_field($_POST['display_name']);
         $user_id = get_current_user_id();
-
         // Update the username
-        wp_update_user(array('ID' => $user_id, 'display_name' => $new_username));       
+        wp_update_user(array('ID' => $user_id, 'display_name' => $new_display_name));       
     }
 }
 add_action('init', 'jahbulonn_change_username');        
+
+// Change password on dashboard
+function jahbulonn_change_password() {
+    if (isset($_POST['change_password'])) {
+        $new_password = sanitize_text_field($_POST['password']);
+        $user_id = get_current_user_id();
+
+        if (!empty($new_password)) {
+            wp_update_user(array('ID' => $user_id, 'user_pass' => $new_password));
+            echo "Password updated successfully";
+        }
+    }
+}
+add_action('init', 'jahbulonn_change_password');
+
+// Change profile picture on dashboard
+function jahbulonn_change_profile_picture() {
+    if (isset($_POST['change_profile_picture']) && isset($_FILES['profile_picture'])) {
+        $user_id = get_current_user_id();
+        $profile_picture = $_FILES['profile_picture'];
+        $upload_dir = wp_upload_dir();
+        $file_name = basename($profile_picture['name']);
+        $target_file = $upload_dir['path'] . '/' . $file_name;  
+
+        if (move_uploaded_file($profile_picture['tmp_name'], $target_file)) {
+            $profile_picture_url = $upload_dir['url'] . '/' . $file_name;
+            update_user_meta($user_id, 'profile_picture', $profile_picture_url);
+        } else {
+            echo "<script>alert('Error uploading file');</script>";
+        }
+    }
+}
+add_action('init', 'jahbulonn_change_profile_picture');
+
+
+
