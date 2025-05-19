@@ -206,6 +206,12 @@ img.jahbulonn-logo {
     text-decoration: underline;
   }
 
+  @media (max-width: 767px) {
+    .jahbulonn-study-materials-container {
+        padding: 10px;
+    }
+  }
+
   /* Profile */
   .jahbulonn-profile-container {
     max-width: 80%;

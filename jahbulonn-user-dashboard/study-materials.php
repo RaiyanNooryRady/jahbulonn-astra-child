@@ -18,7 +18,7 @@ include "header-user-dashboard.php";
                 <div class="jahbulonn-study-materials-container">
 
                     <!-- PDF List Section (for users) -->
-                    <h3>Available PDFs for Download</h3>
+                    <!-- <h3>Available PDFs for Download</h3>
                     <ul class="jahbulonn-pdf-list">
                         <li>
                             <span>Maths Chapter 1 - Algebra</span>
@@ -32,7 +32,7 @@ include "header-user-dashboard.php";
                             <span>Chemistry - Organic Compounds</span>
                             <a href="#" download>Download</a>
                         </li>
-                    </ul>
+                    </ul> -->
                     <?php 
                         if(shortcode_exists('user_pdfs')){
                             echo do_shortcode('[user_pdfs]');
