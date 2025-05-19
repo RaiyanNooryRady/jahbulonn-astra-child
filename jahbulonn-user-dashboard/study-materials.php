@@ -17,13 +17,6 @@ include "header-user-dashboard.php";
                 <h1>Study Materials</h1>
                 <div class="jahbulonn-study-materials-container">
 
-                    <!-- Upload Section (for admin) -->
-                    <div class="jahbulonn-upload-section">
-                        <h3>Upload PDF (Admin)</h3>
-                        <input type="file" accept=".pdf"><br>
-                        <button>Upload</button>
-                    </div>
-
                     <!-- PDF List Section (for users) -->
                     <h3>Available PDFs for Download</h3>
                     <ul class="jahbulonn-pdf-list">
@@ -40,6 +33,12 @@ include "header-user-dashboard.php";
                             <a href="#" download>Download</a>
                         </li>
                     </ul>
+                    <?php 
+                        if(shortcode_exists('user_pdfs')){
+                            echo do_shortcode('[user_pdfs]');
+                        }
+                        
+                        ?>
                 </div>
             </div>
         </div>
