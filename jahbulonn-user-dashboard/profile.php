@@ -24,10 +24,10 @@ include "header-user-dashboard.php";
                             <img src="<?php echo get_stylesheet_directory_uri(); ?>/jahbulonn-user-dashboard/profile.jpg" alt="Profile Picture"
                                 class="jahbulonn-profile-picture" />
                         </div>
-                        <div class="jahbulonn-profile-info"><strong>Username: Raiyan</div>
+                        <div class="jahbulonn-profile-info"><strong>Username: <?php echo wp_get_current_user()->display_name; ?></div>
 
                         <!-- Change Profile Picture Form -->
-                        <form class="jahbulonn-profile-form" method="post" enctype="multipart/form-data"
+                        <form class="jahbulonn-profile-form" method="POST" enctype="multipart/form-data"
                             id="form-picture">
                             <label class="jahbulonn-profile-label" for="profile_picture">Change your profile
                                 picture</label>
@@ -42,11 +42,11 @@ include "header-user-dashboard.php";
                         </form>
 
                         <!-- Change Username Form -->
-                        <form class="jahbulonn-profile-form" method="post" id="form-username">
+                        <form class="jahbulonn-profile-form" method="POST" id="form-username">
                             <label class="jahbulonn-profile-label" for="username">Change your username</label>
                             <div class="jahbulonn-profile-form-row">
                                 <div class="jahbulonn-profile-form-input">
-                                    <input type="text" name="username" id="username" value=""
+                                    <input type="text" name="username" id="username" value="<?php echo wp_get_current_user()->display_name; ?>"
                                         class="jahbulonn-profile-input" required minlength="3" />
                                 </div>
                                 <button type="submit" name="change_username" class="jahbulonn-profile-button">Change
@@ -55,7 +55,7 @@ include "header-user-dashboard.php";
                         </form>
 
                         <!-- Change Password Form -->
-                        <form class="jahbulonn-profile-form" method="post" id="form-password">
+                        <form class="jahbulonn-profile-form" method="POST" id="form-password">
                             <label class="jahbulonn-profile-label" for="password">Change your password</label>
                             <div class="jahbulonn-profile-form-row">
                                 <div class="jahbulonn-profile-form-input">

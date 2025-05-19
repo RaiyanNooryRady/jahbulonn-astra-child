@@ -513,3 +513,15 @@ function jahbulonn_enqueue_user_dashboard_assets() {
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_enqueue_user_dashboard_assets');
 
+// Change username on dashboard
+function jahbulonn_change_username() {
+
+    if (isset($_POST['change_username'])) {
+        $new_username = sanitize_text_field($_POST['username']);
+        $user_id = get_current_user_id();
+
+        // Update the username
+        wp_update_user(array('ID' => $user_id, 'display_name' => $new_username));       
+    }
+}
+add_action('init', 'jahbulonn_change_username');        
