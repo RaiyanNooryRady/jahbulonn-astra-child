@@ -11,6 +11,9 @@ function astra_child_style()
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array('parent-style'));
 
+    //fonts styles
+    wp_enqueue_style('fonts', '//fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
     // Additional styles
     wp_enqueue_style('login-custom', get_stylesheet_directory_uri() . '/assets/css/login.css');
 

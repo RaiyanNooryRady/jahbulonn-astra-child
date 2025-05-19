@@ -1,4 +1,7 @@
 /* General & Dashboard */
+*{
+  font-family: 'Red Hat Display', sans-serif !important;
+}
 body {
     overflow-x: hidden;
 }
