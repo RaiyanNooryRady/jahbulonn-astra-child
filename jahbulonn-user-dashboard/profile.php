@@ -1,5 +1,9 @@
 <?php
 /** Template Name: Profile */
+if(!is_user_logged_in()){
+    wp_redirect(home_url().'/complete-register');
+    exit;
+}
 include "header-user-dashboard.php";
 
 ?>
