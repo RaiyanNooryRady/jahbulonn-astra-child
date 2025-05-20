@@ -561,5 +561,30 @@ function jahbulonn_change_profile_picture() {
 }
 add_action('init', 'jahbulonn_change_profile_picture');
 
+// Create chosen university table
+function jahbulonn_create_chosen_university_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'chosen_university';
+    $charset_collate = $wpdb->get_charset_collate();
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        user_id mediumint(9) NOT NULL,
+        department_name varchar(255) NOT NULL,
+        university_name varchar(255) NOT NULL,
+        university_application_status varchar(255),
+        university_application_result varchar(255),
+        university_application_document varchar(255),
+        created_at datetime DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+    dbDelta($sql);
+}
+add_action('after_setup_theme', 'jahbulonn_create_chosen_university_table');
+
+
+
+
 
 
