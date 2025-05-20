@@ -207,7 +207,7 @@ get_header('registration');
                     <?php if (!is_user_logged_in()) { ?>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
                     <?php } ?>
-                    <button type="button" name="next" class="next-button">Weiter</button>
+                    <button type="submit" name="next" class="next-button">Weiter</button>
 
                 </form>
             </div>
@@ -644,6 +644,9 @@ get_header('registration');
                 ist jetzt zum Greifen nah - gemeinsam bringen wir dich ans Ziel!
             </p><br>
             <p> - Dein MedCompass Team</p>
+            <br><br>
+            
+            <a href="<?php echo home_url(); ?>/my-dashboard" class="btn btn-success">Zur Dashboard</a>
         </div>
 
     </div>
