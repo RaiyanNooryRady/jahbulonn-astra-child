@@ -6,7 +6,7 @@ body {
     overflow-x: hidden;
 }
 #jahbulonn-dashboard .sidebar {
-    height: 1200px;
+    min-height: 1300px;
     background-color: white;
     color: black;
     border-right: 1px solid #fff;
