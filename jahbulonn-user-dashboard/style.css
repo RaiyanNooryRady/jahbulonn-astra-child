@@ -339,7 +339,7 @@ img.jahbulonn-logo {
     }
  }
 
- #jahbulonn-dashboard .sidebar .jahbulonn-menu-item.active {
+ #jahbulonn-dashboard .jahbulonn-menu-item.active {
     background-color: #019EBE !important;
     color: white !important;
  }
