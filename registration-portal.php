@@ -588,8 +588,9 @@ get_header('registration');
                     </textarea>
                 </div>
                 <br><br>
+                <div id="choose-school-message"></div>
                 <button type="button" name="next" class="prev-button">Zuruck</button>
-                <button type="button" name="next" class="next-button">Weiter</button>
+                <button type="submit" name="next" class="next-button">Weiter</button>
 
             </form>
 

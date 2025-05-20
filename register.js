@@ -133,7 +133,31 @@ jQuery(document).ready(function ($) {
         
     });
 
-    
+    $('#choose-school-form .next-button').on('click', function (e) {
+        e.preventDefault();
+        var form = $('#choose-school-form');
+        var formData = new FormData(form[0]);
+        formData.append('action', 'handle_chosen_university_form');
+        formData.append('nonce', reg_ajax.chosen_university_nonce);
+        $.ajax({
+            url: reg_ajax.ajax_url,
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                console.log('Server response:', response);
+                if (response.success) {
+                    $('#choose-school-message').html('<span style="color:green;">' + response.data + '</span>');
+                } else {
+                    $('#choose-school-message').html('<span style="color:red;">' + response.data + '</span>');
+                }
+                alert(response.data);
+            },
+            error: function (xhr, status, error) {
+                $('#choose-school-message').html('<span style="color:red;">An error occurred, please try again.</span>');
+            }
+        });
+    });
+
 });
 
 

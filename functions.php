@@ -155,7 +155,8 @@ function jahbulonn_custom_register_form_assets()
         'register_nonce' => wp_create_nonce('register_nonce'),
         'login_nonce' => wp_create_nonce('login_nonce'),
         'pdf_document_nonce' => wp_create_nonce('pdf_document_nonce'),
-        'user_documents_nonce' => wp_create_nonce('user_documents_nonce')
+        'user_documents_nonce' => wp_create_nonce('user_documents_nonce'),
+        'chosen_university_nonce' => wp_create_nonce('chosen_university_nonce')
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
@@ -583,8 +584,96 @@ function jahbulonn_create_chosen_university_table() {
 }
 add_action('after_setup_theme', 'jahbulonn_create_chosen_university_table');
 
+function jahbulonn_handle_chosen_university_form() {
+    check_ajax_referer('chosen_university_nonce', 'nonce');
+    global $wpdb;
+    $chosen_university_table = $wpdb->prefix . 'chosen_university';
 
+    if (!is_user_logged_in()) {
+        wp_send_json_error('User must be logged in to choose university');
+        return;
+    }
+    $user_id = get_current_user_id();
+    $department_name = sanitize_text_field($_POST['chosen_school']);
+    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Humanmedizin'){
 
+        $humanmedizin_universities= array(
+            'humanmedizin_comenius_university'=>'Comenius Universität – Bratislava, Slowakei(H)',
+            'humanmedizin_jessenius_university'=>'Jessenius Universität – Martin, Slowakei(H)',
+            'humanmedizin_karlsuniversitat_prag'=>'Karlsuniversität Prag – Prag, Tschechien(H)',
+            'humanmedizin_univerzita_karlova'=>'Univerzita Karlova – Prag, Tschechien(H)',
+            'humanmedizin_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn(H)',
+            'humanmedizin_pecs_university'=>'University of Pécs – Pécs, Ungarn(H)',
+            'humanmedizin_humanitas_university'=>'Humanitas Universität – Mailand, Italien(H)',
+            'humanmedizin_split_university'=>'University of Split – Split, Kroatien(H)',
+            'humanmedizin_pomeranian_university'=>'Pomeranian University – Szczecin, Polen(H)',
+            'humanmedizin_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen(H)',
+            'humanmedizin_victor_babes_university'=>'Victor Babes Universität – Timișoara, Rumänien(H)',
+            'humanmedizin_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien(H)',
+            'humanmedizin_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien(H)',
+            'humanmedizin_varna_university'=>'University of Varna – Varna, Bulgarien(H)',
+            'humanmedizin_stradins_university'=>'Stradins Universität – Riga, Lettland(H)',
+        );
+        foreach($humanmedizin_universities as $university_name => $university_name_value){
+            if(isset($_POST[$university_name])){
+                $university_name = $university_name_value;
+            }
+        }
+        
+    }
+    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Zahnmedizin'){
+        $zahnmedizin_universities= array(
+            'zahnmedizin_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (Z)',
+            'zahnmedizin_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn (Z)',
+            'zahnmedizin_pecs_university'=>'University of Pécs – Pécs, Ungarn (Z)',
+            'zahnmedizin_pomeranian_university'=>'Pomeranian University – Szczecin, Polen (Z)',
+            'zahnmedizin_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)',
+            'zahnmedizin_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)',
+            'zahnmedizin_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien (Z)',
+            'zahnmedizin_varna_university'=>'University of Varna – Varna, Bulgarien (Z)',
+            'zahnmedizin_stradins_university'=>'Stradins Universität – Riga, Lettland (Z)',
+        );
+        foreach($zahnmedizin_universities as $university_name => $university_name_value){
+            if(isset($_POST[$university_name])){
+                $university_name = $university_name_value;
+            }
+        }
+    }
+    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Beides'){
+        $beides_universities= array(
+           'beides_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (H,Z)',
+           'beides_jessenius_university'=>'Jessenius Universität – Martin, Slowakei (H,Z)',
+           'beides_karlsuniversitat_prag'=>'Karlsuniversität Prag – Prag, Tschechien (H,Z)',
+           'beides_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn (H,Z)',
+           'beides_pecs_university'=>'University of Pécs – Pécs, Ungarn (H,Z)',
+           'beides_humanitas_university'=>'Humanitas Universität – Mailand, Italien (H,Z)',
+           'beides_split_university'=>'University of Split – Split, Kroatien (H,Z)',
+           'beides_pomeranian_university'=>'Pomeranian University – Szczecin, Polen (H,Z)',
+           'beides_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen (H,Z)',
+           'beides_victor_babes_university'=>'Victor Babes Universität – Timișoara, Rumänien (H,Z)',
+           'beides_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien (H,Z)',
+           'beides_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien (H,Z)',
+           'beides_varna_university'=>'University of Varna – Varna, Bulgarien (H,Z)',
+           'beides_stradins_university'=>'Stradins Universität – Riga, Lettland (H,Z)',
+        );
+        foreach($beides_universities as $university_name => $university_name_value){
+            if(isset($_POST[$university_name])){
+                $university_name = $university_name_value;
+            }
+        }
+    }
 
-
-
+    $table_data = array(
+        'user_id' => $user_id,
+        'department_name' => $department_name,
+        'university_name' => $university_name,
+    );
+    $result = $wpdb->insert($chosen_university_table, $table_data);
+    if($result){
+        wp_send_json_success('University chosen successfully');
+    }else{
+        wp_send_json_error('Failed to choose university');
+    }
+}
+add_action('wp_ajax_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
+add_action('wp_ajax_nopriv_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
