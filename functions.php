@@ -601,6 +601,7 @@ function jahbulonn_handle_chosen_university_form() {
     $user_id = get_current_user_id();
     $department_name = sanitize_text_field($_POST['chosen_school']);
     $result = false;
+    $delete_existing_university = $wpdb->delete($chosen_university_table, array('user_id' => $user_id));
     if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Humanmedizin'){
 
         $humanmedizin_universities= array(
