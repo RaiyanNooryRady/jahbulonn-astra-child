@@ -23,10 +23,6 @@ include "header-user-dashboard.php";
                 <div class="jahbulonn-application-container">
                     <div class="jahbulonn-application-header">
                         <h1 class="jahbulonn-application-title">My Application Übersicht</h1>
-                        <div class="jahbulonn-application-actions">
-                            <button class="jahbulonn-action-button" title="Download">↓</button>
-                            <button class="jahbulonn-action-button" title="Expand">⤢</button>
-                        </div>
                     </div>
                     <?php
                     $user_id = get_current_user_id();
