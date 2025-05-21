@@ -636,7 +636,7 @@ function jahbulonn_handle_chosen_university_form() {
         }
         
     }
-    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Zahnmedizin'){
+    else if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Zahnmedizin'){
         $zahnmedizin_universities= array(
             'zahnmedizin_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (Z)',
             'zahnmedizin_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn (Z)',
@@ -663,7 +663,7 @@ function jahbulonn_handle_chosen_university_form() {
             }
         }
     }
-    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Beides'){
+    else if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Beides'){
         $beides_universities= array(
            'beides_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (H,Z)',
            'beides_jessenius_university'=>'Jessenius Universität – Martin, Slowakei (H,Z)',
