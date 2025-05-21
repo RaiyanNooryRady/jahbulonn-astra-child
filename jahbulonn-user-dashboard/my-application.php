@@ -1,7 +1,7 @@
 <?php
 /** Template Name: My Application */
-if(!is_user_logged_in()){
-    wp_redirect(home_url().'/complete-register');
+if (!is_user_logged_in()) {
+    wp_redirect(home_url() . '/complete-register');
     exit;
 }
 include "header-user-dashboard.php";
@@ -28,6 +28,12 @@ include "header-user-dashboard.php";
                             <button class="jahbulonn-action-button" title="Expand">⤢</button>
                         </div>
                     </div>
+                    <?php
+                    $user_id = get_current_user_id();
+                    $chosen_university_table = $wpdb->prefix . 'chosen_university';
+                    $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
+                    // print_r($chosen_universities);
+                    ?>
 
                     <table class="jahbulonn-application-table">
                         <thead>
@@ -42,33 +48,22 @@ include "header-user-dashboard.php";
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="jahbulonn-row-number">1</td>
-                                <td>ETH Zurich</td>
-                                <td>In Process</td>
-                                <td>–</td>
-                                <td>10.05.2025</td>
-                                <td>–</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="jahbulonn-row-number">2</td>
-                                <td>University of Basel</td>
-                                <td>Result Available</td>
-                                <td>Accepted</td>
-                                <td>13.05.2025</td>
-                                <td><a href="#" class="jahbulonn-download-link">[Download]</a></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="jahbulonn-row-number">3</td>
-                                <td>University of Geneva</td>
-                                <td>Submitted</td>
-                                <td>–</td>
-                                <td>09.05.2025</td>
-                                <td>–</td>
-                                <td></td>
-                            </tr>
+
+                            <?php
+                            foreach ($chosen_universities as $chosen_university) {
+                                ?>
+                                <tr>
+                                    <td class="jahbulonn-row-number">2</td>
+                                    <td><?php echo $chosen_university->university_name; ?></td>
+                                    <td>Result Available</td>
+                                    <td>Accepted</td>
+                                    <td>13.05.2025</td>
+                                    <td><a href="#" class="jahbulonn-download-link">[Download]</a></td>
+                                    <td></td>
+                                </tr> <?php
+                            }
+                            ?>
+
                         </tbody>
                     </table>
                 </div>
