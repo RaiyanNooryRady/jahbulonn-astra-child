@@ -55,10 +55,11 @@ include "header-user-dashboard.php";
                                 <tr>
                                     <td class="jahbulonn-row-number">2</td>
                                     <td><?php echo $chosen_university->university_name; ?></td>
-                                    <td>Result Available</td>
-                                    <td>Accepted</td>
-                                    <td>13.05.2025</td>
-                                    <td><a href="#" class="jahbulonn-download-link">[Download]</a></td>
+                                    <td><?php echo $chosen_university->university_application_status; ?></td>
+                                    <td><?php echo $chosen_university->university_application_result; ?></td>
+                                    <td><?php echo $chosen_university->created_at; ?></td>
+                                    <td><a href="<?php echo esc_url($chosen_university->university_application_document); ?>"
+                                            class="jahbulonn-download-link">[Download]</a></td>
                                     <td></td>
                                 </tr> <?php
                             }
