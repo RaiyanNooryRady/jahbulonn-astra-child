@@ -46,10 +46,11 @@ include "header-user-dashboard.php";
                         <tbody>
 
                             <?php
+                            $jahbulonn_row_number = 1;
                             foreach ($chosen_universities as $chosen_university) {
                                 ?>
                                 <tr>
-                                    <td class="jahbulonn-row-number">2</td>
+                                    <td class="jahbulonn-row-number"><?php echo $jahbulonn_row_number++; ?></td>
                                     <td><?php echo $chosen_university->university_name; ?></td>
                                     <td><?php echo $chosen_university->university_application_status; ?></td>
                                     <td><?php echo $chosen_university->university_application_result; ?></td>
