@@ -55,8 +55,8 @@ add_action('admin_init', function () {
 // Redirect non-logged-in users away from user-dashboard
 function restrict_dashboard_access()
 {
-    if (is_page_template('user-dashboard.php') && !is_user_logged_in()) {
-        wp_redirect(home_url('/user-login/')); // Redirect to login page
+    if (is_page_template('dashboard.php') && !is_user_logged_in()) {
+        wp_redirect(home_url('/complete-register/')); // Redirect to login page
         exit;
     }
 }
@@ -68,7 +68,7 @@ function custom_login_redirect($redirect_to, $request, $user)
     if (isset($user->roles) && is_array($user->roles)) {
         // Subscribers go to the user dashboard
         if (in_array('subscriber', $user->roles)) {
-            return home_url('/user-dashboard/');
+            return home_url('/my-dashboard/');
         }
         // Admins and others go to WP Admin
         return admin_url();
