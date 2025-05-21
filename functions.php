@@ -143,6 +143,12 @@ function custom_user_menu_item($items, $args)
 add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
 
 // -----------------------------------------------------------------------------------------------------------------------------
+function jahbulonn_shortcode_registration_portal(){
+    ob_start();
+    include(get_stylesheet_directory() . '/registration-portal.php');
+    return ob_get_clean();
+}
+add_shortcode('jahbulonn_registration_portal', 'jahbulonn_shortcode_registration_portal');
 
 // Enqueue CSS & JS for the form
 function jahbulonn_custom_register_form_assets()
@@ -588,13 +594,13 @@ function jahbulonn_handle_chosen_university_form() {
     check_ajax_referer('chosen_university_nonce', 'nonce');
     global $wpdb;
     $chosen_university_table = $wpdb->prefix . 'chosen_university';
-
     if (!is_user_logged_in()) {
         wp_send_json_error('User must be logged in to choose university');
         return;
     }
     $user_id = get_current_user_id();
     $department_name = sanitize_text_field($_POST['chosen_school']);
+    $result = false;
     if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Humanmedizin'){
 
         $humanmedizin_universities= array(
@@ -617,6 +623,15 @@ function jahbulonn_handle_chosen_university_form() {
         foreach($humanmedizin_universities as $university_name => $university_name_value){
             if(isset($_POST[$university_name])){
                 $university_name = $university_name_value;
+                $table_data = array(
+                    'user_id' => $user_id,
+                    'department_name' => $department_name,
+                    'university_name' => $university_name,
+                    'university_application_status' => '',
+                    'university_application_result' => '',
+                    'university_application_document' => '',
+                );
+                $result = $wpdb->insert($chosen_university_table, $table_data);
             }
         }
         
@@ -636,6 +651,15 @@ function jahbulonn_handle_chosen_university_form() {
         foreach($zahnmedizin_universities as $university_name => $university_name_value){
             if(isset($_POST[$university_name])){
                 $university_name = $university_name_value;
+                $table_data = array(
+                    'user_id' => $user_id,
+                    'department_name' => $department_name,
+                    'university_name' => $university_name,
+                    'university_application_status' => '',
+                    'university_application_result' => '',
+                    'university_application_document' => '',
+                );
+                $result = $wpdb->insert($chosen_university_table, $table_data);
             }
         }
     }
@@ -659,21 +683,24 @@ function jahbulonn_handle_chosen_university_form() {
         foreach($beides_universities as $university_name => $university_name_value){
             if(isset($_POST[$university_name])){
                 $university_name = $university_name_value;
+                $table_data = array(
+                    'user_id' => $user_id,
+                    'department_name' => $department_name,
+                    'university_name' => $university_name,
+                    'university_application_status' => '',
+                    'university_application_result' => '',
+                    'university_application_document' => '',
+                );
+                $result = $wpdb->insert($chosen_university_table, $table_data);
             }
         }
     }
-
-    $table_data = array(
-        'user_id' => $user_id,
-        'department_name' => $department_name,
-        'university_name' => $university_name,
-    );
-    $result = $wpdb->insert($chosen_university_table, $table_data);
     if($result){
         wp_send_json_success('University chosen successfully');
     }else{
         wp_send_json_error('Failed to choose university');
     }
+
 }
 add_action('wp_ajax_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
 add_action('wp_ajax_nopriv_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');

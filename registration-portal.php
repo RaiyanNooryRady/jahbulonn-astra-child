@@ -1,5 +1,4 @@
 <?php
-// Template Name: Complete Register
 get_header('registration');
 ?>
 
@@ -375,7 +374,7 @@ get_header('registration');
                 <h4 class="mocktest-question"> Wo möchtest du studieren?</h4>
                 <div class="choose-school active" id="humanmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_comenius_university" name="humanmedizin_comenius_university" required>
+                        <input type="checkbox" id="humanmedizin_comenius_university" name="humanmedizin_comenius_university">
                         <label for="humanmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei(H)</label>
                     </div>
 
@@ -451,7 +450,7 @@ get_header('registration');
                 </div>
                 <div class="choose-school" id="zahnmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_comenius_university" name="zahnmedizin_comenius_university" required>
+                        <input type="checkbox" id="zahnmedizin_comenius_university" name="zahnmedizin_comenius_university">
                         <label for="zahnmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei (Z)</label>
                     </div>
 
@@ -498,7 +497,7 @@ get_header('registration');
                 </div>
                 <div class="choose-school" id="beides_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="beides_comenius_university" name="beides_comenius_university" required>
+                        <input type="checkbox" id="beides_comenius_university" name="beides_comenius_university">
                         <label for="beides_comenius_university">Comenius Universität – Bratislava, Slowakei(H,Z)</label>
                     </div>
 
@@ -575,7 +574,7 @@ get_header('registration');
                 </div>
                 <h4 class="mocktest-question"> Du möchtest dich an mehr als 3 Unis bewerben?</h4>
                 <div class="checkbox-container">
-                    <input type="checkbox" id="ja_mehr" name="ja_mehr" required>
+                    <input type="checkbox" id="ja_mehr" name="ja_mehr">
                     <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den AGB*. Falls Sie eine
                         Universität gewählt haben, die beide Studiengänge anbietet, geben Sie bitte im Kommentarfeld
                         an, welchen Studiengang Sie an welcher Universität genau studieren möchten.
@@ -621,7 +620,7 @@ get_header('registration');
 
         <div class="tab-container">
 
-            <form id="choose-school-form" method="POST" enctype="multipart/form-data">
+            <form id="confirm-school-form" method="POST" enctype="multipart/form-data">
                 <h2>Bewerbung abschließen</h2>
                 <h4> Fertig? Klicke unten, um deine Bewerbung abzuschließen. </h4> <br>
 
