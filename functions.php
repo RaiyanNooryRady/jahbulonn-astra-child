@@ -47,7 +47,7 @@ add_action('after_setup_theme', function () {
 // Allow admins to access WP Admin and restrict subscribers
 add_action('admin_init', function () {
     if (is_admin() && !wp_doing_ajax() && current_user_can('subscriber')) {
-        wp_redirect(home_url('/user-dashboard/'));
+        wp_redirect(home_url('/my-dashboard/'));
         exit;
     }
 });
@@ -126,21 +126,21 @@ function custom_user_menu_item($items, $args)
         $current_user = wp_get_current_user();
 
         if (in_array('subscriber', $current_user->roles)) {
-            $dashboard_url = site_url('/user-dashboard/');
-            $logout_url = wp_logout_url(site_url('/user-login/')); // Redirect after logout
+            $dashboard_url = site_url('/my-dashboard/');
+            $logout_url = wp_logout_url(site_url('/complete-register/')); // Redirect after logout
 
             $items .= '<li class="menu-item"><a href="' . esc_url($dashboard_url) . '">Dashboard</a></li>';
         }
     } else {
-        $login_url = site_url('/user-login/');
-        $register_url = site_url('/user-register/');
+        $login_url = site_url('/complete-register/');
+        $register_url = site_url('/complete-register/');
 
         $items .= '<li class="menu-item"><a href="' . esc_url($login_url) . '">Login</a></li>';
     }
 
     return $items;
 }
-add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
+//add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
 
 // -----------------------------------------------------------------------------------------------------------------------------
 function jahbulonn_shortcode_registration_portal(){
