@@ -77,7 +77,7 @@ include "header-user-dashboard.php";
     <!-- Edit User Modals -->
     <?php foreach ($users as $user) { ?>
         <div class="modal fade" id="editUserModal<?php echo $user->ID; ?>" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit User: <?php echo htmlspecialchars($user->display_name); ?></h5>
@@ -152,7 +152,7 @@ include "header-user-dashboard.php";
 
         <!-- Delete User Modal -->
         <div class="modal fade" id="deleteUserModal<?php echo $user->ID; ?>" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Delete User</h5>
