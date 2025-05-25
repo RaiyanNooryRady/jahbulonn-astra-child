@@ -173,7 +173,7 @@ include "header-user-dashboard.php";
                                             class="form-label">University Application Status</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_status<?php echo $user->ID; ?>"
-                                            name="edit_university_application_status"
+                                            name="edit_university_application_status<?php echo $user_id; ?>"
                                             value="<?php echo $chosen_university->university_application_status; ?>">
                                     </div>
                                     <div class="mb-3">
@@ -181,7 +181,7 @@ include "header-user-dashboard.php";
                                             class="form-label">University Application Result</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_result<?php echo $user->ID; ?>"
-                                            name="edit_university_application_result"
+                                            name="edit_university_application_result<?php echo $user_id; ?>"
                                             value="<?php echo $chosen_university->university_application_result; ?>">
                                     </div>
                                     <div class="mb-3">
@@ -193,7 +193,7 @@ include "header-user-dashboard.php";
                                         <?php endif; ?>
                                         <input type="file" class="form-control"
                                             id="edit_university_application_document<?php echo $user->ID; ?>"
-                                            name="edit_university_application_document" value="">
+                                            name="edit_university_application_document<?php echo $user_id; ?>" value="">
                                     </div>
 
                                 <?php } ?>
