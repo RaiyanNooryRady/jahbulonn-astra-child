@@ -135,10 +135,11 @@ include "header-user-dashboard.php";
                     <form action="" method="POST" id="edit_user_form" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="edit_display_name<?php echo $user->ID; ?>" class="form-label">Display Name</label>
+                                <label for="edit_display_name<?php echo $user->ID; ?>" class="form-label">Display
+                                    Name</label>
                                 <input type="text" class="form-control" id="edit_display_name<?php echo $user->ID; ?>"
-                                    name="edit_display_name<?php echo $user->ID ?>" value="<?php echo htmlspecialchars($user->display_name); ?>"
-                                    >
+                                    name="edit_display_name<?php echo $user->ID ?>"
+                                    value="<?php echo htmlspecialchars($user->display_name); ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="edit_password<?php echo $user->ID; ?>" class="form-label">New Password (leave
@@ -157,7 +158,7 @@ include "header-user-dashboard.php";
                             $chosen_university_table = $wpdb->prefix . 'chosen_university';
                             $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
                             // print_r($chosen_universities);
-                            if(empty($chosen_universities)){
+                            if (empty($chosen_universities)) {
                                 echo "<h5>No University is selected by user</h5>";
                             }
                             ?>
@@ -172,18 +173,24 @@ include "header-user-dashboard.php";
                                             class="form-label">University Application Status</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_status<?php echo $user->ID; ?>"
-                                            name="edit_university_application_status" value="">
+                                            name="edit_university_application_status"
+                                            value="<?php echo $chosen_university->university_application_status; ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="edit_university_application_result<?php echo $user->ID; ?>"
                                             class="form-label">University Application Result</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_result<?php echo $user->ID; ?>"
-                                            name="edit_university_application_result" value="">
+                                            name="edit_university_application_result"
+                                            value="<?php echo $chosen_university->university_application_result; ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="edit_university_application_document<?php echo $user->ID; ?>"
-                                            class="form-label">University Application Document</label>
+                                            class="form-label">Upload University Application Document:</label>
+                                        <?php if(!empty($chosen_university->university_application_document)): ?>
+                                        <a href="<?php echo esc_url($chosen_university->university_application_document); ?>"
+                                            target="_blank">View Existing Document</a>
+                                        <?php endif; ?>
                                         <input type="file" class="form-control"
                                             id="edit_university_application_document<?php echo $user->ID; ?>"
                                             name="edit_university_application_document" value="">
@@ -194,7 +201,8 @@ include "header-user-dashboard.php";
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="edit_user_save<?php echo $user->ID ?>" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" name="edit_user_save<?php echo $user->ID ?>" class="btn btn-primary">Save
+                                Changes</button>
                         </div>
                     </form>
                     <?php jahbulonn_edit_users_info(); ?>
