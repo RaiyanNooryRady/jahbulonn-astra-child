@@ -705,3 +705,15 @@ function jahbulonn_handle_chosen_university_form() {
 }
 add_action('wp_ajax_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
 add_action('wp_ajax_nopriv_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
+
+
+function jahbulonn_edit_users_info(){
+    global $wpdb;
+    $users_table = $wpdb->prefix.'users';
+    $users= $wpdb->get_results('SELECT * FROM wp_users');
+    print_r($users);
+    foreach($users as $user){
+        $user_id = $user->ID;
+        
+    }   
+}

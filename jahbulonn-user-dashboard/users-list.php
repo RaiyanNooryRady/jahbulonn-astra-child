@@ -132,31 +132,34 @@ include "header-user-dashboard.php";
                         <h5 class="modal-title">Edit User: <?php echo htmlspecialchars($user->display_name); ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="edit_user_form" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="edit_username<?php echo $user->ID; ?>" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="edit_username<?php echo $user->ID; ?>"
-                                    name="edit_username" value="<?php echo htmlspecialchars($user->display_name); ?>"
-                                    required>
+                                <label for="edit_display_name<?php echo $user->ID; ?>" class="form-label">Display Name</label>
+                                <input type="text" class="form-control" id="edit_display_name<?php echo $user->ID; ?>"
+                                    name="edit_display_name<?php echo $user->ID ?>" value="<?php echo htmlspecialchars($user->display_name); ?>"
+                                    >
                             </div>
                             <div class="mb-3">
                                 <label for="edit_password<?php echo $user->ID; ?>" class="form-label">New Password (leave
                                     blank to keep current)</label>
                                 <input type="password" class="form-control" id="edit_password<?php echo $user->ID; ?>"
-                                    name="edit_password">
+                                    name="edit_password<?php echo $user->ID ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="edit_profile_picture<?php echo $user->ID; ?>" class="form-label">Profile
                                     Picture</label>
                                 <input type="file" class="form-control" id="edit_profile_picture<?php echo $user->ID; ?>"
-                                    name="edit_profile_picture">
+                                    name="edit_profile_picture<?php echo $user->ID ?>">
                             </div>
                             <?php
-                            $user_id = get_current_user_id();
+                            $user_id = $user->ID;
                             $chosen_university_table = $wpdb->prefix . 'chosen_university';
                             $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
                             // print_r($chosen_universities);
+                            if(empty($chosen_universities)){
+                                echo "<h5>No University is selected by user</h5>";
+                            }
                             ?>
                             <div class="jahbulonn-university-edit-container">
                                 <?php foreach ($chosen_universities as $chosen_university) { ?>
@@ -169,21 +172,21 @@ include "header-user-dashboard.php";
                                             class="form-label">University Application Status</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_status<?php echo $user->ID; ?>"
-                                            name="edit_university_application_status" value="" required>
+                                            name="edit_university_application_status" value="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="edit_university_application_result<?php echo $user->ID; ?>"
                                             class="form-label">University Application Result</label>
                                         <input type="text" class="form-control"
                                             id="edit_university_application_result<?php echo $user->ID; ?>"
-                                            name="edit_university_application_result" value="" required>
+                                            name="edit_university_application_result" value="">
                                     </div>
                                     <div class="mb-3">
                                         <label for="edit_university_application_document<?php echo $user->ID; ?>"
                                             class="form-label">University Application Document</label>
                                         <input type="file" class="form-control"
                                             id="edit_university_application_document<?php echo $user->ID; ?>"
-                                            name="edit_university_application_document" value="" required>
+                                            name="edit_university_application_document" value="">
                                     </div>
 
                                 <?php } ?>
@@ -191,10 +194,10 @@ include "header-user-dashboard.php";
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="edit_user_save" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" name="edit_user_save<?php echo $user->ID ?>" class="btn btn-primary">Save Changes</button>
                         </div>
                     </form>
-                    <?php //dev_crud_edit_user(); ?>
+                    <?php jahbulonn_edit_users_info(); ?>
                 </div>
             </div>
         </div>
