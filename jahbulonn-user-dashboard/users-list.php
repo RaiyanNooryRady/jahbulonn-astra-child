@@ -43,7 +43,23 @@ include "header-user-dashboard.php";
                                 <tbody>
                                     <?php
                                     global $wpdb;
-                                    $users = $wpdb->get_results("SELECT * FROM wp_users");
+                                    
+                                    // Pagination settings
+                                    $users_per_page = 5;
+                                    $current_page = isset($_GET['page_num']) ? max(1, intval($_GET['page_num'])) : 1;
+                                    $offset = ($current_page - 1) * $users_per_page;
+                                    
+                                    // Get total number of users
+                                    $total_users = $wpdb->get_var("SELECT COUNT(*) FROM wp_users");
+                                    $total_pages = ceil($total_users / $users_per_page);
+                                    
+                                    // Get users for current page
+                                    $users = $wpdb->get_results($wpdb->prepare(
+                                        "SELECT * FROM wp_users LIMIT %d OFFSET %d",
+                                        $users_per_page,
+                                        $offset
+                                    ));
+                                    
                                     foreach ($users as $user) {
                                         ?>
                                         <tr>
@@ -68,6 +84,35 @@ include "header-user-dashboard.php";
                                     ?>
                                 </tbody>
                             </table>
+                            
+                            <!-- Pagination -->
+                            <?php if ($total_pages > 1) : ?>
+                            <nav aria-label="Page navigation" class="mt-4">
+                                <ul class="pagination justify-content-center">
+                                    <?php if ($current_page > 1) : ?>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page_num=<?php echo $current_page - 1; ?>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                    
+                                    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                        <li class="page-item <?php echo $i === $current_page ? 'active' : ''; ?>">
+                                            <a class="page-link" href="?page_num=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                        </li>
+                                    <?php endfor; ?>
+                                    
+                                    <?php if ($current_page < $total_pages) : ?>
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page_num=<?php echo $current_page + 1; ?>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </nav>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
