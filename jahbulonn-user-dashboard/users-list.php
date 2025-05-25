@@ -103,6 +103,42 @@ include "header-user-dashboard.php";
                                 <input type="file" class="form-control" id="edit_profile_picture<?php echo $user->ID; ?>"
                                     name="edit_profile_picture">
                             </div>
+                            <?php
+                            $user_id = get_current_user_id();
+                            $chosen_university_table = $wpdb->prefix . 'chosen_university';
+                            $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
+                            // print_r($chosen_universities);
+                            ?>
+                            <div class="jahbulonn-university-edit-container">
+                                <?php foreach ($chosen_universities as $chosen_university) { ?>
+
+                                    <h5 class="jahbulonn_user_university_name">
+                                        <?php echo $chosen_university->university_name; ?>
+                                    </h5>
+                                    <div class="mb-3">
+                                        <label for="edit_university_application_status<?php echo $user->ID; ?>"
+                                            class="form-label">University Application Status</label>
+                                        <input type="text" class="form-control"
+                                            id="edit_university_application_status<?php echo $user->ID; ?>"
+                                            name="edit_university_application_status" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit_university_application_result<?php echo $user->ID; ?>"
+                                            class="form-label">University Application Result</label>
+                                        <input type="text" class="form-control"
+                                            id="edit_university_application_result<?php echo $user->ID; ?>"
+                                            name="edit_university_application_result" value="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="edit_university_application_document<?php echo $user->ID; ?>"
+                                            class="form-label">University Application Document</label>
+                                        <input type="file" class="form-control"
+                                            id="edit_university_application_document<?php echo $user->ID; ?>"
+                                            name="edit_university_application_document" value="" required>
+                                    </div>
+
+                                <?php } ?>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
