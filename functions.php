@@ -789,7 +789,7 @@ function jahbulonn_edit_users_info()
                 if (is_wp_error($university_update_result)) {
                     echo $university_update_result->get_error_message();
                 } else {
-                    echo "Successfully Updated <script> Updated! </script>";
+                    echo "Successfully Updated";
                 }
             }
         }
