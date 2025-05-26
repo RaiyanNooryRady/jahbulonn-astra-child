@@ -171,31 +171,31 @@ include "header-user-dashboard.php";
                                         <?php echo $chosen_university->university_name; ?>
                                     </h5>
                                     <div class="mb-3">
-                                        <label for="edit_university_application_status<?php echo $user->ID; ?>"
+                                        <label for="edit_university_application_status<?php echo $user->ID."_".$chosen_university->id; ?>"
                                             class="form-label">University Application Status</label>
                                         <input type="text" class="form-control"
-                                            id="edit_university_application_status<?php echo $user->ID; ?>"
-                                            name="edit_university_application_status<?php echo $user_id; ?>"
+                                            id="edit_university_application_status<?php echo $user->ID."_".$chosen_university->id; ?>"
+                                            name="edit_university_application_status<?php echo $user->ID."_".$chosen_university->id; ?>"
                                             value="<?php echo $chosen_university->university_application_status; ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="edit_university_application_result<?php echo $user->ID; ?>"
+                                        <label for="edit_university_application_result<?php echo $user->ID."_".$chosen_university->id; ?>"
                                             class="form-label">University Application Result</label>
                                         <input type="text" class="form-control"
-                                            id="edit_university_application_result<?php echo $user->ID; ?>"
-                                            name="edit_university_application_result<?php echo $user_id; ?>"
+                                            id="edit_university_application_result<?php echo $user->ID."_".$chosen_university->id; ?>"
+                                            name="edit_university_application_result<?php echo $user->ID."_".$chosen_university->id; ?>"
                                             value="<?php echo $chosen_university->university_application_result; ?>">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="edit_university_application_document<?php echo $user->ID; ?>"
+                                        <label for="edit_university_application_document<?php echo $user->ID."_".$chosen_university->id; ?>"
                                             class="form-label">Upload University Application Document:</label>
                                         <?php if(!empty($chosen_university->university_application_document)): ?>
                                         <a href="<?php echo esc_url($chosen_university->university_application_document); ?>"
                                             target="_blank">View Existing Document</a>
                                         <?php endif; ?>
                                         <input type="file" class="form-control"
-                                            id="edit_university_application_document<?php echo $user->ID; ?>"
-                                            name="edit_university_application_document<?php echo $user_id; ?>" value="">
+                                            id="edit_university_application_document<?php echo $user->ID."_".$chosen_university->id; ?>"
+                                            name="edit_university_application_document<?php echo $user->ID."_".$chosen_university->id; ?>" value="">
                                     </div>
 
                                 <?php } ?>

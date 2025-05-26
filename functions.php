@@ -19,8 +19,8 @@ function astra_child_style()
 
     wp_enqueue_style('bootstrap', '//cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css');
     //bootstrap icons
-    wp_enqueue_style('bootstrap-icons',  '//cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
-  //  wp_enqueue_style('meteor', get_stylesheet_directory_uri() . '/assets/css/meteor.min.css');
+    wp_enqueue_style('bootstrap-icons', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+    //  wp_enqueue_style('meteor', get_stylesheet_directory_uri() . '/assets/css/meteor.min.css');
     wp_enqueue_style('simple-line', get_stylesheet_directory_uri() . '/assets/plugins/line-icons/simple-line-icons.css');
     wp_enqueue_style('dark-layer', get_stylesheet_directory_uri() . '/assets/css/layers/dark-layer.css');
     wp_enqueue_style('font-awesome', get_stylesheet_directory_uri() . '/assets/plugins/fontawesome/css/font-awesome.min.css');
@@ -28,7 +28,7 @@ function astra_child_style()
     // JavaScript files
     wp_enqueue_script('jquery-ui', get_stylesheet_directory_uri() . '/assets/plugins/jquery-ui/jquery-ui.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap', '//cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', array('jquery'), null, true);
-   // wp_enqueue_script('waves', get_stylesheet_directory_uri() . '/assets/plugins/waves/waves.min.js', array('jquery'), null, true);
+    // wp_enqueue_script('waves', get_stylesheet_directory_uri() . '/assets/plugins/waves/waves.min.js', array('jquery'), null, true);
     //wp_enqueue_script('meteor', get_stylesheet_directory_uri() . '/assets/js/meteor.min.js', array('jquery'), null, true);
 }
 
@@ -143,7 +143,8 @@ function custom_user_menu_item($items, $args)
 //add_filter('wp_nav_menu_items', 'custom_user_menu_item', 10, 2);
 
 // -----------------------------------------------------------------------------------------------------------------------------
-function jahbulonn_shortcode_registration_portal(){
+function jahbulonn_shortcode_registration_portal()
+{
     ob_start();
     include(get_stylesheet_directory() . '/registration-portal.php');
     return ob_get_clean();
@@ -166,7 +167,7 @@ function jahbulonn_custom_register_form_assets()
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
- 
+
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_custom_register_form_assets');
 
@@ -223,19 +224,19 @@ function jahbulonn_handle_register_form()
     $vorname = sanitize_text_field($_POST['vorname']);
     $nachname = sanitize_text_field($_POST['nachname']);
     $user_data = [
-       'user_login' => $username,
-       'user_email' => $email,
-       'user_pass' => $password,
-       'first_name' => $vorname,
-       'last_name' => $nachname,
-       'role' => 'subscriber',
+        'user_login' => $username,
+        'user_email' => $email,
+        'user_pass' => $password,
+        'first_name' => $vorname,
+        'last_name' => $nachname,
+        'role' => 'subscriber',
     ];
     $user_id = wp_insert_user($user_data);
     if (is_wp_error($user_id)) {
         wp_send_json_error('User creation failed: ' . $user_id->get_error_message());
         return;
     }
-    
+
     $first_data = [
         'user_id' => $user_id,
         'vorname' => $vorname,
@@ -267,30 +268,30 @@ add_action('wp_ajax_handle_register_form', 'jahbulonn_handle_register_form');
 add_action('wp_ajax_nopriv_handle_register_form', 'jahbulonn_handle_register_form');
 
 
-function jahbulonn_handle_login_form(){
+function jahbulonn_handle_login_form()
+{
     check_ajax_referer('login_nonce', 'nonce');
-    $info=array();
-    if(isset($_POST['username'])){
+    $info = array();
+    if (isset($_POST['username'])) {
         $info['user_login'] = sanitize_text_field($_POST['username']);
     }
-    if(isset($_POST['password'])){
+    if (isset($_POST['password'])) {
         $info['user_password'] = sanitize_text_field($_POST['password']);
     }
-    if(is_email($info['user_login'])){
-        $user_data=get_user_by('email', $info['user_login']);
-        if($user_data){
-            $info['user_login']=$user_data->user_login; //use username to login
-        }
-        else{
+    if (is_email($info['user_login'])) {
+        $user_data = get_user_by('email', $info['user_login']);
+        if ($user_data) {
+            $info['user_login'] = $user_data->user_login; //use username to login
+        } else {
             wp_send_json_error('No user found with that email address.');
         }
     }
     $user_verify = wp_signon($info, false);
-    if(is_wp_error($user_verify)){
+    if (is_wp_error($user_verify)) {
         wp_send_json_error('Invalid username or password');
-    }else{
+    } else {
         wp_send_json_success('Login successful');
-       // wp_redirect(home_url('/user-dashboard/'));
+        // wp_redirect(home_url('/user-dashboard/'));
         exit;
     }
 
@@ -299,7 +300,8 @@ add_action('wp_ajax_handle_login_form', 'jahbulonn_handle_login_form');
 add_action('wp_ajax_nopriv_handle_login_form', 'jahbulonn_handle_login_form');
 //---------------------------------------------------------------------------------------------------------------------------------
 
-function jahbulonn_create_pdf_document_table() {
+function jahbulonn_create_pdf_document_table()
+{
     global $wpdb;
     $table_name = $wpdb->prefix . 'pdf_document';
     $charset_collate = $wpdb->get_charset_collate();
@@ -316,7 +318,8 @@ function jahbulonn_create_pdf_document_table() {
 }
 add_action('after_setup_theme', 'jahbulonn_create_pdf_document_table');
 
-function jahbulonn_handle_pdf_document_form() {
+function jahbulonn_handle_pdf_document_form()
+{
     check_ajax_referer('pdf_document_nonce', 'nonce');
     global $wpdb;
     $pdf_document_table = $wpdb->prefix . 'pdf_document';
@@ -334,7 +337,7 @@ function jahbulonn_handle_pdf_document_form() {
     error_log('POST: ' . print_r($_POST, true));
 
     if (isset($_FILES['pdf_document']) && !empty($_FILES['pdf_document']['name'])) {
-        $upload_dir = wp_upload_dir(); 
+        $upload_dir = wp_upload_dir();
         $file_name = basename($_FILES['pdf_document']['name']);
         $target_file = $upload_dir['path'] . '/' . $file_name;
 
@@ -348,7 +351,7 @@ function jahbulonn_handle_pdf_document_form() {
         if (move_uploaded_file($_FILES['pdf_document']['tmp_name'], $target_file)) {
             // Get the URL of the uploaded file
             $file_url = $upload_dir['url'] . '/' . $file_name;
-            
+
             // Check if user already has a document
             $existing_doc = $wpdb->get_var($wpdb->prepare(
                 "SELECT id FROM $pdf_document_table WHERE user_id = %d",
@@ -391,7 +394,8 @@ function jahbulonn_handle_pdf_document_form() {
 add_action('wp_ajax_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');
 add_action('wp_ajax_nopriv_handle_pdf_document_form', 'jahbulonn_handle_pdf_document_form');
 
-function jahbulonn_create_user_documents_table() {
+function jahbulonn_create_user_documents_table()
+{
     global $wpdb;
     $table_name = $wpdb->prefix . 'user_documents';
     $charset_collate = $wpdb->get_charset_collate();
@@ -408,11 +412,12 @@ function jahbulonn_create_user_documents_table() {
     created_at datetime DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
     ) $charset_collate;";
-    dbDelta($sql); 
+    dbDelta($sql);
 }
 add_action('after_setup_theme', 'jahbulonn_create_user_documents_table');
 
-function jahbulonn_handle_user_documents_form() {
+function jahbulonn_handle_user_documents_form()
+{
     check_ajax_referer('user_documents_nonce', 'nonce');
     global $wpdb;
     $user_documents_table = $wpdb->prefix . 'user_documents';
@@ -446,7 +451,7 @@ function jahbulonn_handle_user_documents_form() {
     foreach ($document_types as $doc_type) {
         if (isset($_FILES[$doc_type]) && !empty($_FILES[$doc_type]['name'])) {
             $file = $_FILES[$doc_type];
-            
+
             // Upload file
             $upload_dir = wp_upload_dir();
             $file_name = basename($file['name']);
@@ -515,7 +520,8 @@ add_action('wp_ajax_handle_user_documents_form', 'jahbulonn_handle_user_document
 add_action('wp_ajax_nopriv_handle_user_documents_form', 'jahbulonn_handle_user_documents_form');
 
 // Enqueue CSS & JS for the user dashboard
-function jahbulonn_enqueue_user_dashboard_assets() {
+function jahbulonn_enqueue_user_dashboard_assets()
+{
     // Enqueue CSS
     wp_enqueue_style('user-dashboard-style', get_stylesheet_directory_uri() . '/jahbulonn-user-dashboard/style.css', array(), fileatime(get_stylesheet_directory() . '/jahbulonn-user-dashboard/style.css'));
     // Enqueue JS
@@ -524,19 +530,21 @@ function jahbulonn_enqueue_user_dashboard_assets() {
 add_action('wp_enqueue_scripts', 'jahbulonn_enqueue_user_dashboard_assets');
 
 // Change username on dashboard
-function jahbulonn_change_username() {
+function jahbulonn_change_username()
+{
 
     if (isset($_POST['change_display_name'])) {
         $new_display_name = sanitize_text_field($_POST['display_name']);
         $user_id = get_current_user_id();
         // Update the username
-        wp_update_user(array('ID' => $user_id, 'display_name' => $new_display_name));       
+        wp_update_user(array('ID' => $user_id, 'display_name' => $new_display_name));
     }
 }
-add_action('init', 'jahbulonn_change_username');        
+add_action('init', 'jahbulonn_change_username');
 
 // Change password on dashboard
-function jahbulonn_change_password() {
+function jahbulonn_change_password()
+{
     if (isset($_POST['change_password'])) {
         $new_password = sanitize_text_field($_POST['password']);
         $user_id = get_current_user_id();
@@ -550,13 +558,14 @@ function jahbulonn_change_password() {
 add_action('init', 'jahbulonn_change_password');
 
 // Change profile picture on dashboard
-function jahbulonn_change_profile_picture() {
+function jahbulonn_change_profile_picture()
+{
     if (isset($_POST['change_profile_picture']) && isset($_FILES['profile_picture'])) {
         $user_id = get_current_user_id();
         $profile_picture = $_FILES['profile_picture'];
         $upload_dir = wp_upload_dir();
         $file_name = basename($profile_picture['name']);
-        $target_file = $upload_dir['path'] . '/' . $file_name;  
+        $target_file = $upload_dir['path'] . '/' . $file_name;
 
         if (move_uploaded_file($profile_picture['tmp_name'], $target_file)) {
             $profile_picture_url = $upload_dir['url'] . '/' . $file_name;
@@ -569,7 +578,8 @@ function jahbulonn_change_profile_picture() {
 add_action('init', 'jahbulonn_change_profile_picture');
 
 // Create chosen university table
-function jahbulonn_create_chosen_university_table() {
+function jahbulonn_create_chosen_university_table()
+{
     global $wpdb;
     $table_name = $wpdb->prefix . 'chosen_university';
     $charset_collate = $wpdb->get_charset_collate();
@@ -590,7 +600,8 @@ function jahbulonn_create_chosen_university_table() {
 }
 add_action('after_setup_theme', 'jahbulonn_create_chosen_university_table');
 
-function jahbulonn_handle_chosen_university_form() {
+function jahbulonn_handle_chosen_university_form()
+{
     check_ajax_referer('chosen_university_nonce', 'nonce');
     global $wpdb;
     $chosen_university_table = $wpdb->prefix . 'chosen_university';
@@ -602,27 +613,27 @@ function jahbulonn_handle_chosen_university_form() {
     $department_name = sanitize_text_field($_POST['chosen_school']);
     $result = false;
     $delete_existing_university = $wpdb->delete($chosen_university_table, array('user_id' => $user_id));
-    if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Humanmedizin'){
+    if (isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Humanmedizin') {
 
-        $humanmedizin_universities= array(
-            'humanmedizin_comenius_university'=>'Comenius Universität – Bratislava, Slowakei(H)',
-            'humanmedizin_jessenius_university'=>'Jessenius Universität – Martin, Slowakei(H)',
-            'humanmedizin_karlsuniversitat_prag'=>'Karlsuniversität Prag – Prag, Tschechien(H)',
-            'humanmedizin_univerzita_karlova'=>'Univerzita Karlova – Prag, Tschechien(H)',
-            'humanmedizin_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn(H)',
-            'humanmedizin_pecs_university'=>'University of Pécs – Pécs, Ungarn(H)',
-            'humanmedizin_humanitas_university'=>'Humanitas Universität – Mailand, Italien(H)',
-            'humanmedizin_split_university'=>'University of Split – Split, Kroatien(H)',
-            'humanmedizin_pomeranian_university'=>'Pomeranian University – Szczecin, Polen(H)',
-            'humanmedizin_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen(H)',
-            'humanmedizin_victor_babes_university'=>'Victor Babes Universität – Timișoara, Rumänien(H)',
-            'humanmedizin_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien(H)',
-            'humanmedizin_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien(H)',
-            'humanmedizin_varna_university'=>'University of Varna – Varna, Bulgarien(H)',
-            'humanmedizin_stradins_university'=>'Stradins Universität – Riga, Lettland(H)',
+        $humanmedizin_universities = array(
+            'humanmedizin_comenius_university' => 'Comenius Universität – Bratislava, Slowakei(H)',
+            'humanmedizin_jessenius_university' => 'Jessenius Universität – Martin, Slowakei(H)',
+            'humanmedizin_karlsuniversitat_prag' => 'Karlsuniversität Prag – Prag, Tschechien(H)',
+            'humanmedizin_univerzita_karlova' => 'Univerzita Karlova – Prag, Tschechien(H)',
+            'humanmedizin_semmelweis_university' => 'Semmelweis Universität – Budapest, Ungarn(H)',
+            'humanmedizin_pecs_university' => 'University of Pécs – Pécs, Ungarn(H)',
+            'humanmedizin_humanitas_university' => 'Humanitas Universität – Mailand, Italien(H)',
+            'humanmedizin_split_university' => 'University of Split – Split, Kroatien(H)',
+            'humanmedizin_pomeranian_university' => 'Pomeranian University – Szczecin, Polen(H)',
+            'humanmedizin_frycz_university' => 'Andrzej Frycz Modrzewski Universität – Krakau, Polen(H)',
+            'humanmedizin_victor_babes_university' => 'Victor Babes Universität – Timișoara, Rumänien(H)',
+            'humanmedizin_cluj_napoca_university' => 'Cluj Napoca Universität – Cluj-Napoca, Rumänien(H)',
+            'humanmedizin_carol_davila_university' => 'Carol Davila Universität – Bukarest, Rumänien(H)',
+            'humanmedizin_varna_university' => 'University of Varna – Varna, Bulgarien(H)',
+            'humanmedizin_stradins_university' => 'Stradins Universität – Riga, Lettland(H)',
         );
-        foreach($humanmedizin_universities as $university_name => $university_name_value){
-            if(isset($_POST[$university_name])){
+        foreach ($humanmedizin_universities as $university_name => $university_name_value) {
+            if (isset($_POST[$university_name])) {
                 $university_name = $university_name_value;
                 $table_data = array(
                     'user_id' => $user_id,
@@ -635,22 +646,21 @@ function jahbulonn_handle_chosen_university_form() {
                 $result = $wpdb->insert($chosen_university_table, $table_data);
             }
         }
-        
-    }
-    else if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Zahnmedizin'){
-        $zahnmedizin_universities= array(
-            'zahnmedizin_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (Z)',
-            'zahnmedizin_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn (Z)',
-            'zahnmedizin_pecs_university'=>'University of Pécs – Pécs, Ungarn (Z)',
-            'zahnmedizin_pomeranian_university'=>'Pomeranian University – Szczecin, Polen (Z)',
-            'zahnmedizin_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)',
-            'zahnmedizin_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)',
-            'zahnmedizin_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien (Z)',
-            'zahnmedizin_varna_university'=>'University of Varna – Varna, Bulgarien (Z)',
-            'zahnmedizin_stradins_university'=>'Stradins Universität – Riga, Lettland (Z)',
+
+    } else if (isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Zahnmedizin') {
+        $zahnmedizin_universities = array(
+            'zahnmedizin_comenius_university' => 'Comenius Universität – Bratislava, Slowakei (Z)',
+            'zahnmedizin_semmelweis_university' => 'Semmelweis Universität – Budapest, Ungarn (Z)',
+            'zahnmedizin_pecs_university' => 'University of Pécs – Pécs, Ungarn (Z)',
+            'zahnmedizin_pomeranian_university' => 'Pomeranian University – Szczecin, Polen (Z)',
+            'zahnmedizin_frycz_university' => 'Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)',
+            'zahnmedizin_cluj_napoca_university' => 'Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)',
+            'zahnmedizin_carol_davila_university' => 'Carol Davila Universität – Bukarest, Rumänien (Z)',
+            'zahnmedizin_varna_university' => 'University of Varna – Varna, Bulgarien (Z)',
+            'zahnmedizin_stradins_university' => 'Stradins Universität – Riga, Lettland (Z)',
         );
-        foreach($zahnmedizin_universities as $university_name => $university_name_value){
-            if(isset($_POST[$university_name])){
+        foreach ($zahnmedizin_universities as $university_name => $university_name_value) {
+            if (isset($_POST[$university_name])) {
                 $university_name = $university_name_value;
                 $table_data = array(
                     'user_id' => $user_id,
@@ -663,26 +673,25 @@ function jahbulonn_handle_chosen_university_form() {
                 $result = $wpdb->insert($chosen_university_table, $table_data);
             }
         }
-    }
-    else if(isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Beides'){
-        $beides_universities= array(
-           'beides_comenius_university'=>'Comenius Universität – Bratislava, Slowakei (H,Z)',
-           'beides_jessenius_university'=>'Jessenius Universität – Martin, Slowakei (H,Z)',
-           'beides_karlsuniversitat_prag'=>'Karlsuniversität Prag – Prag, Tschechien (H,Z)',
-           'beides_semmelweis_university'=>'Semmelweis Universität – Budapest, Ungarn (H,Z)',
-           'beides_pecs_university'=>'University of Pécs – Pécs, Ungarn (H,Z)',
-           'beides_humanitas_university'=>'Humanitas Universität – Mailand, Italien (H,Z)',
-           'beides_split_university'=>'University of Split – Split, Kroatien (H,Z)',
-           'beides_pomeranian_university'=>'Pomeranian University – Szczecin, Polen (H,Z)',
-           'beides_frycz_university'=>'Andrzej Frycz Modrzewski Universität – Krakau, Polen (H,Z)',
-           'beides_victor_babes_university'=>'Victor Babes Universität – Timișoara, Rumänien (H,Z)',
-           'beides_cluj_napoca_university'=>'Cluj Napoca Universität – Cluj-Napoca, Rumänien (H,Z)',
-           'beides_carol_davila_university'=>'Carol Davila Universität – Bukarest, Rumänien (H,Z)',
-           'beides_varna_university'=>'University of Varna – Varna, Bulgarien (H,Z)',
-           'beides_stradins_university'=>'Stradins Universität – Riga, Lettland (H,Z)',
+    } else if (isset($_POST['chosen_school']) && $_POST['chosen_school'] == 'Beides') {
+        $beides_universities = array(
+            'beides_comenius_university' => 'Comenius Universität – Bratislava, Slowakei (H,Z)',
+            'beides_jessenius_university' => 'Jessenius Universität – Martin, Slowakei (H,Z)',
+            'beides_karlsuniversitat_prag' => 'Karlsuniversität Prag – Prag, Tschechien (H,Z)',
+            'beides_semmelweis_university' => 'Semmelweis Universität – Budapest, Ungarn (H,Z)',
+            'beides_pecs_university' => 'University of Pécs – Pécs, Ungarn (H,Z)',
+            'beides_humanitas_university' => 'Humanitas Universität – Mailand, Italien (H,Z)',
+            'beides_split_university' => 'University of Split – Split, Kroatien (H,Z)',
+            'beides_pomeranian_university' => 'Pomeranian University – Szczecin, Polen (H,Z)',
+            'beides_frycz_university' => 'Andrzej Frycz Modrzewski Universität – Krakau, Polen (H,Z)',
+            'beides_victor_babes_university' => 'Victor Babes Universität – Timișoara, Rumänien (H,Z)',
+            'beides_cluj_napoca_university' => 'Cluj Napoca Universität – Cluj-Napoca, Rumänien (H,Z)',
+            'beides_carol_davila_university' => 'Carol Davila Universität – Bukarest, Rumänien (H,Z)',
+            'beides_varna_university' => 'University of Varna – Varna, Bulgarien (H,Z)',
+            'beides_stradins_university' => 'Stradins Universität – Riga, Lettland (H,Z)',
         );
-        foreach($beides_universities as $university_name => $university_name_value){
-            if(isset($_POST[$university_name])){
+        foreach ($beides_universities as $university_name => $university_name_value) {
+            if (isset($_POST[$university_name])) {
                 $university_name = $university_name_value;
                 $table_data = array(
                     'user_id' => $user_id,
@@ -696,9 +705,9 @@ function jahbulonn_handle_chosen_university_form() {
             }
         }
     }
-    if($result){
+    if ($result) {
         wp_send_json_success('University chosen successfully');
-    }else{
+    } else {
         wp_send_json_error('Failed to choose university');
     }
 
@@ -707,30 +716,52 @@ add_action('wp_ajax_handle_chosen_university_form', 'jahbulonn_handle_chosen_uni
 add_action('wp_ajax_nopriv_handle_chosen_university_form', 'jahbulonn_handle_chosen_university_form');
 
 
-function jahbulonn_edit_users_info(){
+function jahbulonn_edit_users_info()
+{
     global $wpdb;
-    $users= $wpdb->get_results('SELECT * FROM wp_users');
-    print_r($users);
-    foreach($users as $user){
+    $users = $wpdb->get_results('SELECT * FROM wp_users');
+    // print_r($users);
+    foreach ($users as $user) {
         $user_id = $user->ID;
-        if(isset($_POST['edit_user_save' . $user_id])){
+        if (isset($_POST['edit_user_save' . $user_id])) {
             // Get the updated user data from POST
             $updated_data = array(
                 'ID' => $user_id,
                 'display_name' => sanitize_text_field($_POST['edit_display_name' . $user_id]),
                 'user_pass' => sanitize_text_field($_POST['edit_password' . $user_id])
             );
-            
+
             // Update the user
             $result = wp_update_user($updated_data);
-            
-            if(is_wp_error($result)) {
+
+            if (is_wp_error($result)) {
                 // Handle error
                 echo $result->get_error_message();
             } else {
                 // Success
-               echo "successfully added <script> Updated! </script>";
+                echo "successfully added <script> Updated! </script>";
+            }
+
+            $chosen_university_table = $wpdb->prefix . 'chosen_university';
+            $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
+
+            foreach ($chosen_universities as $chosen_university) {
+                $university_data = array(
+                    "university_application_status" => sanitize_text_field($_POST['edit_university_application_status' . $user_id . '_' . $chosen_university->id]),
+                    "university_application_result" => sanitize_text_field($_POST["edit_university_application_result" . $user_id. '_' . $chosen_university->id]),
+                    "university_application_document" => sanitize_text_field($_POST["edit_university_application_document" . $user_id. '_' . $chosen_university->id])
+                );
+                $condition = array(
+                    "user_id" => $user_id,
+                    "university_name" => $chosen_university->university_name
+                );
+                $university_update_result = $wpdb->update($chosen_university_table, $university_data, $condition);
+                if (is_wp_error($university_update_result)) {
+                    echo $university_update_result->get_error_message();
+                } else {
+                    echo "Successfully Updated <script> Updated! </script>";
+                }
             }
         }
-    }   
+    }
 }
