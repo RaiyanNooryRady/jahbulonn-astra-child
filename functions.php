@@ -823,3 +823,14 @@ function jahbulonn_edit_users_info()
     }
 }
 add_action("init","jahbulonn_edit_users_info");
+
+function jahbulonn_delete_user(){
+    global $wpdb;
+    $users = $wpdb->get_results('SELECT * FROM wp_users');
+    foreach ($users as $user) {
+        if(isset($_POST['delete_user'. $user->ID])) {
+            wp_delete_user($user->ID);
+        }
+    }
+}
+add_action('init','jahbulonn_delete_user');

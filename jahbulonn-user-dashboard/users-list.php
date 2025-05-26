@@ -207,7 +207,6 @@ include "header-user-dashboard.php";
                                 Changes</button>
                         </div>
                     </form>
-                    <?php //jahbulonn_edit_users_info(); ?>
                 </div>
             </div>
         </div>
@@ -227,9 +226,8 @@ include "header-user-dashboard.php";
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <form action="" method="POST" style="display: inline;">
                             <input type="hidden" name="delete_user_id" value="<?php echo $user->ID; ?>">
-                            <button type="submit" name="delete_user" class="btn btn-danger">Delete</button>
+                            <button type="submit" name="delete_user<?php echo $user->ID; ?>" class="btn btn-danger">Delete</button>
                         </form>
-                        <?php //dev_crud_delete_user(); ?>
                     </div>
                 </div>
             </div>
