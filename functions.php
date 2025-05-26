@@ -739,6 +739,33 @@ function jahbulonn_edit_users_info()
                 echo "successfully added <script> Updated! </script>";
             }
 
+            if (isset($_FILES['edit_profile_picture'.$user_id])) {
+                $profile_picture = $_FILES['edit_profile_picture'.$user_id];
+                $upload_dir = wp_upload_dir();
+                $file_name = basename($profile_picture['name']);
+                $target_file = $upload_dir['path'] . '/' . $file_name;
+        
+                // Check if file is an allowed type
+                $allowed_types = array(
+                    'image/png',
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/webp'
+                );
+                
+                $file_type = wp_check_filetype($file_name);
+                if (!in_array($file_type['type'], $allowed_types)) {
+                    echo "<script>alert('Only PNG, JPG, JPEG, and WebP files are allowed for profile pictures');</script>";
+                } else {
+                    if (move_uploaded_file($profile_picture['tmp_name'], $target_file)) {
+                        $profile_picture_url = $upload_dir['url'] . '/' . $file_name;
+                        update_user_meta($user_id, 'profile_picture', $profile_picture_url);
+                    } else {
+                        echo "";
+                    }
+                }
+            }
+
             $chosen_university_table = $wpdb->prefix . 'chosen_university';
             $chosen_universities = $wpdb->get_results("SELECT * FROM $chosen_university_table WHERE user_id = $user_id");
 
