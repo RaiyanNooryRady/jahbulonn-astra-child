@@ -709,11 +709,28 @@ add_action('wp_ajax_nopriv_handle_chosen_university_form', 'jahbulonn_handle_cho
 
 function jahbulonn_edit_users_info(){
     global $wpdb;
-    $users_table = $wpdb->prefix.'users';
     $users= $wpdb->get_results('SELECT * FROM wp_users');
     print_r($users);
     foreach($users as $user){
         $user_id = $user->ID;
-        
+        if(isset($_POST['edit_user_save' . $user_id])){
+            // Get the updated user data from POST
+            $updated_data = array(
+                'ID' => $user_id,
+                'display_name' => sanitize_text_field($_POST['edit_display_name' . $user_id]),
+                'user_pass' => sanitize_text_field($_POST['edit_password' . $user_id])
+            );
+            
+            // Update the user
+            $result = wp_update_user($updated_data);
+            
+            if(is_wp_error($result)) {
+                // Handle error
+                echo $result->get_error_message();
+            } else {
+                // Success
+               echo "successfully added <script> Updated! </script>";
+            }
+        }
     }   
 }

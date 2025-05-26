@@ -33,6 +33,7 @@ include "header-user-dashboard.php";
                                 <thead>
                                     <tr>
                                         <th>Username</th>
+                                        <th>Display Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Profile Photo</th>
@@ -63,6 +64,7 @@ include "header-user-dashboard.php";
                                     foreach ($users as $user) {
                                         ?>
                                         <tr>
+                                            <td><?php echo htmlspecialchars($user->user_login); ?></td>
                                             <td><?php echo htmlspecialchars($user->display_name); ?></td>
                                             <td><?php echo htmlspecialchars($user->user_email); ?></td>
                                             <td><?php
@@ -132,7 +134,7 @@ include "header-user-dashboard.php";
                         <h5 class="modal-title">Edit User: <?php echo htmlspecialchars($user->display_name); ?></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="" method="POST" id="edit_user_form" enctype="multipart/form-data">
+                    <form action="" method="POST" id="edit_user_form<?php echo $user->ID; ?>" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="edit_display_name<?php echo $user->ID; ?>" class="form-label">Display
