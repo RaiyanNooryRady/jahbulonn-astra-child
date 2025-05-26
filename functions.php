@@ -720,7 +720,6 @@ function jahbulonn_edit_users_info()
 {
     global $wpdb;
     $users = $wpdb->get_results('SELECT * FROM wp_users');
-    // print_r($users);
     foreach ($users as $user) {
         $user_id = $user->ID;
         if (isset($_POST['edit_user_save' . $user_id])) {
@@ -735,10 +734,8 @@ function jahbulonn_edit_users_info()
             $result = wp_update_user($updated_data);
 
             if (is_wp_error($result)) {
-                // Handle error
                 echo $result->get_error_message();
             } else {
-                // Success
                 echo "successfully added <script> Updated! </script>";
             }
 
@@ -748,13 +745,46 @@ function jahbulonn_edit_users_info()
             foreach ($chosen_universities as $chosen_university) {
                 $university_data = array(
                     "university_application_status" => sanitize_text_field($_POST['edit_university_application_status' . $user_id . '_' . $chosen_university->id]),
-                    "university_application_result" => sanitize_text_field($_POST["edit_university_application_result" . $user_id. '_' . $chosen_university->id]),
-                    "university_application_document" => sanitize_text_field($_POST["edit_university_application_document" . $user_id. '_' . $chosen_university->id])
+                    "university_application_result" => sanitize_text_field($_POST["edit_university_application_result" . $user_id. '_' . $chosen_university->id])
                 );
+
+                // Handle file upload for application document
+                if (isset($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]) && 
+                    !empty($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]['name'])) {
+                    
+                    $file = $_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id];
+                    $upload_dir = wp_upload_dir();
+                    $file_name = basename($file['name']);
+                    $target_file = $upload_dir['path'] . '/' . $file_name;
+
+                    // Check if file is an allowed type
+                    $allowed_types = array(
+                        'application/pdf',
+                        'image/png',
+                        'image/jpeg',
+                        'image/jpg',
+                        'image/webp'
+                    );
+                    
+                    $file_type = wp_check_filetype($file_name);
+                    if (!in_array($file_type['type'], $allowed_types)) {
+                        echo "Only PDF, PNG, JPG, JPEG, and WebP files are allowed for application documents";
+                        continue;
+                    }
+
+                    if (move_uploaded_file($file['tmp_name'], $target_file)) {
+                        $university_data["university_application_document"] = $upload_dir['url'] . '/' . $file_name;
+                    } else {
+                        echo "Failed to upload application document";
+                        continue;
+                    }
+                }
+
                 $condition = array(
                     "user_id" => $user_id,
                     "university_name" => $chosen_university->university_name
                 );
+                
                 $university_update_result = $wpdb->update($chosen_university_table, $university_data, $condition);
                 if (is_wp_error($university_update_result)) {
                     echo $university_update_result->get_error_message();
