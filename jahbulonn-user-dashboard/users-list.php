@@ -207,7 +207,7 @@ include "header-user-dashboard.php";
                                 Changes</button>
                         </div>
                     </form>
-                    <?php jahbulonn_edit_users_info(); ?>
+                    <?php //jahbulonn_edit_users_info(); ?>
                 </div>
             </div>
         </div>

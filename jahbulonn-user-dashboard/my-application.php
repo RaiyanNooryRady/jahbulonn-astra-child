@@ -56,7 +56,7 @@ include "header-user-dashboard.php";
                                     <td><?php echo $chosen_university->university_application_result; ?></td>
                                     <td><?php echo $chosen_university->created_at; ?></td>
                                     <td><a href="<?php echo esc_url($chosen_university->university_application_document); ?>"
-                                            class="jahbulonn-download-link">[Download]</a></td>
+                                            class="jahbulonn-download-link" target="_blank">[Download]</a></td>
                                     <td></td>
                                 </tr> <?php
                             }

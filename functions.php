@@ -736,7 +736,7 @@ function jahbulonn_edit_users_info()
             if (is_wp_error($result)) {
                 echo $result->get_error_message();
             } else {
-                echo "successfully added <script> Updated! </script>";
+                echo "";
             }
 
             if (isset($_FILES['edit_profile_picture'.$user_id])) {
@@ -816,9 +816,10 @@ function jahbulonn_edit_users_info()
                 if (is_wp_error($university_update_result)) {
                     echo $university_update_result->get_error_message();
                 } else {
-                    echo "Successfully Updated";
+                    echo "";
                 }
             }
         }
     }
 }
+add_action("init","jahbulonn_edit_users_info");

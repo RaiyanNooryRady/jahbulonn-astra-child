@@ -126,12 +126,13 @@ img.jahbulonn-logo {
 }
 
 .jahbulonn-download-link {
-    color: #0066cc;
+    color: #019EBE;
     text-decoration: none;
 }
 
 .jahbulonn-download-link:hover {
     text-decoration: underline;
+    color: #0a8ca7;
 }
 
 
