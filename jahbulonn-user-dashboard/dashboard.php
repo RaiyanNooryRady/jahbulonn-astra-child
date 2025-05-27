@@ -20,6 +20,7 @@ include "header-user-dashboard.php";
             <div class="col-md-9 col-lg-10 col-12 p-4">
                 <h1>Welcome, <?php echo $current_user->display_name; ?>!</h1>
                 <p>This is your dashboard content area.</p>
+                <a href="<?php echo site_url(); ?>" class="jahbulonn-link">Go To Home Page</a>
             </div>
         </div>
     </div>

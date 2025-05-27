@@ -348,3 +348,6 @@ img.jahbulonn-logo {
   height: 300px;
   overflow-y: auto;
  }
+.jahbulonn-link, .jahbulonn-link:hover{
+  color: #019EBE;
+}
