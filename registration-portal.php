@@ -122,7 +122,7 @@ get_header('registration');
             </div>
 
             <div class="tab-content" id="login-tab">
-                <form id="login-form" method="POST" action="">
+                <form id="login-form" class="active" method="POST" action="">
                     <div class="form-group">
                         <label for="login-username">Username / E-mail Adresse *:</label>
                         <input name="username" type="text" id="login-username" required>
@@ -134,9 +134,22 @@ get_header('registration');
                     </div>
 
                     <div class="form-group" style="text-align: right;">
-                        <a href="#" class="forgot-link">Forgot Password?</a>
+                        <a href="#" id="forgot-password-link" class="forgot-link">Forgot Password?</a>
                         <button type="submit" name="login_submit" class="submit-button-login"
                             id="login_submit">Submit</button>
+                    </div>
+                    <div id="login-message"></div>
+                </form>
+                <form id="forgot-password-form" method="POST" action="">
+                    <div class="form-group">
+                        <label for="forgot-password-mail">E-mail Adresse *:</label>
+                        <input name="forgot_password_mail" type="mail" id="forgot-password-mail" required>
+                    </div>
+
+                    <div class="form-group" style="text-align: right;">
+                        <a href="#login-tab" id="login-form-link" class="forgot-link">Go To login</a>
+                        <button type="submit" name="forgot_password_submit" class="submit-button-forgot-password"
+                            id="forgot_password_submit">Generate a new password</button>
                     </div>
                     <div id="login-message"></div>
                 </form>

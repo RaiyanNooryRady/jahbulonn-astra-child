@@ -41,6 +41,21 @@ document.addEventListener("DOMContentLoaded", function () {
     registrationTab.classList.remove("active");
   });
 
+  const loginFormId= document.getElementById("login-form");
+  const forgotPassFormId= document.getElementById("forgot-password-form");
+  const loginFormLink= document.getElementById("login-form-link");
+  const forgotPasswordLink= document.getElementById("forgot-password-link");
+  loginFormLink.addEventListener("click", function(e){
+    e.preventDefault();
+    forgotPassFormId.classList.remove("active");
+    loginFormId.classList.add("active");
+  });
+  forgotPasswordLink.addEventListener("click",function(e){
+    e.preventDefault();
+    loginFormId.classList.remove("active");
+    forgotPassFormId.classList.add("active");
+  });
+
   //Step 2
   const profileBtn = document.getElementById("profile-btn");
   const dokumenteBtn = document.getElementById("dokumente-btn");

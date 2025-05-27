@@ -197,7 +197,7 @@
             margin-top: -20px !important;
         }
 
-        #kon .submit-button-login {
+        #kon .submit-button-login, #kon .submit-button-forgot-password {
             background-color: #0a6e83;
             color: white;
             border: none;
@@ -221,6 +221,19 @@
 
         #kon .forgot-link:hover {
             text-decoration: underline;
+        }
+
+        #kon #forgot-password-form{
+            display: none;
+        }
+        #kon #login-form{
+            display: none;
+        }
+        #kon #forgot-password-form.active{
+            display: block;
+        }
+        #kon #login-form.active{
+            display: block;
         }
 
         /*Step 2*/
