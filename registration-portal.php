@@ -148,7 +148,7 @@ get_header('registration');
 
                     <div class="form-group" style="text-align: right;">
                         <a href="#login-tab" id="login-form-link" class="forgot-link">Go To login</a>
-                        <button type="submit" name="forgot_password_submit" class="submit-button-forgot-password"
+                        <button type="button" name="forgot_password_submit" class="submit-button-forgot-password"
                             id="forgot_password_submit">Generate a new password</button>
                     </div>
                     <div id="login-message"></div>
