@@ -73,6 +73,47 @@ jQuery(document).ready(function ($) {
         });
     });
 
+    $("#forgot-password-form .submit-button-forgot-password").on("click", function(e) {
+        e.preventDefault(); // Prevent form submission
+        console.log("Form submission intercepted"); // Debug log
+        
+        var form = $("#forgot-password-form"); // Get the form element correctly
+        var data = {
+            action: "handle_forgot_password",
+            nonce: reg_ajax.forgot_password_nonce,
+            forgot_password_mail: form.find("#forgot-password-mail").val(), // Match the name in PHP
+        };
+        
+        console.log("Sending data:", data); // Debug log
+        
+        $.ajax({
+            url: reg_ajax.ajax_url,
+            type: "POST",
+            data: data,
+            success: function (response) {
+                console.log("Response received:", response); // Debug log
+                if (response.success) {
+                    $("#forgot-password-message").html(
+                        '<span style="color:green;">' + response.data + "</span>"
+                    );
+                } else {
+                    $("#forgot-password-message").html(
+                        '<span style="color:red;">' + response.data + "</span>"
+                    );
+                }
+                alert(response.data);
+            },
+            error: function (xhr, status, error) {
+                console.log("Error occurred:", error); // Debug log
+                $("#forgot-password-message").html(
+                    '<span style="color:red;">An error occurred, please try again.</span>'
+                );
+            },
+        });
+        
+        return false; // Additional prevention of form submission
+    });
+
     $("#dokumente-form .next-button").on("click", function (e) {
         e.preventDefault();
         var form = $("#dokumente-form");

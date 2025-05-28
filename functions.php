@@ -163,7 +163,8 @@ function jahbulonn_custom_register_form_assets()
         'login_nonce' => wp_create_nonce('login_nonce'),
         'pdf_document_nonce' => wp_create_nonce('pdf_document_nonce'),
         'user_documents_nonce' => wp_create_nonce('user_documents_nonce'),
-        'chosen_university_nonce' => wp_create_nonce('chosen_university_nonce')
+        'chosen_university_nonce' => wp_create_nonce('chosen_university_nonce'),
+        'forgot_password_nonce' => wp_create_nonce('forgot_password_nonce')
     ));
     // Enqueue the registration-portal.js file
     wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
@@ -834,3 +835,54 @@ function jahbulonn_delete_user(){
     }
 }
 add_action('init','jahbulonn_delete_user');
+
+function jahbulonn_handle_forgot_password() {
+    // Verify nonce
+    check_ajax_referer('forgot_password_nonce', 'nonce');
+    
+    // Get and sanitize the email
+    $forgot_password_mail = isset($_POST['forgot_password_mail']) ? sanitize_email($_POST['forgot_password_mail']) : '';
+    
+    if (empty($forgot_password_mail)) {
+        wp_send_json_error('Please enter an email address');
+        return;
+    }
+    
+    // Check if the email exists
+    $user = get_user_by('email', $forgot_password_mail);
+    
+    if ($user) {
+        // Generate a unique reset token
+        $reset_token = wp_generate_password(20, false);
+        
+        // Save the token in user meta (you can set an expiration time, e.g., 1 hour)
+        update_user_meta($user->ID, '_password_reset_token', $reset_token);
+        update_user_meta($user->ID, '_password_reset_token_expiry', time() + 3600); // Token expires in 1 hour
+        
+        // Construct the custom reset link with token
+        $reset_link = home_url() . "/reset-password/?token=" . $reset_token . "&user=" . urlencode($user->user_login);
+        
+        // Send the custom reset email
+        $subject = 'Password Reset Request';
+        $message = 'Hello, click the link below to reset your password:<br><br>';
+        $message .= '<a href="' . esc_url($reset_link) . '">' . esc_html($reset_link) . '</a>';
+        
+        $headers = array(
+            'From' => 'raiyannooryrady@gmail.com',
+            'Content-Type' => 'text/html; charset=UTF-8',
+        );
+        
+        // Use wp_mail() for email sending
+        if (wp_mail($user->user_email, $subject, $message, $headers)) {
+            wp_send_json_success('Password reset email sent. Please check your inbox.');
+        } else {
+            wp_send_json_error('Failed to send password reset email. Please try again later.');
+        }
+    } else {
+        wp_send_json_error('No account exists with this email address.');
+    }
+    
+    wp_die(); // Always die in ajax functions
+}
+add_action('wp_ajax_handle_forgot_password', 'jahbulonn_handle_forgot_password');
+add_action('wp_ajax_nopriv_handle_forgot_password', 'jahbulonn_handle_forgot_password');
