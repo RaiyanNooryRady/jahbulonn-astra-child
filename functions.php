@@ -855,26 +855,61 @@ function jahbulonn_handle_forgot_password() {
         // Generate a unique reset token
         $reset_token = wp_generate_password(20, false);
         
-        // Save the token in user meta (you can set an expiration time, e.g., 1 hour)
+        // Save the token in user meta with expiration time
         update_user_meta($user->ID, '_password_reset_token', $reset_token);
         update_user_meta($user->ID, '_password_reset_token_expiry', time() + 3600); // Token expires in 1 hour
         
-        // Construct the custom reset link with token
-        $reset_link = home_url() . "/reset-password/?token=" . $reset_token . "&user=" . urlencode($user->user_login);
+        // Construct the reset link
+        $reset_link = add_query_arg(array(
+            'token' => $reset_token,
+            'user' => $user->user_login
+        ), home_url('/reset-password/'));
         
-        // Send the custom reset email
-        $subject = 'Password Reset Request';
-        $message = 'Hello, click the link below to reset your password:<br><br>';
-        $message .= '<a href="' . esc_url($reset_link) . '">' . esc_html($reset_link) . '</a>';
+        // Prepare email content
+        $subject = 'Password Reset Request - Jahbulonn';
+        $message = '
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .button { 
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    margin: 20px 0;
+                }
+                .footer { margin-top: 30px; font-size: 12px; color: #666; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h2>Password Reset Request</h2>
+                <p>Hello ' . esc_html($user->display_name) . ',</p>
+                <p>We received a request to reset your password. Click the button below to reset your password:</p>
+                <p style="text-align: center;">
+                    <a href="' . esc_url($reset_link) . '" class="button">Reset Password</a>
+                </p>
+                <p>If you did not request a password reset, please ignore this email.</p>
+                <p>This link will expire in 1 hour.</p>
+                <div class="footer">
+                    <p>Best regards,<br>Jahbulonn Team</p>
+                </div>
+            </div>
+        </body>
+        </html>';
         
         $headers = array(
-            'From' => 'raiyannooryrady@gmail.com',
-            'Content-Type' => 'text/html; charset=UTF-8',
+            'From: Jahbulonn <raiyannooryrady@gmail.com>',
+            'Content-Type: text/html; charset=UTF-8'
         );
         
-        // Use wp_mail() for email sending
+        // Send the email
         if (wp_mail($user->user_email, $subject, $message, $headers)) {
-            wp_send_json_success('Password reset email sent. Please check your inbox.');
+            wp_send_json_success('Password reset instructions have been sent to your email.');
         } else {
             wp_send_json_error('Failed to send password reset email. Please try again later.');
         }
@@ -882,7 +917,7 @@ function jahbulonn_handle_forgot_password() {
         wp_send_json_error('No account exists with this email address.');
     }
     
-    wp_die(); // Always die in ajax functions
+    wp_die();
 }
 add_action('wp_ajax_handle_forgot_password', 'jahbulonn_handle_forgot_password');
 add_action('wp_ajax_nopriv_handle_forgot_password', 'jahbulonn_handle_forgot_password');
