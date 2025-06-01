@@ -15,7 +15,7 @@ get_template_part('template-parts/reset-password/header-reset-password');
                 <form class="login-form" method="post">
                     <?php wp_nonce_field('user_login_action'); ?>
                     <div class="imgcontainer">
-                        <img style="width:300px; height: 200px;" src="<?php echo get_theme_file_uri(); ?>/assets/images/logo.png" alt="logo" class="avatar">
+                        <img style="width:300px; height: 200px;" src="<?php echo get_theme_file_uri(); ?>/assets/images/logo.webp" alt="logo" class="avatar">
                     </div>
                     <div class="input-control">
                         <div class="row p-l-5 p-r-5">
