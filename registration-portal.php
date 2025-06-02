@@ -218,7 +218,7 @@ get_header('registration');
                         </div>
                         <div class="upload-text-section">
                             <p><strong>Lade jetzt dein Dokument hoch (PDF-Format)</strong></p>
-                            <input type="file" accept=".pdf" name="pdf_document" class="upload-input">
+                            <input id="jahbulonn-upload-pdf-file" type="file" accept=".pdf" name="pdf_document" class="upload-input" required>
                             <?php
                             global $wpdb;
                             $pdf_document_table = $wpdb->prefix . 'pdf_document';

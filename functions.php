@@ -155,7 +155,7 @@ add_shortcode('jahbulonn_registration_portal', 'jahbulonn_shortcode_registration
 function jahbulonn_custom_register_form_assets()
 {
     // Enqueue the register.js file
-    wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), null, true);
+    wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), 2.0, true);
 
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -167,7 +167,7 @@ function jahbulonn_custom_register_form_assets()
         'forgot_password_nonce' => wp_create_nonce('forgot_password_nonce')
     ));
     // Enqueue the registration-portal.js file
-    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), null, true);
+    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), 2.0, true);
 
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_custom_register_form_assets');

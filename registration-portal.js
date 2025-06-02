@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function isUserLoggedIn() {
     return document.body.classList.contains("logged-in");
   }
-  
+
   // Get all steps
   const steps = document.querySelectorAll(".container");
 
@@ -41,16 +41,16 @@ document.addEventListener("DOMContentLoaded", function () {
     registrationTab.classList.remove("active");
   });
 
-  const loginFormId= document.getElementById("login-form");
-  const forgotPassFormId= document.getElementById("forgot-password-form");
-  const loginFormLink= document.getElementById("login-form-link");
-  const forgotPasswordLink= document.getElementById("forgot-password-link");
-  loginFormLink.addEventListener("click", function(e){
+  const loginFormId = document.getElementById("login-form");
+  const forgotPassFormId = document.getElementById("forgot-password-form");
+  const loginFormLink = document.getElementById("login-form-link");
+  const forgotPasswordLink = document.getElementById("forgot-password-link");
+  loginFormLink.addEventListener("click", function (e) {
     e.preventDefault();
     forgotPassFormId.classList.remove("active");
     loginFormId.classList.add("active");
   });
-  forgotPasswordLink.addEventListener("click",function(e){
+  forgotPasswordLink.addEventListener("click", function (e) {
     e.preventDefault();
     loginFormId.classList.remove("active");
     forgotPassFormId.classList.add("active");
@@ -137,6 +137,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextButtons = document.querySelectorAll(".next-button");
   nextButtons.forEach((button) => {
     button.addEventListener("click", function () {
+      const fileInput = document.getElementById("jahbulonn-upload-pdf-file");
+
+      // Check if input has 'required' and is empty
+      if (fileInput.hasAttribute("required") && fileInput.files.length === 0) {
+        alert("Please select a file.");
+        fileInput.focus();
+        return; // Stop further execution
+      }
       const currentStep = this.closest(".container");
       const currentStepNumber = parseInt(currentStep.id.replace("rp-step", ""));
       const nextStepNumber = currentStepNumber + 1;
