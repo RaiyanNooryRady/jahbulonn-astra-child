@@ -638,7 +638,7 @@ get_header('registration');
                 <h4 class="mocktest-question"> Du möchtest dich an mehr als 3 Unis bewerben?</h4>
                 <div class="checkbox-container">
                     <input type="checkbox" id="ja_mehr" name="ja_mehr">
-                    <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den AGB*. Falls Sie eine
+                    <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf" target="_blank">AGB*</a>. Falls Sie eine
                         Universität gewählt haben, die beide Studiengänge anbietet, geben Sie bitte im Kommentarfeld
                         an, welchen Studiengang Sie an welcher Universität genau studieren möchten.
                     </label>
