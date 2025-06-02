@@ -261,6 +261,12 @@ function jahbulonn_handle_register_form()
 
     if ($inserted) {
         wp_send_json_success('Registration successful!');
+        $info = array(
+            'user_login' => $username,
+            'user_password' => $password,
+            'remember' => true
+        );
+        wp_signon($info, false);
     } else {
         wp_send_json_error('DB error: ' . $wpdb->last_error);
     }
@@ -292,8 +298,8 @@ function jahbulonn_handle_login_form()
         wp_send_json_error('Invalid username or password');
     } else {
         wp_send_json_success('Login successful');
-        // wp_redirect(home_url('/user-dashboard/'));
         exit;
+
     }
 
 }
@@ -740,12 +746,12 @@ function jahbulonn_edit_users_info()
                 echo "";
             }
 
-            if (isset($_FILES['edit_profile_picture'.$user_id])) {
-                $profile_picture = $_FILES['edit_profile_picture'.$user_id];
+            if (isset($_FILES['edit_profile_picture' . $user_id])) {
+                $profile_picture = $_FILES['edit_profile_picture' . $user_id];
                 $upload_dir = wp_upload_dir();
                 $file_name = basename($profile_picture['name']);
                 $target_file = $upload_dir['path'] . '/' . $file_name;
-        
+
                 // Check if file is an allowed type
                 $allowed_types = array(
                     'image/png',
@@ -753,7 +759,7 @@ function jahbulonn_edit_users_info()
                     'image/jpg',
                     'image/webp'
                 );
-                
+
                 $file_type = wp_check_filetype($file_name);
                 if (!in_array($file_type['type'], $allowed_types)) {
                     echo "<script>alert('Only PNG, JPG, JPEG, and WebP files are allowed for profile pictures');</script>";
@@ -773,13 +779,15 @@ function jahbulonn_edit_users_info()
             foreach ($chosen_universities as $chosen_university) {
                 $university_data = array(
                     "university_application_status" => sanitize_text_field($_POST['edit_university_application_status' . $user_id . '_' . $chosen_university->id]),
-                    "university_application_result" => sanitize_text_field($_POST["edit_university_application_result" . $user_id. '_' . $chosen_university->id])
+                    "university_application_result" => sanitize_text_field($_POST["edit_university_application_result" . $user_id . '_' . $chosen_university->id])
                 );
 
                 // Handle file upload for application document
-                if (isset($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]) && 
-                    !empty($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]['name'])) {
-                    
+                if (
+                    isset($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]) &&
+                    !empty($_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id]['name'])
+                ) {
+
                     $file = $_FILES['edit_university_application_document' . $user_id . '_' . $chosen_university->id];
                     $upload_dir = wp_upload_dir();
                     $file_name = basename($file['name']);
@@ -793,7 +801,7 @@ function jahbulonn_edit_users_info()
                         'image/jpg',
                         'image/webp'
                     );
-                    
+
                     $file_type = wp_check_filetype($file_name);
                     if (!in_array($file_type['type'], $allowed_types)) {
                         echo "Only PDF, PNG, JPG, JPEG, and WebP files are allowed for application documents";
@@ -812,7 +820,7 @@ function jahbulonn_edit_users_info()
                     "user_id" => $user_id,
                     "university_name" => $chosen_university->university_name
                 );
-                
+
                 $university_update_result = $wpdb->update($chosen_university_table, $university_data, $condition);
                 if (is_wp_error($university_update_result)) {
                     echo $university_update_result->get_error_message();
@@ -823,55 +831,57 @@ function jahbulonn_edit_users_info()
         }
     }
 }
-add_action("init","jahbulonn_edit_users_info");
+add_action("init", "jahbulonn_edit_users_info");
 
-function jahbulonn_delete_user(){
+function jahbulonn_delete_user()
+{
     global $wpdb;
     $users = $wpdb->get_results('SELECT * FROM wp_users');
     foreach ($users as $user) {
-        if(isset($_POST['delete_user'. $user->ID])) {
+        if (isset($_POST['delete_user' . $user->ID])) {
             wp_delete_user($user->ID);
         }
     }
 }
-add_action('init','jahbulonn_delete_user');
+add_action('init', 'jahbulonn_delete_user');
 
-function jahbulonn_handle_forgot_password() {
+function jahbulonn_handle_forgot_password()
+{
     // Verify nonce
     check_ajax_referer('forgot_password_nonce', 'nonce');
-    
+
     // Get and sanitize the email
     $forgot_password_mail = isset($_POST['forgot_password_mail']) ? sanitize_email($_POST['forgot_password_mail']) : '';
-    
+
     if (empty($forgot_password_mail)) {
         wp_send_json_error('Please enter an email address');
         return;
     }
-    
+
     // Check if the email exists
     $user = get_user_by('email', $forgot_password_mail);
-    
+
     if ($user) {
         // Generate a unique reset token
         $reset_token = wp_generate_password(20, false);
-        
+
         // Save the token in user meta (you can set an expiration time, e.g., 1 hour)
         update_user_meta($user->ID, '_password_reset_token', $reset_token);
         update_user_meta($user->ID, '_password_reset_token_expiry', time() + 3600); // Token expires in 1 hour
-        
+
         // Construct the custom reset link with token
         $reset_link = home_url() . "/reset-password/?token=" . $reset_token . "&user=" . urlencode($user->user_login);
-        
+
         // Send the custom reset email
         $subject = 'Password Reset Request';
         $message = 'Hello, click the link to reset your password: ';
         $message .= '<a href="' . esc_url($reset_link) . '">' . esc_html($reset_link) . '</a>';
-        
+
         $headers = array(
             'From' => 'raiyannooryrady@gmail.com',
             'Content-Type' => 'text/html; charset=UTF-8',
         );
-        
+
         // Use wp_mail() for email sending
         if (wp_mail($user->user_email, $subject, $message, $headers)) {
             wp_send_json_success('Password reset email sent. Please check your inbox.');
@@ -881,7 +891,7 @@ function jahbulonn_handle_forgot_password() {
     } else {
         wp_send_json_error('No account exists with this email address.');
     }
-    
+
     wp_die(); // Always die in ajax functions
 }
 add_action('wp_ajax_handle_forgot_password', 'jahbulonn_handle_forgot_password');

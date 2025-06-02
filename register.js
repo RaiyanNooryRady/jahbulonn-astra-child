@@ -58,6 +58,7 @@ jQuery(document).ready(function ($) {
                     // setTimeout(function() {
                     //     window.location.href = '/user-dashboard/';
                     // }, 1000);
+                    location.reload();
                 } else {
                     $("#login-message").html(
                         '<span style="color:red;">' + response.data + "</span>"
