@@ -267,7 +267,18 @@ function jahbulonn_handle_register_form()
         );
         $user = wp_signon($info, false);
         if (!is_wp_error($user)) {
-            wp_send_json_success('Registration successful!');
+            $subject = 'Registration successful';
+            $message = 'Lieber ' . $vorname . ', anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch. 
+            Beste Grüße Team MedCompact ';
+            $headers = array(
+                'From' => 'raiyannooryrady@gmail.com',
+                'Content-Type' => 'text/html; charset=UTF-8',
+            );
+            if (wp_mail($email, $subject, $message, $headers)) {
+                wp_send_json_success('Registration successful!');
+            } else {
+                wp_send_json_error('Registration successful but email failed: ' . $user->get_error_message());
+            }
         } else {
             wp_send_json_error('Registration successful but auto-login failed: ' . $user->get_error_message());
         }
