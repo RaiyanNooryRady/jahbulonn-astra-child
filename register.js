@@ -20,6 +20,7 @@ jQuery(document).ready(function ($) {
                         '<p style="color:green;">' + response.data + "</p>"
                     );
                     form[0].reset(); // Reset the form fields
+                    location.reload();
                 } else {
                     $("#register-message").html(
                         '<p style="color:red;">' + response.data + "</p>"

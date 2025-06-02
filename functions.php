@@ -260,13 +260,17 @@ function jahbulonn_handle_register_form()
     $inserted = $wpdb->insert($first_table, $first_data);
 
     if ($inserted) {
-        wp_send_json_success('Registration successful!');
         $info = array(
             'user_login' => $username,
             'user_password' => $password,
             'remember' => true
         );
-        wp_signon($info, false);
+        $user = wp_signon($info, false);
+        if (!is_wp_error($user)) {
+            wp_send_json_success('Registration successful!');
+        } else {
+            wp_send_json_error('Registration successful but auto-login failed: ' . $user->get_error_message());
+        }
     } else {
         wp_send_json_error('DB error: ' . $wpdb->last_error);
     }
