@@ -237,6 +237,9 @@ get_header('registration');
                             <div id="pdf-document-message"></div>
                         </div>
                     </div>
+                    <div class="logout-div">
+                        <a href="<?php echo wp_logout_url(); ?>" class="logout">Logout</a>
+                    </div>
                     <br><br>
                     <?php if (!is_user_logged_in()) { ?>
                         <button type="button" name="next" class="prev-button">Zuruck</button>
