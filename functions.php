@@ -864,7 +864,7 @@ function jahbulonn_handle_forgot_password() {
         
         // Send the custom reset email
         $subject = 'Password Reset Request';
-        $message = 'Hello, click the link below to reset your password:<br><br>';
+        $message = 'Hello, click the link to reset your password: ';
         $message .= '<a href="' . esc_url($reset_link) . '">' . esc_html($reset_link) . '</a>';
         
         $headers = array(
