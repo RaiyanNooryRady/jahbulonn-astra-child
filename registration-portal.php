@@ -701,12 +701,9 @@ get_header('registration');
             <div class="image-box">
                 <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/complete.png' ?>" alt="User">
             </div>
-            <p> Wir haben deine Unterlagen erfolgreich erhalten
-                und melden uns in Kürze bei dir!
-                Dein Traumstudium zum zukünftigen <b>"Doctor to be"</b>
-                ist jetzt zum Greifen nah - gemeinsam bringen wir dich ans Ziel!
+            <p> Wir haben deine Unterlagen erfolgreich erhalten und melden uns in Kürze bei dir! Dein Traumstudium zum zukünftigen <b>"Doctor to be"</b> ist jetzt zum Greifen nah - gemeinsam bringen wir dich ans Ziel!
             </p><br>
-            <p> - Dein MedCompass Team</p>
+            <p> - Dein MedCompact Team</p>
             <br><br>
 
             <a href="<?php echo home_url(); ?>/my-dashboard" class="btn btn-success">Zur Dashboard</a>
