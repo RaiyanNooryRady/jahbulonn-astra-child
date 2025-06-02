@@ -132,7 +132,7 @@ get_header('registration');
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="newsletter2" name="newsletter2" required>
-                        <label for="newsletter2">Ich habe mir die <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf">AGB</a> und <a href="https://medcompact.eu/wp-content/uploads/2025/05/Datenschutzerklarung_aktuell.pdf">Datenschutzerklärung</a> durchgelesen und akzpetiere diese.</label>
+                        <label for="newsletter2">Ich habe mir die <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf" target="_blank">AGB</a> und <a href="https://medcompact.eu/wp-content/uploads/2025/05/Datenschutzerklarung_aktuell.pdf" target="_blank">Datenschutzerklärung</a> durchgelesen und akzpetiere diese.</label>
                     </div>
                     <br>
                     <br>
