@@ -277,7 +277,7 @@ function jahbulonn_handle_register_form()
             if (wp_mail($email, $subject, $message, $headers)) {
                 wp_send_json_success('Registration successful!');
             } else {
-                wp_send_json_error('Registration successful but email failed: ' . $user->get_error_message());
+                wp_send_json_success('Registration successful but email failed: ' . $user->get_error_message());
             }
         } else {
             wp_send_json_error('Registration successful but auto-login failed: ' . $user->get_error_message());
