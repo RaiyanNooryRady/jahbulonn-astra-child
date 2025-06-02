@@ -210,9 +210,11 @@ get_header('registration');
                         der Bewerbung fortzufahren.</p>
                     <div class="upload-container">
                         <div class="upload-icon-section">
-                            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/file-upload.png' ?>"
-                                alt="Upload Icon">
+                            <a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/file-upload.png' ?>"
+                            alt="Upload Icon">
                             <p class="upload-label">Vollmacht</p>
+                        </a>
+                           
                         </div>
                         <div class="upload-text-section">
                             <p><strong>Lade jetzt dein Dokument hoch (PDF-Format)</strong></p>
