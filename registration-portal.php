@@ -127,14 +127,12 @@ get_header('registration');
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="newsletter1" name="newsletter1" required>
-                        <label for="newsletter1">Ich bin damit Einverstanden, von MedCompass über Neuigkeiten,
-                            Veranstaltungen und Änderungen rund um das Medizinstudium informiert zu werden.</label>
+                        <label for="newsletter1">Ich bin damit Einverstanden, von MedCompact über Neuigkeiten, Veranstaltungen und Änderungen rund um das Medizinstudium informiert zu werden.</label>
                     </div>
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="newsletter2" name="newsletter2" required>
-                        <label for="newsletter2">Ich bin damit Einverstanden, von MedCompass über Neuigkeiten,
-                            Veranstaltungen und Änderungen rund um das Medizinstudium informiert zu werden.</label>
+                        <label for="newsletter2">Ich habe mir die <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf">AGB</a> und <a href="https://medcompact.eu/wp-content/uploads/2025/05/Datenschutzerklarung_aktuell.pdf">Datenschutzerklärung</a> durchgelesen und akzpetiere diese.</label>
                     </div>
                     <br>
                     <br>
