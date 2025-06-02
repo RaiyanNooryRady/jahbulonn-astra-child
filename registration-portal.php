@@ -94,12 +94,34 @@ get_header('registration');
                     <div class="form-group">
                         <label for="land">Land (EU + Schweiz) *:</label>
                         <select id="land" name="land" required>
-                            <option value="">Select a city</option>
-                            <option value="germany">Germany</option>
+                            <option value="">Select a country</option>
                             <option value="austria">Austria</option>
-                            <option value="switzerland">Switzerland</option>
+                            <option value="belgium">Belgium</option>
+                            <option value="bulgaria">Bulgaria</option>
+                            <option value="croatia">Croatia</option>
+                            <option value="cyprus">Cyprus</option>
+                            <option value="czech-republic">Czech Republic</option>
+                            <option value="denmark">Denmark</option>
+                            <option value="estonia">Estonia</option>
+                            <option value="finland">Finland</option>
                             <option value="france">France</option>
+                            <option value="germany">Germany</option>
+                            <option value="greece">Greece</option>
+                            <option value="hungary">Hungary</option>
+                            <option value="ireland">Ireland</option>
                             <option value="italy">Italy</option>
+                            <option value="latvia">Latvia</option>
+                            <option value="lithuania">Lithuania</option>
+                            <option value="luxembourg">Luxembourg</option>
+                            <option value="malta">Malta</option>
+                            <option value="netherlands">Netherlands</option>
+                            <option value="poland">Poland</option>
+                            <option value="portugal">Portugal</option>
+                            <option value="romania">Romania</option>
+                            <option value="slovakia">Slovakia</option>
+                            <option value="slovenia">Slovenia</option>
+                            <option value="spain">Spain</option>
+                            <option value="sweden">Sweden</option>
                         </select>
                     </div>
 
@@ -387,23 +409,31 @@ get_header('registration');
                 <h4 class="mocktest-question"> Wo möchtest du studieren?</h4>
                 <div class="choose-school active" id="humanmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_comenius_university" name="humanmedizin_comenius_university">
-                        <label for="humanmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei(H)</label>
+                        <input type="checkbox" id="humanmedizin_comenius_university"
+                            name="humanmedizin_comenius_university">
+                        <label for="humanmedizin_comenius_university">Comenius Universität – Bratislava,
+                            Slowakei(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_jessenius_university" name="humanmedizin_jessenius_university">
-                        <label for="humanmedizin_jessenius_university">Jessenius Universität – Martin, Slowakei(H)</label>
+                        <input type="checkbox" id="humanmedizin_jessenius_university"
+                            name="humanmedizin_jessenius_university">
+                        <label for="humanmedizin_jessenius_university">Jessenius Universität – Martin,
+                            Slowakei(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_karlsuniversitat_prag" name="humanmedizin_karlsuniversitat_prag">
-                        <label for="humanmedizin_karlsuniversitat_prag">Karlsuniversität Prag – Prag, Tschechien(H)</label>
+                        <input type="checkbox" id="humanmedizin_karlsuniversitat_prag"
+                            name="humanmedizin_karlsuniversitat_prag">
+                        <label for="humanmedizin_karlsuniversitat_prag">Karlsuniversität Prag – Prag,
+                            Tschechien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_semmelweis_university" name="humanmedizin_semmelweis_university">
-                        <label for="humanmedizin_semmelweis_university">Semmelweis Universität – Budapest, Ungarn(H)</label>
+                        <input type="checkbox" id="humanmedizin_semmelweis_university"
+                            name="humanmedizin_semmelweis_university">
+                        <label for="humanmedizin_semmelweis_university">Semmelweis Universität – Budapest,
+                            Ungarn(H)</label>
                     </div>
 
                     <div class="checkbox-container">
@@ -412,8 +442,10 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_humanitas_university" name="humanmedizin_humanitas_university">
-                        <label for="humanmedizin_humanitas_university">Humanitas Universität – Mailand, Italien(H)</label>
+                        <input type="checkbox" id="humanmedizin_humanitas_university"
+                            name="humanmedizin_humanitas_university">
+                        <label for="humanmedizin_humanitas_university">Humanitas Universität – Mailand,
+                            Italien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
@@ -422,8 +454,10 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_pomeranian_university" name="humanmedizin_pomeranian_university">
-                        <label for="humanmedizin_pomeranian_university">Pomeranian University – Szczecin, Polen(H)</label>
+                        <input type="checkbox" id="humanmedizin_pomeranian_university"
+                            name="humanmedizin_pomeranian_university">
+                        <label for="humanmedizin_pomeranian_university">Pomeranian University – Szczecin,
+                            Polen(H)</label>
                     </div>
 
                     <div class="checkbox-container">
@@ -433,19 +467,22 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_victor_babes_university" name="humanmedizin_victor_babes_university">
+                        <input type="checkbox" id="humanmedizin_victor_babes_university"
+                            name="humanmedizin_victor_babes_university">
                         <label for="humanmedizin_victor_babes_university">Victor Babes Universität – Timișoara,
                             Rumänien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_cluj_napoca_university" name="humanmedizin_cluj_napoca_university">
+                        <input type="checkbox" id="humanmedizin_cluj_napoca_university"
+                            name="humanmedizin_cluj_napoca_university">
                         <label for="humanmedizin_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca,
                             Rumänien(H)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_carol_davila_university" name="humanmedizin_carol_davila_university">
+                        <input type="checkbox" id="humanmedizin_carol_davila_university"
+                            name="humanmedizin_carol_davila_university">
                         <label for="humanmedizin_carol_davila_university">Carol Davila Universität – Bukarest,
                             Rumänien(H)</label>
                     </div>
@@ -456,20 +493,25 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="humanmedizin_stradins_university" name="humanmedizin_stradins_university">
+                        <input type="checkbox" id="humanmedizin_stradins_university"
+                            name="humanmedizin_stradins_university">
                         <label for="humanmedizin_stradins_university">Stradins Universität – Riga, Lettland(H)</label>
                     </div>
 
                 </div>
                 <div class="choose-school" id="zahnmedizin_selected">
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_comenius_university" name="zahnmedizin_comenius_university">
-                        <label for="zahnmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_comenius_university"
+                            name="zahnmedizin_comenius_university">
+                        <label for="zahnmedizin_comenius_university">Comenius Universität – Bratislava, Slowakei
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_semmelweis_university" name="zahnmedizin_semmelweis_university">
-                        <label for="zahnmedizin_semmelweis_university">Semmelweis Universität – Budapest, Ungarn (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_semmelweis_university"
+                            name="zahnmedizin_semmelweis_university">
+                        <label for="zahnmedizin_semmelweis_university">Semmelweis Universität – Budapest, Ungarn
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
@@ -478,23 +520,30 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_pomeranian_university" name="zahnmedizin_pomeranian_university">
-                        <label for="zahnmedizin_pomeranian_university">Pomeranian University – Szczecin, Polen (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_pomeranian_university"
+                            name="zahnmedizin_pomeranian_university">
+                        <label for="zahnmedizin_pomeranian_university">Pomeranian University – Szczecin, Polen
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="zahnmedizin_frycz_university" name="zahnmedizin_frycz_university">
-                        <label for="zahnmedizin_frycz_university">Andrzej Frycz Modrzewski Universität – Krakau, Polen (Z)</label>
+                        <label for="zahnmedizin_frycz_university">Andrzej Frycz Modrzewski Universität – Krakau, Polen
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_cluj_napoca_university" name="zahnmedizin_cluj_napoca_university">
-                        <label for="zahnmedizin_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca, Rumänien (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_cluj_napoca_university"
+                            name="zahnmedizin_cluj_napoca_university">
+                        <label for="zahnmedizin_cluj_napoca_university">Cluj Napoca Universität – Cluj-Napoca, Rumänien
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_carol_davila_university" name="zahnmedizin_carol_davila_university">
-                        <label for="zahnmedizin_carol_davila_university">Carol Davila Universität – Bukarest, Rumänien (Z)</label>
+                        <input type="checkbox" id="zahnmedizin_carol_davila_university"
+                            name="zahnmedizin_carol_davila_university">
+                        <label for="zahnmedizin_carol_davila_university">Carol Davila Universität – Bukarest, Rumänien
+                            (Z)</label>
                     </div>
 
                     <div class="checkbox-container">
@@ -503,7 +552,8 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="zahnmedizin_stradins_university" name="zahnmedizin_stradins_university">
+                        <input type="checkbox" id="zahnmedizin_stradins_university"
+                            name="zahnmedizin_stradins_university">
                         <label for="zahnmedizin_stradins_university">Stradins Universität – Riga, Lettland (Z)</label>
                     </div>
 
@@ -556,7 +606,8 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="beides_victor_babes_university" name="beides_victor_babes_university">
+                        <input type="checkbox" id="beides_victor_babes_university"
+                            name="beides_victor_babes_university">
                         <label for="beides_victor_babes_university">Victor Babes Universität – Timișoara,
                             Rumänien(H,Z)</label>
                     </div>
@@ -568,7 +619,8 @@ get_header('registration');
                     </div>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="beides_carol_davila_university" name="beides_carol_davila_university">
+                        <input type="checkbox" id="beides_carol_davila_university"
+                            name="beides_carol_davila_university">
                         <label for="beides_carol_davila_university">Carol Davila Universität – Bukarest,
                             Rumänien(H,Z)</label>
                     </div>
@@ -658,7 +710,7 @@ get_header('registration');
             </p><br>
             <p> - Dein MedCompass Team</p>
             <br><br>
-            
+
             <a href="<?php echo home_url(); ?>/my-dashboard" class="btn btn-success">Zur Dashboard</a>
         </div>
 
