@@ -266,9 +266,10 @@ function jahbulonn_handle_register_form()
             'remember' => true
         );
         $user = wp_signon($info, false);
+        $attached_file= '<a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf">View Attached PDF</a>';
         if (!is_wp_error($user)) {
             $subject = 'Registration successful';
-            $message = 'Lieber ' . $vorname . ', anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch.'. '<br><br>'.' 
+            $message = 'Lieber ' . $vorname . ', anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch.'. '<br><br>'.$attached_file.'<br><br>'.' 
             Beste Grüße' . '<br><br>'.'- Team MedCompact ';
             $headers = array(
                 'From' => 'raiyannooryrady@gmail.com',
