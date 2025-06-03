@@ -310,24 +310,24 @@ get_header('registration');
 
                 <div class="form-group">
                     <label>Reisepass hochladen•: IPDF, JPEG Oder PNG</label>
-                    <input type="file" name="reisepass_doc" accept=".pdf" required>
+                    <input type="file" id="jahbulonn_reisepass_doc" name="reisepass_doc" accept=".pdf" required>
                 </div>
                 <div class="form-group">
                     <label>Geburtsurkunde hochladen*: PDF-Format</label>
-                    <input type="file" name="geburtsurkunde_doc" accept=".pdf" required>
+                    <input type="file" id="jahbulonn_geburtsurkunde_doc" name="geburtsurkunde_doc" accept=".pdf" required>
                 </div>
                 <div class="form-group">
                     <label> Hochschulzeugnis hochladen (Matura, Abitur/Fachabitur, Schweizer Matura)*: PDF-Format
                     </label>
-                    <input type="file" name="hochschulzeugnis_doc" accept=".pdf" required>
+                    <input type="file" id="jahbulonn_hochschulzeugnis_doc" name="hochschulzeugnis_doc" accept=".pdf" required>
                 </div>
                 <div class="form-group">
                     <label>Lebenslauf (optional): PDF-Format</label>
-                    <input type="file" name="lebenslauf_doc" accept=".pdf">
+                    <input type="file" id="jahbulonn_lebenslauf_doc" name="lebenslauf_doc" accept=".pdf">
                 </div>
                 <div class="form-group">
                     <label>Sonstiges (optional): Every kind of document</label>
-                    <input type="file" name="sonstiges_doc" accept=".pdf">
+                    <input type="file" id="jahbulonn_sonstiges_doc" name="sonstiges_doc" accept=".pdf">
                 </div>
 
                 <?php

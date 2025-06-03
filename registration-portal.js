@@ -138,16 +138,35 @@ document.addEventListener("DOMContentLoaded", function () {
   nextButtons.forEach((button) => {
     button.addEventListener("click", function () {
       const fileInput = document.getElementById("jahbulonn-upload-pdf-file");
+      const reisepassDoc = document.getElementById("jahbulonn_reisepass_doc");
+      const geburtsurkundeDoc = document.getElementById("jahbulonn_geburtsurkunde_doc");
+      const hochschulzeugnisDoc = document.getElementById("jahbulonn_hochschulzeugnis_doc");
 
-      // Check if input has 'required' and is empty
-      if (fileInput.hasAttribute("required") && fileInput.files.length === 0) {
+      const currentStep = this.closest(".container");
+      const currentStepNumber = parseInt(currentStep.id.replace("rp-step", ""));
+      const nextStepNumber = currentStepNumber + 1;
+
+       // Check if input has 'required' and is empty
+       if (currentStepNumber ==2 && fileInput.hasAttribute("required") && fileInput.files.length === 0) {
         alert("Please select a file.");
         fileInput.focus();
         return; // Stop further execution
       }
-      const currentStep = this.closest(".container");
-      const currentStepNumber = parseInt(currentStep.id.replace("rp-step", ""));
-      const nextStepNumber = currentStepNumber + 1;
+      else if (currentStepNumber==3 && reisepassDoc.hasAttribute("required") && reisepassDoc.files.length === 0) {
+        alert("Please upload all required files.");
+        reisepassDoc.focus();
+        return; // Stop further execution
+      }
+      else if (currentStepNumber==3 && geburtsurkundeDoc.hasAttribute("required") && geburtsurkundeDoc.files.length === 0) {
+        alert("Please upload all required files.");
+        geburtsurkundeDoc.focus();
+        return; // Stop further execution
+      }
+      else if (currentStepNumber==3 && hochschulzeugnisDoc.hasAttribute("required") && hochschulzeugnisDoc.files.length === 0) {
+        alert("Please upload all required files.");
+        hochschulzeugnisDoc.focus();
+        return; // Stop further execution
+      }
 
       // Hide current step
       currentStep.classList.remove("active");
