@@ -268,8 +268,13 @@ function jahbulonn_handle_register_form()
         $user = wp_signon($info, false);
         $attached_file= '<a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf">View Attached PDF</a>';
         if (!is_wp_error($user)) {
+            function set_html_mail_content_type() {
+                return 'text/html';
+            }
+            
+            add_filter('wp_mail_content_type', 'set_html_mail_content_type');
             $subject = 'Registration successful';
-            $message = 'Lieber ' . $vorname . ', anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch.'. '<br><br>'.$attached_file.'<br><br>'.' 
+            $message = 'Lieber ' . $vorname . ',<br><br> anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch.'. '<br><br>'.$attached_file.'<br><br>'.' 
             Beste Grüße' . '<br><br>'.'- Team MedCompact ';
             $headers = array(
                 'From' => 'raiyannooryrady@gmail.com',
@@ -280,6 +285,7 @@ function jahbulonn_handle_register_form()
             } else {
                 wp_send_json_success('Registration successful but email failed: ' . $user->get_error_message());
             }
+            remove_filter('wp_mail_content_type', 'set_html_mail_content_type');
         } else {
             wp_send_json_error('Registration successful but auto-login failed: ' . $user->get_error_message());
         }
