@@ -855,6 +855,9 @@ function jahbulonn_delete_user()
     foreach ($users as $user) {
         if (isset($_POST['delete_user' . $user->ID])) {
             wp_delete_user($user->ID);
+            $table = $wpdb->prefix . 'register1'; // e.g., wp_custom_data
+            $where = ['user_id' => $user->ID];
+            $wpdb->delete($table, $where);
         }
     }
 }
