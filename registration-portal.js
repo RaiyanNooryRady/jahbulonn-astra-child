@@ -139,30 +139,47 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("click", function () {
       const fileInput = document.getElementById("jahbulonn-upload-pdf-file");
       const reisepassDoc = document.getElementById("jahbulonn_reisepass_doc");
-      const geburtsurkundeDoc = document.getElementById("jahbulonn_geburtsurkunde_doc");
-      const hochschulzeugnisDoc = document.getElementById("jahbulonn_hochschulzeugnis_doc");
+      const geburtsurkundeDoc = document.getElementById(
+        "jahbulonn_geburtsurkunde_doc"
+      );
+      const hochschulzeugnisDoc = document.getElementById(
+        "jahbulonn_hochschulzeugnis_doc"
+      );
 
       const currentStep = this.closest(".container");
       const currentStepNumber = parseInt(currentStep.id.replace("rp-step", ""));
       const nextStepNumber = currentStepNumber + 1;
 
-       // Check if input has 'required' and is empty
-       if (currentStepNumber ==2 && fileInput.hasAttribute("required") && fileInput.files.length === 0) {
+      // Check if input has 'required' and is empty
+      if (
+        currentStepNumber == 2 &&
+        fileInput.hasAttribute("required") &&
+        fileInput.files.length === 0
+      ) {
         alert("Please select a file.");
         fileInput.focus();
         return; // Stop further execution
-      }
-      else if (currentStepNumber==3 && reisepassDoc.hasAttribute("required") && reisepassDoc.files.length === 0) {
+      } else if (
+        currentStepNumber == 3 &&
+        reisepassDoc.hasAttribute("required") &&
+        reisepassDoc.files.length === 0
+      ) {
         alert("Please upload all required files.");
         reisepassDoc.focus();
         return; // Stop further execution
-      }
-      else if (currentStepNumber==3 && geburtsurkundeDoc.hasAttribute("required") && geburtsurkundeDoc.files.length === 0) {
+      } else if (
+        currentStepNumber == 3 &&
+        geburtsurkundeDoc.hasAttribute("required") &&
+        geburtsurkundeDoc.files.length === 0
+      ) {
         alert("Please upload all required files.");
         geburtsurkundeDoc.focus();
         return; // Stop further execution
-      }
-      else if (currentStepNumber==3 && hochschulzeugnisDoc.hasAttribute("required") && hochschulzeugnisDoc.files.length === 0) {
+      } else if (
+        currentStepNumber == 3 &&
+        hochschulzeugnisDoc.hasAttribute("required") &&
+        hochschulzeugnisDoc.files.length === 0
+      ) {
         alert("Please upload all required files.");
         hochschulzeugnisDoc.focus();
         return; // Stop further execution
@@ -193,4 +210,81 @@ document.addEventListener("DOMContentLoaded", function () {
         .classList.add("active");
     });
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const maxSelections = 3;
+  const jaMehrCheckbox = document.getElementById("ja_mehr");
+  const schoolSections = {
+    humanmedizin_selected: document.querySelectorAll(
+      '#humanmedizin_selected input[type="checkbox"]'
+    ),
+    zahnmedizin_selected: document.querySelectorAll(
+      '#zahnmedizin_selected input[type="checkbox"]'
+    ),
+    beides_selected: document.querySelectorAll(
+      '#beides_selected input[type="checkbox"]'
+    ),
+  };
+
+  // Function to handle checkbox changes
+  function handleCheckboxChange(event) {
+    const currentSection = event.target.closest(".choose-school");
+    const checkboxes = currentSection.querySelectorAll(
+      'input[type="checkbox"]'
+    );
+    const checkedCount = currentSection.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    ).length;
+
+    // If "Ja, mehr" is not checked and trying to select more than 3
+    if (!jaMehrCheckbox.checked && checkedCount > maxSelections) {
+      event.target.checked = false;
+      alert(
+        'Sie können maximal 3 Universitäten auswählen, es sei denn, Sie wählen die Option "Ja, mehr".'
+      );
+    }
+  }
+
+  // Add change event listeners to all checkboxes
+  Object.values(schoolSections).forEach((section) => {
+    section.forEach((checkbox) => {
+      checkbox.addEventListener("change", handleCheckboxChange);
+    });
+  });
+
+  // Handle "Ja, mehr" checkbox change
+  jaMehrCheckbox.addEventListener("change", function () {
+    if (!this.checked) {
+      // If unchecking "Ja, mehr", verify that no section has more than 3 selections
+      Object.values(schoolSections).forEach((section) => {
+        const checkedCount = section.querySelectorAll(
+          'input[type="checkbox"]:checked'
+        ).length;
+        if (checkedCount > maxSelections) {
+          alert(
+            'Sie haben mehr als 3 Universitäten ausgewählt. Bitte reduzieren Sie Ihre Auswahl auf maximal 3 Universitäten oder aktivieren Sie die Option "Ja, mehr".'
+          );
+          this.checked = true; // Re-check the "Ja, mehr" checkbox
+        }
+      });
+    }
+  });
+
+  // Handle form submission
+  document
+    .getElementById("choose-school-form")
+    .addEventListener("submit", function (event) {
+      const activeSection = document.querySelector(".choose-school.active");
+      const checkedCount = activeSection.querySelectorAll(
+        'input[type="checkbox"]:checked'
+      ).length;
+
+      if (!jaMehrCheckbox.checked && checkedCount > maxSelections) {
+        event.preventDefault();
+        alert(
+          'Sie können maximal 3 Universitäten auswählen, es sei denn, Sie wählen die Option "Ja, mehr".'
+        );
+      }
+    });
 });

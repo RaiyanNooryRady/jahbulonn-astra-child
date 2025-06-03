@@ -167,7 +167,7 @@ function jahbulonn_custom_register_form_assets()
         'forgot_password_nonce' => wp_create_nonce('forgot_password_nonce')
     ));
     // Enqueue the registration-portal.js file
-    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), 4.0, true);
+    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), 1.0, true);
 
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_custom_register_form_assets');

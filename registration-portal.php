@@ -127,12 +127,17 @@ get_header('registration');
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="newsletter1" name="newsletter1" required>
-                        <label for="newsletter1">Ich bin damit Einverstanden, von MedCompact über Neuigkeiten, Veranstaltungen und Änderungen rund um das Medizinstudium informiert zu werden.</label>
+                        <label for="newsletter1">Ich bin damit Einverstanden, von MedCompact über Neuigkeiten,
+                            Veranstaltungen und Änderungen rund um das Medizinstudium informiert zu werden.</label>
                     </div>
 
                     <div class="checkbox-container">
                         <input type="checkbox" id="newsletter2" name="newsletter2" required>
-                        <label for="newsletter2">Ich habe mir die <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf" target="_blank">AGB</a> und <a href="https://medcompact.eu/wp-content/uploads/2025/05/Datenschutzerklarung_aktuell.pdf" target="_blank">Datenschutzerklärung</a> durchgelesen und akzpetiere diese.</label>
+                        <label for="newsletter2">Ich habe mir die <a
+                                href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf"
+                                target="_blank">AGB</a> und <a
+                                href="https://medcompact.eu/wp-content/uploads/2025/05/Datenschutzerklarung_aktuell.pdf"
+                                target="_blank">Datenschutzerklärung</a> durchgelesen und akzpetiere diese.</label>
                     </div>
                     <br>
                     <br>
@@ -210,15 +215,18 @@ get_header('registration');
                         der Bewerbung fortzufahren.</p>
                     <div class="upload-container">
                         <div class="upload-icon-section">
-                            <a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/file-upload.png' ?>"
-                            alt="Upload Icon">
-                            <p class="upload-label">Vollmacht</p>
-                        </a>
-                           
+                            <a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf"
+                                target="_blank"><img
+                                    src="<?php echo get_stylesheet_directory_uri() . '/assets/images/file-upload.png' ?>"
+                                    alt="Upload Icon">
+                                <p class="upload-label">Vollmacht</p>
+                            </a>
+
                         </div>
                         <div class="upload-text-section">
                             <p><strong>Lade jetzt dein Dokument hoch (PDF-Format)</strong></p>
-                            <input id="jahbulonn-upload-pdf-file" type="file" accept=".pdf" name="pdf_document" class="upload-input" required>
+                            <input id="jahbulonn-upload-pdf-file" type="file" accept=".pdf" name="pdf_document"
+                                class="upload-input" required>
                             <?php
                             global $wpdb;
                             $pdf_document_table = $wpdb->prefix . 'pdf_document';
@@ -314,12 +322,14 @@ get_header('registration');
                 </div>
                 <div class="form-group">
                     <label>Geburtsurkunde hochladen*: PDF-Format</label>
-                    <input type="file" id="jahbulonn_geburtsurkunde_doc" name="geburtsurkunde_doc" accept=".pdf" required>
+                    <input type="file" id="jahbulonn_geburtsurkunde_doc" name="geburtsurkunde_doc" accept=".pdf"
+                        required>
                 </div>
                 <div class="form-group">
                     <label> Hochschulzeugnis hochladen (Matura, Abitur/Fachabitur, Schweizer Matura)*: PDF-Format
                     </label>
-                    <input type="file" id="jahbulonn_hochschulzeugnis_doc" name="hochschulzeugnis_doc" accept=".pdf" required>
+                    <input type="file" id="jahbulonn_hochschulzeugnis_doc" name="hochschulzeugnis_doc" accept=".pdf"
+                        required>
                 </div>
                 <div class="form-group">
                     <label>Lebenslauf (optional): PDF-Format</label>
@@ -643,7 +653,9 @@ get_header('registration');
                 <h4 class="mocktest-question"> Du möchtest dich an mehr als 3 Unis bewerben?</h4>
                 <div class="checkbox-container">
                     <input type="checkbox" id="ja_mehr" name="ja_mehr">
-                    <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den <a href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf" target="_blank">AGB*</a>. Falls Sie eine
+                    <label for="ja_mehr"> Ja, mehr Infos bei dieser Auswahl findest du in den <a
+                            href="https://medcompact.eu/wp-content/uploads/2025/05/AGB_aktuell.pdf"
+                            target="_blank">AGB*</a>. Falls Sie eine
                         Universität gewählt haben, die beide Studiengänge anbietet, geben Sie bitte im Kommentarfeld
                         an, welchen Studiengang Sie an welcher Universität genau studieren möchten.
                     </label>
@@ -663,6 +675,7 @@ get_header('registration');
 
         </div>
     </div>
+
     <!--  Confirmation -->
     <div class="container" id="rp-step5">
         <div class="header">
@@ -706,7 +719,8 @@ get_header('registration');
             <div class="image-box">
                 <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/complete.png' ?>" alt="User">
             </div>
-            <p> Wir haben deine Unterlagen erfolgreich erhalten und melden uns in Kürze bei dir! Dein Traumstudium zum zukünftigen <b>"Doctor to be"</b> ist jetzt zum Greifen nah - gemeinsam bringen wir dich ans Ziel!
+            <p> Wir haben deine Unterlagen erfolgreich erhalten und melden uns in Kürze bei dir! Dein Traumstudium zum
+                zukünftigen <b>"Doctor to be"</b> ist jetzt zum Greifen nah - gemeinsam bringen wir dich ans Ziel!
             </p><br>
             <p> - Dein MedCompact Team</p>
             <br><br>
