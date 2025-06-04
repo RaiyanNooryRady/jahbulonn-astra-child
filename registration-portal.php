@@ -64,8 +64,8 @@ get_header('registration');
                     </div>
 
                     <div class="form-group">
-                        <label for="telefon">TelefonNummer (Optional):</label>
-                        <input name="telefon" type="text" id="telefon">
+                        <label for="telefon">TelefonNummer *:</label>
+                        <input name="telefon" type="text" id="telefon" required>
                     </div>
 
                     <div class="form-group">
