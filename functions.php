@@ -155,7 +155,7 @@ add_shortcode('jahbulonn_registration_portal', 'jahbulonn_shortcode_registration
 function jahbulonn_custom_register_form_assets()
 {
     // Enqueue the register.js file
-    wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), filemtime(get_stylesheet_directory().'/register.js'), true);
+    wp_enqueue_script('custom-register-script', get_stylesheet_directory_uri() . '/register.js', array('jquery'), filemtime(get_stylesheet_directory() . '/register.js'), true);
 
     wp_localize_script('custom-register-script', 'reg_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -167,7 +167,7 @@ function jahbulonn_custom_register_form_assets()
         'forgot_password_nonce' => wp_create_nonce('forgot_password_nonce')
     ));
     // Enqueue the registration-portal.js file
-    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), filemtime(get_stylesheet_directory().'/registration-portal.js'), true);
+    wp_enqueue_script('registration-portal-script', get_stylesheet_directory_uri() . '/registration-portal.js', array('jquery'), filemtime(get_stylesheet_directory() . '/registration-portal.js'), true);
 
 }
 add_action('wp_enqueue_scripts', 'jahbulonn_custom_register_form_assets');
@@ -266,18 +266,84 @@ function jahbulonn_handle_register_form()
             'remember' => true
         );
         $user = wp_signon($info, false);
-        $attached_file= '<a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf">View Attached PDF</a>';
+        $attached_file = '<a href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf">View Attached PDF</a>';
         if (!is_wp_error($user)) {
-            function set_html_mail_content_type() {
+            function set_html_mail_content_type()
+            {
                 return 'text/html';
             }
-            
+
             add_filter('wp_mail_content_type', 'set_html_mail_content_type');
             $subject = 'Registration successful';
-            $message = 'Lieber ' . $vorname . ',<br><br> anbei erhältst du die Vollmacht, bitte unterschreibe diese und lade Sie auf dem Registrierungsportal hoch.'. '<br><br>'.$attached_file.'<br><br>'.' 
-            Beste Grüße' . '<br><br>'.'- Team MedCompact ';
+            $message = '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Successful</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .jahbulonn-site-logo { display: flex; justify-content: center; margin: 20px 0; }
+        .jahbulonn-site-logo img { width: 150px; height: auto; }
+        .jahbulonn-mail-container { padding: 20px; }
+        .jahbulonn-message-container { display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; align-items: center; }
+        .jahbulonn-message { padding: 0 10px; max-width: 500px; }
+        .jahbulonn-mail-img { width: 300px; height: 300px; object-fit: contain; }
+        .jahbulonn-download-link { color: #0A6E83; text-decoration: none; }
+        .jahbulonn-download-link:hover { text-decoration: underline; }
+        .jahbulonn-mail-footer { background-color: #0A6E83; text-align: center; color: white; padding: 30px 10px; }
+        .jahbulonn-mail-footer p { margin-bottom: 0; margin-top: 5px; }
+        .jahbulonn-footer-link { display: block; color: white; text-decoration: none; margin-top: 5px; }
+        .jahbulonn-footer-link:hover { text-decoration: underline; }
+        .jahbulonn-social-share { padding: 10px 0; }
+        .jahbulonn-social-share img { width: 30px; height: 30px; margin: 0 5px; }
+    </style>
+</head>
+<body>
+    <div class="jahbulonn-mail-container">
+        <a href="#" class="jahbulonn-site-logo">
+            <img src="https://medcompact.eu/wp-content/themes/jahbulonn-astra-child/jahbulonn-user-dashboard/logo-2.png" alt="Logo" />
+        </a>
+        <div class="jahbulonn-message-container">
+            <div class="jahbulonn-message">
+                <h4>Hallo ' . esc_html($vorname) . '</h4>
+                <p>Vielen Dank, dass du bei MedCompact deine Registrierung gestartet hast.</p>
+                <p>
+                    Hier findest du den <a
+                        href="https://medcompact.eu/wp-content/uploads/2025/06/MedCompact_Vollmacht.pdf"
+                        class="jahbulonn-download-link" target="_blank">Download-Link</a> zur Vollmacht. Bitte unterschreibe diese und lade sie auf dem Registrierungsportal hoch.
+                </p>
+                <p>Falls du noch weitere Fragen hast, melde dich gerne jederzeit bei uns.</p>
+                <p>Liebe Grüße und bis bald,</p>
+                <p>Das Team von MedCompact</p>
+            </div>
+            <img src="https://medcompact.eu/wp-content/uploads/2025/06/Bild-HP.png" alt="Vollmacht Illustration" class="jahbulonn-mail-img">
+        </div>
+    </div>
+    <div class="jahbulonn-mail-footer">
+        <p><b>MedCompact GmbH</b></p>
+        <p>Gentzgasse 127</p>
+        <p>1180 Wien</p>
+        <a href="tel:+4368120397265" class="jahbulonn-footer-link">+43 681 20397265</a>
+        <a href="mailto:info@medcompact.eu" class="jahbulonn-footer-link">info@medcompact.eu</a>
+        <div class="jahbulonn-social-share">
+            <a href="https://www.instagram.com/medcompact_eu?igsh=cGthb3RteXB2OGpv&utm_source=qr">
+                <img src="https://medcompact.eu/wp-content/uploads/2025/06/Adobe-Express-file-5.png" alt="Instagram">
+            </a>
+            <a href="https://www.tiktok.com/@medcompact.eu?_t=ZN-8wqwbnWKbri&_r=1">
+                <img src="https://medcompact.eu/wp-content/uploads/2025/06/Adobe-Express-file-4.png" alt="TikTok">
+            </a>
+            <a href="https://wa.me/message/ACIJOLJKUXU2B1">
+                <img src="https://medcompact.eu/wp-content/uploads/2025/06/Adobe-Express-file-3.png" alt="WhatsApp">
+            </a>
+        </div>
+        <a href="#" class="jahbulonn-footer-link">Unsubscribe</a>
+    </div>
+</body>
+</html>';
             $headers = array(
-                'From' => 'raiyannooryrady@gmail.com',
+                'From' => 'MedCompact <info@medcompact.eu>',
                 'Content-Type' => 'text/html; charset=UTF-8',
             );
             if (wp_mail($email, $subject, $message, $headers)) {
