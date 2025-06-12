@@ -290,11 +290,11 @@ function jahbulonn_handle_register_form()
         .jahbulonn-message-container { display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; align-items: center; }
         .jahbulonn-message { padding: 0 10px; max-width: 500px; }
         .jahbulonn-mail-img { width: 300px; height: 300px; object-fit: contain; }
-        .jahbulonn-download-link { color: #0A6E83; text-decoration: none; }
+        .jahbulonn-download-link { color: #0A6E83 !important; text-decoration: none; }
         .jahbulonn-download-link:hover { text-decoration: underline; }
         .jahbulonn-mail-footer { background-color: #0A6E83; text-align: center; color: white; padding: 30px 10px; }
         .jahbulonn-mail-footer p { margin-bottom: 0; margin-top: 5px; }
-        .jahbulonn-footer-link { display: block; color: white; text-decoration: none; margin-top: 5px; }
+        .jahbulonn-footer-link { display: block; color: white !important; text-decoration: none; margin-top: 5px; }
         .jahbulonn-footer-link:hover { text-decoration: underline; }
         .jahbulonn-social-share { padding: 10px 0; }
         .jahbulonn-social-share img { width: 30px; height: 30px; margin: 0 5px; }
